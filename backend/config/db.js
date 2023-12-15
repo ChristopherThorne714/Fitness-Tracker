@@ -9,7 +9,6 @@ mongoose.set("strictQuery", true, "useNewUrlParser", true);
 
 const connectDB = async () => {
   try {
-    console.log(typeof db)
     await mongoose.connect(db);
     console.log("MongoDB is Connected...");
   } catch (err) {

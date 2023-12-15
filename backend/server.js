@@ -1,3 +1,4 @@
+// this file is refered to as app.js in tutorial
 // backend entrypoint
 
 const express = require("express");
