@@ -1,17 +1,30 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+// import App from './App.jsx'
 import './index.css'
 
 
-// Bootstrap CSS
+// Bootstrap CSS & JS imports
 import "bootstrap/dist/css/bootstrap.min.css";
-// Bootstrap Bundle JS
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
+// Components imports
+import CreateBook from "./components/CreateBook";
+import ShowBookList from "./components/ShowBookList";
+import ShowBookDetails from "./components/ShowBookDetails";
+import UpdateBookInfo from "./components/UpdateBookInfo";
+
+// Routes
+const router = createBrowserRouter([
+  { path: "/", element: <ShowBookList /> },
+  { path: "/create-book", element: <CreateBook /> },
+  { path: "/show-book/:id", element: <ShowBookDetails /> },
+  { path: "/edit-book/:id", element: <UpdateBookInfo /> },
+]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>,
 )
