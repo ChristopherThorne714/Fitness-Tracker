@@ -10,6 +10,12 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
+// middleware for logging requests
+app.use((req, res, next) => {
+    console.log(req.path, req.method);
+    next();
+});
+
 // use the cors middleware with the
 // origin and credentials options
 app.use(cors({ origin: true, credentials: true }));

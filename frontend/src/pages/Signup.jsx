@@ -4,15 +4,15 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const Signup = () => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
 
 
     const handleSubmit = async () => {
-        e.preventDefault()
+        e.preventDefault();
 
-        console.log(email, password)
+        console.log(email, password);
     }
 
     return (
@@ -35,4 +35,4 @@ const Signup = () => {
     )
 }
 
-export default Signup
+export default Signup;
