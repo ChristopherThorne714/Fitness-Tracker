@@ -3,7 +3,8 @@
 
 const express = require("express");
 const connectDB = require("./config/db");
-const routes = require("./routes/api/books");
+const bookRoutes = require("./routes/api/books");
+const workoutRoutes = require("./routes/api/workout");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
@@ -25,8 +26,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // use the routes module as a middleware
-// for the /api/books path
-app.use("/api/books", routes);
+// for workouts and books apis
+app.use("/api/books", bookRoutes);
+app.use("/api/workouts", workoutRoutes);
 
 // connect database
 connectDB();
