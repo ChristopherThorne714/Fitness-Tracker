@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-// Load Book model
+// Load Workout model
 // not in use yet
 // const Workout = require('../../models/workout');
 
@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
 // @desc    Get single workout by id
 // @access  Public
 router.get('/:id', (req, res) => {
-    Book.findById(req.params.id)
+    Workout.findById(req.params.id)
       .then(workout => res.json(workout))
       .catch(err => res.status(404).json({ noworkoutfound: 'No workout found' }));
   });
@@ -42,7 +42,7 @@ router.post('/', (req, res) => {
 // @access  Public
 router.put('/:id', (req, res) => {
     Workout.findByIdAndUpdate(req.params.id, req.body)
-        .then(book => res.json({ msg: 'Updated successfully' }))
+        .then(workout => res.json({ msg: 'Updated successfully' }))
         .catch(err =>
         res.status(400).json({ error: 'Unable to update the Database' })
     );
