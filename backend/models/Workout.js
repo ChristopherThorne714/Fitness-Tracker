@@ -5,6 +5,10 @@ const workoutSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    archetype: {
+        type: { "type": String, "enum": ["", "", "", ""]},
+        required: true,
+    },
     reps: {
         type: Number,
         required: true,
@@ -15,9 +19,6 @@ const workoutSchema = new mongoose.Schema({
         required: false,
         default: 0
     },
-    // archetype: {
-    //     type:
-    // }
     load: {
         type: Number,
         required: false,
@@ -33,11 +34,6 @@ const workoutSchema = new mongoose.Schema({
         required: false,
         default: 0
     },
-    date: {
-        type: Date,
-        required: true,
-        default: Date.now
-    }
-});
+}, { timestamps: true });
 
 module.exports = Workout = mongoose.model('workout', workoutSchema);

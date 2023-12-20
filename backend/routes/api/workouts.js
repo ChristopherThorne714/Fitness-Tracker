@@ -3,7 +3,7 @@ const router = express.Router();
 
 // Load Workout model
 // not in use yet
-// const Workout = require('../../models/workout');
+const Workout = require('../../models/Workout');
 
 // @route   GET api/workouts/test
 // @desc    Tests workouts route
