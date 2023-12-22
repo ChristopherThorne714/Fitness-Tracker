@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const options = { discriminatorKey: 'kind' };
-
+// basic schema and model
 const baseWorkoutSchema = new mongoose.Schema({ 
     name: { 
         type: String, 
