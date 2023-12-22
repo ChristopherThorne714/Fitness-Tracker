@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 // import App from './App.jsx'
 import './index.css';
 
@@ -16,7 +16,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 // import UpdateBookInfo from "./components/UpdateBookInfo";
 
 // Components imports and pages imports
-import Navbar from "./components/Navbar"
+// import Navbar from "./components/Navbar"
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -27,10 +27,24 @@ const router = createBrowserRouter([
   // { path: "/create-book", element: <CreateBook /> },
   // { path: "/show-book/:id", element: <ShowBookDetails /> },
   // { path: "/edit-book/:id", element: <UpdateBookInfo /> },
-  { path: "/", element: <Home />},
+  { path: "/", element: <NavbarWrapper />, children: [
+    {
+      path: "/",
+      element: <Home />
+    },
+  ]},
   { path: "/login", element: <Login /> },
   { path: "/signup", element: <Signup /> },
 ]);
+
+function NavbarWrapper(){
+  return (
+    <div>
+      <Navbar />
+      <Outlet />
+    </div>
+  )
+};
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

@@ -3,7 +3,6 @@ import '../App.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-import Navbar from '../components/Navbar';
 import WorkoutDetails from '../components/WorkoutDetails';
 import WorkoutForm from '../components/WorkoutForm';
 
@@ -29,7 +28,6 @@ function Home() {
 
     return(
         <div className="home">
-            <Navbar />
         <div className="workouts">
           {workouts && workouts.map((workout) => (
             <WorkoutDetails key={workout._id} workout={workout} />
