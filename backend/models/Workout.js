@@ -6,11 +6,9 @@ const options = { discriminatorKey: 'kind' };
 const baseWorkoutSchema = new mongoose.Schema({ 
     name: { 
         type: String, 
-        required: true
     },
     musclegroup: {
         type: { "type": String, "enum": ["Biceps", "Triceps", "Shoulders", "Forearms", "Chest", "Back", "Abs", "Quads", "Hamstrings", "Calves", "Cardio"]},
-        required: true
     }
 }, { timestamps: true }, options);
 const Workout = mongoose.model('workout', baseWorkoutSchema);
@@ -51,7 +49,7 @@ const DurationWorkout = Workout.discriminator('Duration', new mongoose.Schema({
     },
 }, { timestamps: true}, options));
 
-const DistanceWorkout = Workout.discriminator('Duration', new mongoose.Schema({
+const DistanceWorkout = Workout.discriminator('Distance', new mongoose.Schema({
     distance: {
         type: Number,
         required: true,
