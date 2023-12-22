@@ -4,7 +4,7 @@
 const express = require("express");
 const connectDB = require("./config/db");
 const bookRoutes = require("./routes/api/books");
-const workoutRoutes = require("./routes/api/workout");
+const workoutRoutes = require("./routes/api/workouts");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
