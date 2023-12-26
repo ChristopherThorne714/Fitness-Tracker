@@ -95,49 +95,8 @@ const WorkoutForm = (props) => {
                     </select>
                   </div>
                   <br />
-                  <div className="form-group">
-                    <input
-                      type="text"
-                      placeholder="Author"
-                      name="author"
-                      className="form-control"
-                      value={book.author}
-                      onChange={onChange}
-                    />
-                  </div>
-                  <br />
-                  <div className="form-group">
-                    <input
-                      type="text"
-                      placeholder="Describe this book"
-                      name="description"
-                      className="form-control"
-                      value={book.description}
-                      onChange={onChange}
-                    />
-                  </div>
-                  <br />
-                  <div className="form-group">
-                    <input
-                      type="date"
-                      placeholder="published_date"
-                      name="published_date"
-                      className="form-control"
-                      value={book.published_date}
-                      onChange={onChange}
-                    />
-                  </div>
-                  <br />
-                  <div className="form-group">
-                    <input
-                      type="text"
-                      placeholder="Publisher of this Book"
-                      name="publisher"
-                      className="form-control"
-                      value={book.publisher}
-                      onChange={onChange}
-                    />
-                  </div>
+                  {/* add more form groups */}
+                  {/* add conditional form fields based on workout type */}
                   <button
                     type="submit"
                     className="btn btn-outline-warning btn-block mt-4 mb-4 w-100"
