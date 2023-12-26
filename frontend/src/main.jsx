@@ -16,7 +16,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 // import UpdateBookInfo from "./components/UpdateBookInfo";
 
 // Components imports and pages imports
-// import Navbar from "./components/Navbar"
+import Navbar from "./components/Navbar"
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";

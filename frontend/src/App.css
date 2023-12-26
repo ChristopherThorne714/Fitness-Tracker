@@ -1,4 +1,4 @@
-.card {
+/* .card {
   padding: 2em;
 }
 
@@ -34,7 +34,7 @@
 }
 
 /* BookList Styles */
-.list {
+/* .list {
   display: grid;
   margin: 20px 0 50px 0;
   grid-template-columns: repeat(4, 1fr);
@@ -68,4 +68,5 @@
   color: #6c757d;
   font-size: 1em;
   padding: 10px 0 10px 0;
-}
+} */
+

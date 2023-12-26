@@ -3,8 +3,8 @@ import '../App.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-import WorkoutDetails from '../components/WorkoutDetails';
-import WorkoutForm from '../components/WorkoutForm';
+// import WorkoutDetails from '../components/WorkoutDetails';
+// import WorkoutForm from '../components/WorkoutForm';
 
 
 function Home() {
@@ -30,10 +30,10 @@ function Home() {
         <div className="home">
         <div className="workouts">
           {workouts && workouts.map((workout) => (
-            <WorkoutDetails key={workout._id} workout={workout} />
+            <p key={workout._id} workout={workout} />
           ))}
         </div>
-        <WorkoutForm />
+        {/* <WorkoutForm /> */}
       </div>
     );
 };
