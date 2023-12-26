@@ -100,6 +100,8 @@ const DistanceWorkout = Workout.discriminator('Distance', new mongoose.Schema({
 
 //const Workout = mongoose.model('workout', workoutSchema);
 
-module.exports = {
-    Workout, UnderLoadWorkout, DurationWorkout, DistanceWorkout
-};
+module.exports = Workout;
+
+// module.exports = {
+//     Workout, UnderLoadWorkout, DurationWorkout, DistanceWorkout
+// };
