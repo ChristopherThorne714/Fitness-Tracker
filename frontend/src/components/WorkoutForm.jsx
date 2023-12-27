@@ -61,6 +61,7 @@ const WorkoutForm = (props) => {
                 <h1 className="display-4 text-center">Add Workout</h1>
                 <p className="lead text-center">Create new workout</p>
                 <form noValidate onSubmit={onSubmit}>
+                  
                   <div className="form-group">
                     <input
                       type="text"
@@ -72,6 +73,7 @@ const WorkoutForm = (props) => {
                     />
                   </div>
                   <br />
+
                   <div className="form-group">
                     <select
                       type="text"
@@ -80,6 +82,7 @@ const WorkoutForm = (props) => {
                       className="form-control"
                       value={workout.musclegroup}
                       onChange={onChange}
+                      default="Biceps"
                     >
                         <option value="Bicepts">Biceps</option>
                         <option value="Triceps">Triceps</option>
@@ -95,8 +98,20 @@ const WorkoutForm = (props) => {
                     </select>
                   </div>
                   <br />
+
                   {/* add more form groups */}
                   {/* add conditional form fields based on workout type */}
+                  
+                  <div className="form-group">
+                    <input
+                      type="text"
+                      placeholder="Workout Name"
+                      name="name"
+                      className="form-control"
+                      value={workout.name}
+                      onChange={onChange}
+                    />
+                  </div>
                   <button
                     type="submit"
                     className="btn btn-outline-warning btn-block mt-4 mb-4 w-100"
@@ -110,3 +125,5 @@ const WorkoutForm = (props) => {
         </div>
       );
 };
+
+export default WorkoutForm;
