@@ -118,7 +118,12 @@ const WorkoutForm = (props) => {
                   {/* add more form groups */}
                   {/* add conditional form fields based on workout type */}
                   
-                  {musclegroup == ""}
+                  {workout.sort === "Under Load" && <LoadForm 
+                  reps={workout.reps}
+                  sets={workout.sets}
+                  load={workout.load}/>}
+                  {workout.sort === "Duration" && <DurationForm />}
+                  {workout.sort === "Distance" && <DistanceForm />}
 
                   <button
                     type="submit"
@@ -135,8 +140,44 @@ const WorkoutForm = (props) => {
 };
 
 
-function LoadForm(props) {
-
-}
+function LoadForm({reps, sets, load}) {
+    render (
+      <div className="LoadForm">
+        <div className="form-group">
+          <input
+            type="text"
+            placeholder="Workout Load"
+            name="load"
+            className="form-control"
+            value={load}
+            onChange={onChange}
+            />
+        </div>
+        <br />
+        <div className="form-group">
+          <input
+            type="text"
+            placeholder="Amount of Sets"
+            name="sets"
+            className="form-control"
+            value={sets}
+            onChange={onChange}
+            />
+        </div>
+        <br />
+        <div className="form-group">
+          <input
+            type="text"
+            placeholder="Amount of Reps"
+            name="reps"
+            className="form-control"
+            value={reps}
+            onChange={onChange}
+            />
+        </div>
+        <br />
+      </div>
+    );
+};
 
 export default WorkoutForm;
