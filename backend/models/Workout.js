@@ -4,8 +4,11 @@ const options = { discriminatorKey: 'kind' };
 
 // basic schema and model
 const baseWorkoutSchema = new mongoose.Schema({ 
-    name: { 
+    title: { 
         type: String, 
+    },
+    sort: {
+        type: { "type": String, "enum": ["Under Load", "Duration", "Distance"]}
     },
     musclegroup: {
         type: { "type": String, "enum": ["Biceps", "Triceps", "Shoulders", "Forearms", "Chest", "Back", "Abs", "Quads", "Hamstrings", "Calves", "Cardio"]},

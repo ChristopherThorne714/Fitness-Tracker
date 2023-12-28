@@ -4,17 +4,12 @@ import '../App.css';
 import axios from 'axios';
 
 
-
-
-function LoadForm({ children }) {
-
-}
-
 const WorkoutForm = (props) => {
     const navigate = useNavigate();
 
     const [workout, setWorkout] = useState({
-        name: "",
+        title: "",
+        sort: "",
         musclegroup: "",
         reps: 0,
         sets: 0,
@@ -35,7 +30,8 @@ const WorkoutForm = (props) => {
         .post('http://localhost:5000/api/workouts', workout)
         .then((res) => {
             setWorkout({
-                name: "",
+                title: "",
+                sort: "",
                 musclegroup: "",
                 reps: 0,
                 sets: 0,
@@ -71,14 +67,29 @@ const WorkoutForm = (props) => {
                     <input
                       type="text"
                       placeholder="Workout Name"
-                      name="name"
+                      name="title"
                       className="form-control"
-                      value={workout.name}
+                      value={workout.title}
                       onChange={onChange}
                     />
                   </div>
                   <br />
-
+                  <div className="form-group">
+                    <select
+                      type="text"
+                      placeholder="Type"
+                      name="sort"
+                      className="form-control"
+                      value={workout.sort}
+                      onChange={onChange}
+                      default="Under Load"
+                    >
+                        <option value="Under Load">Under Load</option>
+                        <option value="Duration">Duration</option>
+                        <option value="Distance">Distance</option>
+                    </select>
+                  </div>
+                  <br />
                   <div className="form-group">
                     <select
                       type="text"
@@ -89,7 +100,7 @@ const WorkoutForm = (props) => {
                       onChange={onChange}
                       default="Biceps"
                     >
-                        <option value="Bicepts">Biceps</option>
+                        <option value="Biceps">Biceps</option>
                         <option value="Triceps">Triceps</option>
                         <option value="Shoulders">Shoulders</option>
                         <option value="Forearms">Forearms</option>
@@ -106,6 +117,8 @@ const WorkoutForm = (props) => {
 
                   {/* add more form groups */}
                   {/* add conditional form fields based on workout type */}
+                  
+                  {musclegroup == ""}
 
                   <button
                     type="submit"
@@ -120,5 +133,10 @@ const WorkoutForm = (props) => {
         </div>
       );
 };
+
+
+function LoadForm(props) {
+
+}
 
 export default WorkoutForm;
