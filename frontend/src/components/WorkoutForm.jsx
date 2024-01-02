@@ -65,6 +65,7 @@ const WorkoutForm = (props) => {
                 <form noValidate onSubmit={onSubmit}>
                   
                   <div className="form-group">
+                    <label>Name</label>
                     <input
                       type="text"
                       placeholder="Workout Name"
@@ -76,6 +77,7 @@ const WorkoutForm = (props) => {
                   </div>
                   <br />
                   <div className="form-group">
+                    <label>Type</label>
                     <select
                       type="text"
                       placeholder="Type of Exercise"
@@ -92,6 +94,7 @@ const WorkoutForm = (props) => {
                   </div>
                   <br />
                   <div className="form-group">
+                    <label>Muscle group</label>
                     <select
                       type="text"
                       placeholder="Musclegroup"
@@ -162,9 +165,9 @@ function LoadForm({reps, sets, load}) {
     return (
       <div className="LoadForm">
         <div className="form-group">
+          <label>Weight (in lbs)</label>
           <input
             type="text"
-            placeholder="Weight (in lbs)"
             name="load"
             className="form-control"
             value={load}
@@ -173,6 +176,7 @@ function LoadForm({reps, sets, load}) {
         </div>
         <br />
         <div className="form-group">
+          <label>Sets</label>
           <input
             type="text"
             placeholder="# of sets"
@@ -184,6 +188,7 @@ function LoadForm({reps, sets, load}) {
         </div>
         <br />
         <div className="form-group">
+          <label>Reps</label>
           <input
             type="text"
             placeholder="# of reps"
@@ -210,6 +215,7 @@ function DurationForm({hours, minutes, seconds, sets}) {
     return (
       <div className="DurationForm">
         <div className="form-group">
+        <label></label>
           <input
             type="text"
             placeholder="Weight (in lbs)"
@@ -221,6 +227,7 @@ function DurationForm({hours, minutes, seconds, sets}) {
         </div>
         <br />
         <div className="form-group">
+        <label></label>
           <input
             type="text"
             placeholder="# of sets"
@@ -232,6 +239,7 @@ function DurationForm({hours, minutes, seconds, sets}) {
         </div>
         <br />
         <div className="form-group">
+        <label></label>
           <input
             type="text"
             placeholder="# of reps"
