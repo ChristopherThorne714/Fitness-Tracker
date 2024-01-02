@@ -54,9 +54,9 @@ const WorkoutForm = (props) => {
             <div className="row">
               <div className="col-md-8 m-auto">
                 <br />
-                <Link to="/" className="btn btn-outline-warning float-left">
+                {/* <Link to="/" className="btn btn-outline-warning float-left">
                   Home
-                </Link>
+                </Link> */}
               </div>
               <div className="col-md-10 m-auto">
                 <h1 className="display-4 text-center">Add Workout</h1>
@@ -82,11 +82,11 @@ const WorkoutForm = (props) => {
                       className="form-control"
                       value={workout.sort}
                       onChange={onChange}
-                      default="Under Load"
                     >
-                        <option value="Under Load">Under Load</option>
-                        <option value="Duration">Duration</option>
-                        <option value="Distance">Distance</option>
+                      <option value="None">Type of Exercise</option>
+                      <option value="Under Load">Under Load</option>
+                      <option value="Duration">Duration</option>
+                      <option value="Distance">Distance</option>
                     </select>
                   </div>
                   <br />
@@ -98,19 +98,19 @@ const WorkoutForm = (props) => {
                       className="form-control"
                       value={workout.musclegroup}
                       onChange={onChange}
-                      default="Biceps"
                     >
-                        <option value="Biceps">Biceps</option>
-                        <option value="Triceps">Triceps</option>
-                        <option value="Shoulders">Shoulders</option>
-                        <option value="Forearms">Forearms</option>
-                        <option value="Chest">Chest</option>
-                        <option value="Back">Back</option>
-                        <option value="Abs">Abs</option>
-                        <option value="Quads">Quads</option>
-                        <option value="Hamstrings">Hamstrings</option>
-                        <option value="Calves">Calves</option>
-                        <option value="Cardio">Cardio</option>
+                      <option value="None">Musclegroup</option>
+                      <option value="Biceps">Biceps</option>
+                      <option value="Triceps">Triceps</option>
+                      <option value="Shoulders">Shoulders</option>
+                      <option value="Forearms">Forearms</option>
+                      <option value="Chest">Chest</option>
+                      <option value="Back">Back</option>
+                      <option value="Abs">Abs</option>
+                      <option value="Quads">Quads</option>
+                      <option value="Hamstrings">Hamstrings</option>
+                      <option value="Calves">Calves</option>
+                      <option value="Cardio">Cardio</option>
                     </select>
                   </div>
                   <br />
@@ -121,7 +121,7 @@ const WorkoutForm = (props) => {
                   reps={workout.reps}
                   sets={workout.sets}
                   load={workout.load}
-                  onChange={this.onChange.bind(this)}/>}
+                 />}
 
                   {/* {workout.sort === "Duration" && <DurationForm />}
 
@@ -155,7 +155,7 @@ function LoadForm({reps, sets, load}) {
         <div className="form-group">
           <input
             type="text"
-            placeholder="Workout Load"
+            placeholder="Weight (in lbs)"
             name="load"
             className="form-control"
             value={load}
@@ -166,7 +166,7 @@ function LoadForm({reps, sets, load}) {
         <div className="form-group">
           <input
             type="text"
-            placeholder="Amount of Sets"
+            placeholder="# of sets"
             name="sets"
             className="form-control"
             value={sets}
@@ -177,7 +177,7 @@ function LoadForm({reps, sets, load}) {
         <div className="form-group">
           <input
             type="text"
-            placeholder="Amount of Reps"
+            placeholder="# of reps"
             name="reps"
             className="form-control"
             value={reps}

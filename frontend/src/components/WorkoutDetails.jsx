@@ -11,12 +11,12 @@ function ShowWorkoutDetails(props) {
   
     useEffect(() => {
       axios
-        .get(`http://localhost:5000/api/books/${id}`)
+        .get(`http://localhost:5000/api/workouts/${id}`)
         .then((res) => {
           setBook(res.data);
         })
         .catch((err) => {
-          console.log('Error from ShowBookDetails');
+          console.log('Error from WorkoutDetails');
         });
     }, [id]);
   
