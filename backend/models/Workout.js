@@ -45,7 +45,7 @@ const DurationWorkout = Workout.discriminator('Duration', new mongoose.Schema({
         minutes: Number,
         seconds: Number,
     },
-    reps: {
+    sets: {
         type: Number,
         required: true,
         default: 0

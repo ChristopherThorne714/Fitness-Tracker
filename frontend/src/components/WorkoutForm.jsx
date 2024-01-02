@@ -40,6 +40,7 @@ const WorkoutForm = (props) => {
                 minutes: 0,
                 seconds: 0,
                 distance: 0,
+                laps: 0,
             });
             navigate("/");
         })
@@ -123,9 +124,17 @@ const WorkoutForm = (props) => {
                   load={workout.load}
                  />}
 
-                  {/* {workout.sort === "Duration" && <DurationForm />}
+                  {workout.sort === "Duration" && <DurationForm 
+                  hours={workout.hours}
+                  minutes={workout.minutes}
+                  seconds={workout.seconds}
+                  sets={workout.sets}
+                  />}
 
-                  {workout.sort === "Distance" && <DistanceForm />} */}
+                  {workout.sort === "Distance" && <DistanceForm 
+                  distance={workout.distance}
+                  laps={workout.laps}
+                  />}
 
                   <button
                     type="submit"
@@ -150,8 +159,56 @@ function LoadForm({reps, sets, load}) {
       this.props.onChange(fieldName, fieldValue);
     };
 
-    render (
+    return (
       <div className="LoadForm">
+        <div className="form-group">
+          <input
+            type="text"
+            placeholder="Weight (in lbs)"
+            name="load"
+            className="form-control"
+            value={load}
+            onChange={onFieldChange}
+            />
+        </div>
+        <br />
+        <div className="form-group">
+          <input
+            type="text"
+            placeholder="# of sets"
+            name="sets"
+            className="form-control"
+            value={sets}
+            onChange={onFieldChange}
+            />
+        </div>
+        <br />
+        <div className="form-group">
+          <input
+            type="text"
+            placeholder="# of reps"
+            name="reps"
+            className="form-control"
+            value={reps}
+            onChange={onFieldChange}
+            />
+        </div>
+        <br />
+      </div>
+    );
+};
+
+// child component for Duration selection choice
+function DurationForm({hours, minutes, seconds, sets}) {
+
+  const onFieldChange = (e) => {
+      const fieldName = e.target.name;
+      const fieldValue = e.target.value;
+      this.props.onChange(fieldName, fieldValue);
+    };
+
+    return (
+      <div className="DurationForm">
         <div className="form-group">
           <input
             type="text"
