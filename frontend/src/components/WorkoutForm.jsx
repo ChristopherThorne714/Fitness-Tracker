@@ -115,16 +115,17 @@ const WorkoutForm = (props) => {
                   </div>
                   <br />
 
-                  {/* add more form groups */}
-                  {/* add conditional form fields based on workout type */}
+                  {/* Conditionally render child components based on user selection */}
                   
                   {workout.sort === "Under Load" && <LoadForm 
                   reps={workout.reps}
                   sets={workout.sets}
                   load={workout.load}
                   onChange={this.onChange.bind(this)}/>}
-                  {workout.sort === "Duration" && <DurationForm />}
-                  {workout.sort === "Distance" && <DistanceForm />}
+
+                  {/* {workout.sort === "Duration" && <DurationForm />}
+
+                  {workout.sort === "Distance" && <DistanceForm />} */}
 
                   <button
                     type="submit"
@@ -140,14 +141,14 @@ const WorkoutForm = (props) => {
       );
 };
 
-
+// child component for underLoad selection choice
 function LoadForm({reps, sets, load}) {
 
   const onFieldChange = (e) => {
       const fieldName = e.target.name;
       const fieldValue = e.target.value;
       this.props.onChange(fieldName, fieldValue);
-};
+    };
 
     render (
       <div className="LoadForm">
