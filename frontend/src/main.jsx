@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 // import App from './App.jsx'
-import './index.css';
+// import './index.css';
 
 
 // Bootstrap CSS & JS imports
@@ -33,6 +33,7 @@ const router = createBrowserRouter([
       element: <Home />
     },
   ]},
+  // { path: "/", element: <Home />},
   { path: "/login", element: <Login /> },
   { path: "/signup", element: <Signup /> },
 ]);
