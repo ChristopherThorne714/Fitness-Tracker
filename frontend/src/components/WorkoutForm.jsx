@@ -77,7 +77,7 @@ const WorkoutForm = (props) => {
                   <div className="form-group">
                     <select
                       type="text"
-                      placeholder="Type"
+                      placeholder="Type of Exercise"
                       name="sort"
                       className="form-control"
                       value={workout.sort}
@@ -121,7 +121,8 @@ const WorkoutForm = (props) => {
                   {workout.sort === "Under Load" && <LoadForm 
                   reps={workout.reps}
                   sets={workout.sets}
-                  load={workout.load}/>}
+                  load={workout.load}
+                  onChange={this.onChange.bind(this)}/>}
                   {workout.sort === "Duration" && <DurationForm />}
                   {workout.sort === "Distance" && <DistanceForm />}
 
@@ -141,6 +142,13 @@ const WorkoutForm = (props) => {
 
 
 function LoadForm({reps, sets, load}) {
+
+  const onFieldChange = (e) => {
+      const fieldName = e.target.name;
+      const fieldValue = e.target.value;
+      this.props.onChange(fieldName, fieldValue);
+};
+
     render (
       <div className="LoadForm">
         <div className="form-group">
@@ -150,7 +158,7 @@ function LoadForm({reps, sets, load}) {
             name="load"
             className="form-control"
             value={load}
-            onChange={onChange}
+            onChange={onFieldChange}
             />
         </div>
         <br />
@@ -161,7 +169,7 @@ function LoadForm({reps, sets, load}) {
             name="sets"
             className="form-control"
             value={sets}
-            onChange={onChange}
+            onChange={onFieldChange}
             />
         </div>
         <br />
@@ -172,7 +180,7 @@ function LoadForm({reps, sets, load}) {
             name="reps"
             className="form-control"
             value={reps}
-            onChange={onChange}
+            onChange={onFieldChange}
             />
         </div>
         <br />
