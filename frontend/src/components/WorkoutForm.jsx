@@ -3,6 +3,8 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
 
+// import Form from 'react-bootstrap/Form';
+// import InputGroup from 'react-bootstrap/InputGroup';
 
 const WorkoutForm = (props) => {
     const navigate = useNavigate();
@@ -55,9 +57,6 @@ const WorkoutForm = (props) => {
             <div className="row">
               <div className="col-md-8 m-auto">
                 <br />
-                {/* <Link to="/" className="btn btn-outline-warning float-left">
-                  Home
-                </Link> */}
               </div>
               <div className="col-md-10 m-auto">
                 <h1 className="display-4 text-center">Add Workout</h1>
@@ -167,7 +166,9 @@ function LoadForm({reps, sets, load}) {
         <div className="form-group">
           <label>Weight (in lbs)</label>
           <input
-            type="text"
+            type="number"
+            min="0"
+            max="1000"
             name="load"
             className="form-control"
             value={load}
@@ -178,8 +179,9 @@ function LoadForm({reps, sets, load}) {
         <div className="form-group">
           <label>Sets</label>
           <input
-            type="text"
-            placeholder="# of sets"
+            type="number"
+            min="0"
+            max="1000"
             name="sets"
             className="form-control"
             value={sets}
@@ -190,8 +192,9 @@ function LoadForm({reps, sets, load}) {
         <div className="form-group">
           <label>Reps</label>
           <input
-            type="text"
-            placeholder="# of reps"
+            type="number"
+            min="0"
+            max="1000"
             name="reps"
             className="form-control"
             value={reps}
@@ -215,40 +218,44 @@ function DurationForm({hours, minutes, seconds, sets}) {
     return (
       <div className="DurationForm">
         <div className="form-group">
-        <label>Duration</label>
-        <tr>
+        <label>Duration hh/mm/ss</label>
+        <div className='duration-form-group'>
           <input
-            type="text"
-            placeholder="Hours"
+            type="number"
+            min="0"
+            max="1000"
             name="hours"
             className="form-control"
             value={hours}
             onChange={onFieldChange}
             />
             <input
-            type="text"
-            placeholder="Minutes"
+            type="number"
+            min="0"
+            max="1000"
             name="minutes"
             className="form-control"
             value={minutes}
             onChange={onFieldChange}
             />
             <input
-            type="text"
-            placeholder="Seconds"
+            type="number"
+            min="0"
+            max="1000"
             name="seconds"
             className="form-control"
             value={seconds}
             onChange={onFieldChange}
             />
-          </tr>
+          </div>
         </div>
         <br />
         <div className="form-group">
           <label>Sets</label>
           <input
-            type="text"
-            placeholder="# of sets"
+            type="number"
+            min="0"
+            max="1000"
             name="sets"
             className="form-control"
             value={sets}

@@ -140,6 +140,11 @@ header a {
 }
 
 /* new workout form */
+.duration-form-group{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: -2rem;
+}
 label, input {
   display: block;
 }
