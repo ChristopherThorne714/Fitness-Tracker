@@ -205,13 +205,7 @@ function LoadForm({reps, sets, load, onChildChange}) {
 };
 
 // child component for Duration selection choice
-function DurationForm({hours, minutes, seconds, sets}) {
-
-  const onFieldChange = (e) => {
-      const fieldName = e.target.name;
-      const fieldValue = e.target.value;
-      this.props.onChange(fieldName, fieldValue);
-    };
+function DurationForm({hours, minutes, seconds, sets, onChildChange}) {
 
     return (
       <div className="DurationForm">
@@ -225,7 +219,7 @@ function DurationForm({hours, minutes, seconds, sets}) {
             name="hours"
             className="form-control"
             value={hours}
-            onChange={onFieldChange}
+            onChange={onChildChange}
             />
             <input
             type="number"
@@ -234,7 +228,7 @@ function DurationForm({hours, minutes, seconds, sets}) {
             name="minutes"
             className="form-control"
             value={minutes}
-            onChange={onFieldChange}
+            onChange={onChildChange}
             />
             <input
             type="number"
@@ -243,7 +237,7 @@ function DurationForm({hours, minutes, seconds, sets}) {
             name="seconds"
             className="form-control"
             value={seconds}
-            onChange={onFieldChange}
+            onChange={onChildChange}
             />
           </div>
         </div>
@@ -257,7 +251,7 @@ function DurationForm({hours, minutes, seconds, sets}) {
             name="sets"
             className="form-control"
             value={sets}
-            onChange={onFieldChange}
+            onChange={onChildChange}
             />
         </div>
         <br />

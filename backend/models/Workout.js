@@ -8,10 +8,12 @@ const baseWorkoutSchema = new mongoose.Schema({
         type: String, 
     },
     sort: {
-        type: { "type": String, "enum": ["Under Load", "Duration", "Distance"]}
+        type: String, 
+        enum: ["Under Load", "Duration", "Distance"]
     },
     musclegroup: {
-        type: { "type": String, "enum": ["Biceps", "Triceps", "Shoulders", "Forearms", "Chest", "Back", "Abs", "Quads", "Hamstrings", "Calves", "Cardio"]},
+        type: String, 
+        enum: ["Biceps", "Triceps", "Shoulders", "Forearms", "Chest", "Back", "Abs", "Quads", "Hamstrings", "Calves", "Cardio"],
     }
 }, { timestamps: true }, options);
 const Workout = mongoose.model('workout', baseWorkoutSchema);
