@@ -124,6 +124,8 @@ const WorkoutForm = (props) => {
                   reps={workout.reps}
                   sets={workout.sets}
                   load={workout.load}
+                  onChildChange={onChange}
+
                  />}
 
                   {workout.sort === "Duration" && <DurationForm 
@@ -131,11 +133,13 @@ const WorkoutForm = (props) => {
                   minutes={workout.minutes}
                   seconds={workout.seconds}
                   sets={workout.sets}
+                  onChildChange={onChange}
                   />}
 
                   {workout.sort === "Distance" && <DistanceForm 
                   distance={workout.distance}
                   laps={workout.laps}
+                  onChildChange={onChange}
                   />}
 
                   <button
@@ -153,13 +157,7 @@ const WorkoutForm = (props) => {
 };
 
 // child component for underLoad selection choice
-function LoadForm({reps, sets, load}) {
-
-  const onFieldChange = (e) => {
-      const fieldName = e.target.name;
-      const fieldValue = e.target.value;
-      this.props.onChange(fieldName, fieldValue);
-    };
+function LoadForm({reps, sets, load, onChildChange}) {
 
     return (
       <div className="LoadForm">
@@ -172,7 +170,7 @@ function LoadForm({reps, sets, load}) {
             name="load"
             className="form-control"
             value={load}
-            onChange={onFieldChange}
+            onChange={onChildChange}
             />
         </div>
         <br />
@@ -185,7 +183,7 @@ function LoadForm({reps, sets, load}) {
             name="sets"
             className="form-control"
             value={sets}
-            onChange={onFieldChange}
+            onChange={onChildChange}
             />
         </div>
         <br />
@@ -198,7 +196,7 @@ function LoadForm({reps, sets, load}) {
             name="reps"
             className="form-control"
             value={reps}
-            onChange={onFieldChange}
+            onChange={onChildChange}
             />
         </div>
         <br />
