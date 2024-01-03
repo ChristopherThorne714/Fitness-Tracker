@@ -50,7 +50,7 @@ const WorkoutForm = (props) => {
     };
 
     return (
-        <div className="CreateBook">
+        <div className="CreateWorkout">
           <div className="container">
             <div className="row">
               <div className="col-md-8 m-auto">
@@ -215,37 +215,43 @@ function DurationForm({hours, minutes, seconds, sets}) {
     return (
       <div className="DurationForm">
         <div className="form-group">
-        <label></label>
+        <label>Duration</label>
+        <tr>
           <input
             type="text"
-            placeholder="Weight (in lbs)"
-            name="load"
+            placeholder="Hours"
+            name="hours"
             className="form-control"
-            value={load}
+            value={hours}
             onChange={onFieldChange}
             />
+            <input
+            type="text"
+            placeholder="Minutes"
+            name="minutes"
+            className="form-control"
+            value={minutes}
+            onChange={onFieldChange}
+            />
+            <input
+            type="text"
+            placeholder="Seconds"
+            name="seconds"
+            className="form-control"
+            value={seconds}
+            onChange={onFieldChange}
+            />
+          </tr>
         </div>
         <br />
         <div className="form-group">
-        <label></label>
+          <label>Sets</label>
           <input
             type="text"
             placeholder="# of sets"
             name="sets"
             className="form-control"
             value={sets}
-            onChange={onFieldChange}
-            />
-        </div>
-        <br />
-        <div className="form-group">
-        <label></label>
-          <input
-            type="text"
-            placeholder="# of reps"
-            name="reps"
-            className="form-control"
-            value={reps}
             onChange={onFieldChange}
             />
         </div>
