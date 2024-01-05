@@ -30,6 +30,30 @@ const WorkoutForm = (props) => {
     // need to add more api routes for new models with disctriminators 
     const onSubmit = (e) => {
         e.preventDefault();
+        if (workout.sort == "Under Load") {
+          axios
+          .post('http://localhost:5000/api/underloadworkouts', workout)
+          .then((res) => {
+              setWorkout({
+                title: "",
+                sort: "",
+                musclegroup: "",
+                reps: 0,
+                sets: 0,
+                load: 0,
+                hours: 0,
+                minutes: 0,
+                seconds: 0,
+                distance: 0,
+                laps: 0,
+            });
+            navigate("/");
+          })
+          .catch((err) => {
+            console.log("Error in WorkoutForm!")
+        });
+        };
+        
         axios
         .post('http://localhost:5000/api/workouts', workout)
         .then((res) => {
