@@ -28,6 +28,11 @@ const WorkoutForm = (props) => {
         setWorkout({ ...workout, [e.target.name]: e.target.value });
     };
 
+    const setDuration = () => {
+      const drtn = workout.hours + ":" + workout.minutes + ":" + workout.seconds;
+      workout.duration = drtn;
+    };
+
     const resetWorkout = () => {
       setWorkout({
         title: "",
@@ -39,6 +44,7 @@ const WorkoutForm = (props) => {
         hours: 0,
         minutes: 0,
         seconds: 0,
+        duration: "",
         distance: 0,
         laps: 0,
       });
@@ -47,6 +53,7 @@ const WorkoutForm = (props) => {
     // onSubmit needs to check for workout type first and then choose the correct model to post to.
     // need to add more api routes for new models with disctriminators 
     const onSubmit = (e) => {
+      setDuration();
         e.preventDefault();
         if (workout.sort == "Under Load") {
           axios
