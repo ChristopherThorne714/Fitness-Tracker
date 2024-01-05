@@ -7,8 +7,10 @@ const bookRoutes = require("./routes/api/books");
 const workoutRoutes = require("./routes/api/workouts");
 const underloadRoutes = require("./routes/api/underloadworkouts");
 const durationRoutes = require("./routes/api/durationworkouts");
+const distanceRoutes = requrie("./routes/api/distanceworkouts");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const DistanceWorkout = require("./models/DistanceWorkout");
 
 
 const app = express();
@@ -33,6 +35,7 @@ app.use("/api/books", bookRoutes);
 app.use("/api/workouts", workoutRoutes);
 app.use("/api/underloadworkouts", underloadRoutes);
 app.use("/api/durationworkouts", durationRoutes);
+app.use("/api/distanceworkouts", distanceRoutes);
 
 // connect database
 connectDB();

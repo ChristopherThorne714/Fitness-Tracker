@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-// Load Workout model
+// Load DurationWorkout model
 const DurationWorkout = require('../../models/DurationWorkout');
 
 // @route   GET api/durationworkouts/test

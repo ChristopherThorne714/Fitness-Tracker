@@ -18,4 +18,4 @@ const DistanceWorkout = Workout.discriminator('Distance', new mongoose.Schema({
     }
 }, { timestamps: true}, options));
 
-module.export = DistanceWorkout;
+module.exports = DistanceWorkout;
