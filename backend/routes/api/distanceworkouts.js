@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // Load DistanceWorkout model
-const Workout = require('../../models/DistanceWorkout');
+const DistanceWorkout = require('../../models/DistanceWorkout');
 
 // @route   GET api/workouts/test
 // @desc    Tests workouts route
@@ -13,7 +13,7 @@ router.get('/test', (req, res) => res.send('Workouts testing!'));
 // @desc    Get all workouts
 // @access  Public
 router.get('/', (req, res) => {
-    Workout.find().sort({ createdAt: -1 }) // displays most recent entries first
+    DistanceWorkout.find().sort({ createdAt: -1 }) // displays most recent entries first
     .then(workouts => res.json(workouts))
     .catch(err => res.status(404).json({ noworkoutsfound : 'No workouts found'}));
 });
@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 // @desc    Get single workout by id
 // @access  Public
 router.get('/:id', (req, res) => {
-    Workout.findById(req.params.id)
+    DistanceWorkout.findById(req.params.id)
       .then(workout => res.json(workout))
       .catch(err => res.status(404).json({ noworkoutfound: 'No workout found' }));
   });
@@ -31,7 +31,7 @@ router.get('/:id', (req, res) => {
 // @desc    Add/save workout
 // @access  Public
 router.post('/', (req, res) => {
-    Workout.create(req.body)
+    DistanceWorkout.create(req.body)
       .then(workout => res.json({ msg: 'Workout added successfully' }))
       .catch(err => res.status(400).json({ error: 'Unable to add this workout' }));
   });
@@ -40,7 +40,7 @@ router.post('/', (req, res) => {
 // @desc    Update workout by id
 // @access  Public
 router.put('/:id', (req, res) => {
-    Workout.findByIdAndUpdate(req.params.id, req.body)
+    DistanceWorkout.findByIdAndUpdate(req.params.id, req.body)
         .then(workout => res.json({ msg: 'Updated successfully' }))
         .catch(err =>
         res.status(400).json({ error: 'Unable to update the Database' })
@@ -51,7 +51,7 @@ router.put('/:id', (req, res) => {
 // @desc    Delete workout by id
 // @access  Public
 router.delete('/:id', (req, res) => {
-    Workout.findByIdAndDelete(req.params.id)
+    DistanceWorkout.findByIdAndDelete(req.params.id)
       .then(workout => res.json({ mgs: 'Workout entry deleted successfully' }))
       .catch(err => res.status(404).json({ error: 'No such workout entry' }));
   });

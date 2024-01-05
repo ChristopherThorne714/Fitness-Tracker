@@ -53,7 +53,6 @@ const WorkoutForm = (props) => {
     // onSubmit needs to check for workout type first and then choose the correct model to post to.
     // need to add more api routes for new models with disctriminators 
     const onSubmit = (e) => {
-      setDuration();
         e.preventDefault();
         if (workout.sort == "Under Load") {
           axios
@@ -67,6 +66,7 @@ const WorkoutForm = (props) => {
         });
         }
         else if (workout.sort == "Duration") {
+          setDuration();
           axios
           .post('http://localhost:5000/api/durationworkouts', workout)
           .then((res) => {
@@ -77,7 +77,17 @@ const WorkoutForm = (props) => {
             console.log("Error in WorkoutForm!")
         });
         }
-
+        else if (workout.sort == "Distance") {
+          axios
+          .post('http://localhost:5000/api/distanceworkouts', workout)
+          .then((res) => {
+            resetWorkout(e);
+            navigate("/");
+          })
+          .catch((err) => {
+            console.log("Error in WorkoutForm!")
+        });
+        };
     };
 
     return (
@@ -280,6 +290,41 @@ function DurationForm({hours, minutes, seconds, sets, onChildChange}) {
             name="sets"
             className="form-control"
             value={sets}
+            onChange={onChildChange}
+            />
+        </div>
+        <br />
+      </div>
+    );
+};
+
+// child component for distance selection choice
+function DistanceForm({distance, laps, onChildChange}) {
+
+    return (
+      <div className="DistanceForm">
+        <div className="form-group">
+          <label>Distance (imperial)</label>
+          <input
+            type="number"
+            min="0"
+            max="1000"
+            name="distance"
+            className="form-control"
+            value={distance}
+            onChange={onChildChange}
+            />
+        </div>
+        <br />
+        <div className="form-group">
+          <label>Laps</label>
+          <input
+            type="number"
+            min="0"
+            max="1000"
+            name="laps"
+            className="form-control"
+            value={laps}
             onChange={onChildChange}
             />
         </div>
