@@ -25,6 +25,21 @@ const WorkoutForm = (props) => {
     const onChange = (e) => {
         setWorkout({ ...workout, [e.target.name]: e.target.value });
     };
+    const resetWorkout = (e) => {
+      setWorkout({
+        title: "",
+        sort: "",
+        musclegroup: "",
+        reps: 0,
+        sets: 0,
+        load: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        distance: 0,
+        laps: 0,
+      });
+    };
 
     // onSubmit needs to check for workout type first and then choose the correct model to post to.
     // need to add more api routes for new models with disctriminators 
@@ -34,25 +49,25 @@ const WorkoutForm = (props) => {
           axios
           .post('http://localhost:5000/api/underloadworkouts', workout)
           .then((res) => {
-              setWorkout({
-                title: "",
-                sort: "",
-                musclegroup: "",
-                reps: 0,
-                sets: 0,
-                load: 0,
-                hours: 0,
-                minutes: 0,
-                seconds: 0,
-                distance: 0,
-                laps: 0,
-            });
+            resetWorkout(e);
             navigate("/");
           })
           .catch((err) => {
             console.log("Error in WorkoutForm!")
         });
-        };
+        }
+        else if (workout.sort == "Duration") {
+          axios
+          .post('http://localhost:5000/api/durationworkouts', workout)
+          .then((res) => {
+            resetWorkout(e);
+            navigate("/");
+          })
+          .catch((err) => {
+            console.log("Error in WorkoutForm!")
+        });
+        }
+        
     };
 
     return (

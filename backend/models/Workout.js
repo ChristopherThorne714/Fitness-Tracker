@@ -22,7 +22,7 @@ const baseWorkoutSchema = new mongoose.Schema({
 const Workout = mongoose.model('workout', baseWorkoutSchema);
 
 
-// discriminators for different workout types
+// each type of workout should be discriminated from each other
 // workout types:
 // under load
 // duration
