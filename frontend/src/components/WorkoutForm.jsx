@@ -53,28 +53,6 @@ const WorkoutForm = (props) => {
             console.log("Error in WorkoutForm!")
         });
         };
-        
-        axios
-        .post('http://localhost:5000/api/workouts', workout)
-        .then((res) => {
-            setWorkout({
-                title: "",
-                sort: "",
-                musclegroup: "",
-                reps: 0,
-                sets: 0,
-                load: 0,
-                hours: 0,
-                minutes: 0,
-                seconds: 0,
-                distance: 0,
-                laps: 0,
-            });
-            navigate("/");
-        })
-        .catch((err) => {
-            console.log("Error in WorkoutForm!")
-        });
     };
 
     return (

@@ -28,19 +28,6 @@ const Workout = mongoose.model('workout', baseWorkoutSchema);
 // duration
 // laps/distance
 
-const DurationWorkout = Workout.discriminator('Duration', new mongoose.Schema({
-    duration: {
-        hours: Number,
-        minutes: Number,
-        seconds: Number,
-    },
-    sets: {
-        type: Number,
-        required: true,
-        default: 0
-    },
-}, { timestamps: true}, options));
-
 const DistanceWorkout = Workout.discriminator('Distance', new mongoose.Schema({
     distance: {
         type: Number,
