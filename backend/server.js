@@ -5,6 +5,7 @@ const express = require("express");
 const connectDB = require("./config/db");
 const bookRoutes = require("./routes/api/books");
 const workoutRoutes = require("./routes/api/workouts");
+const underloadRoutes = require("./routes/api/underloadworkouts");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
@@ -29,6 +30,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // for workouts and books apis
 app.use("/api/books", bookRoutes);
 app.use("/api/workouts", workoutRoutes);
+app.use("/api/underloadworkouts", underloadRoutes);
 
 // connect database
 connectDB();
