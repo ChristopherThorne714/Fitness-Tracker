@@ -27,23 +27,6 @@ const Workout = mongoose.model('workout', baseWorkoutSchema);
 // under load
 // duration
 // laps/distance
-const UnderLoadWorkout = Workout.discriminator('UnderLoad', new mongoose.Schema({ 
-    reps: {
-        type: Number,
-        required: true,
-        default: 0
-    },
-    sets: {
-        type: Number,
-        required: true,
-        default: 0
-    },
-    load: {
-        type: Number,
-        required: true,
-        default: 0
-    }
-}, { timestamps: true }, options));
 
 const DurationWorkout = Workout.discriminator('Duration', new mongoose.Schema({
     duration: {

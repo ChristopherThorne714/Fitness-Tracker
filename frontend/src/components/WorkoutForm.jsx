@@ -26,6 +26,8 @@ const WorkoutForm = (props) => {
         setWorkout({ ...workout, [e.target.name]: e.target.value });
     };
 
+    // onSubmit needs to check for workout type first and then choose the correct model to post to.
+    // need to add more api routes for new models with disctriminators 
     const onSubmit = (e) => {
         e.preventDefault();
         axios
