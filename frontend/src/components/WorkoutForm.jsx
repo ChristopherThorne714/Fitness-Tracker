@@ -19,13 +19,16 @@ const WorkoutForm = (props) => {
         hours: 0,
         minutes: 0,
         seconds: 0,
+        duration: "",
         distance: 0,
+        laps: 0,
     });
 
     const onChange = (e) => {
         setWorkout({ ...workout, [e.target.name]: e.target.value });
     };
-    const resetWorkout = (e) => {
+
+    const resetWorkout = () => {
       setWorkout({
         title: "",
         sort: "",
@@ -49,7 +52,7 @@ const WorkoutForm = (props) => {
           axios
           .post('http://localhost:5000/api/underloadworkouts', workout)
           .then((res) => {
-            resetWorkout(e);
+            resetWorkout();
             navigate("/");
           })
           .catch((err) => {
@@ -67,7 +70,7 @@ const WorkoutForm = (props) => {
             console.log("Error in WorkoutForm!")
         });
         }
-        
+
     };
 
     return (

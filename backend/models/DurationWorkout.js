@@ -6,9 +6,8 @@ const Workout = require('./Workout');
 
 const DurationWorkout = Workout.discriminator('Duration', new mongoose.Schema({
     duration: {
-        hours: Number,
-        minutes: Number,
-        seconds: Number,
+        type: String,
+        required: true,
     },
     sets: {
         type: Number,
