@@ -1,4 +1,4 @@
-import React, { useState, useEffect ,useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
@@ -11,10 +11,7 @@ const WorkoutForm = (props) => {
     const sortErrorRef = useRef(null);
     const groupErrorRef = useRef(null);
 
-    const [error, setErrors] = useState({
-        sortError: false,
-        MGError: false,
-    });
+    const [error, setError] = useState();
 
     const [workout, setWorkout] = useState({
         title: "",
@@ -57,10 +54,11 @@ const WorkoutForm = (props) => {
       });
     };
 
-    // onSubmit needs to check for workout type first and then choose the correct model to post to.
-    // need to add more api routes for new models with disctriminators 
+    // If musclegroup and sort have no value, throw relevant errors 
+    // Else check the selected exercise sort and choose correct model for post
     const onSubmit = (e) => {
         e.preventDefault();
+
         if (workout.sort === "" || workout.musclegroup === "") {
           if (workout.sort === "" ) {
             showSortErrors();
@@ -77,7 +75,8 @@ const WorkoutForm = (props) => {
             navigate("/");
           })
           .catch((err) => {
-            console.log(err.response)
+            console.log(err.response);
+            setError(JSON.stringify(err.response.data));
         });
         }
         else if (workout.sort == "Duration") {
@@ -89,7 +88,8 @@ const WorkoutForm = (props) => {
             navigate("/");
           })
           .catch((err) => {
-            console.log("Error in WorkoutForm!")
+            console.log(err.response);
+            setError(JSON.stringify(err.response.data));
         });
         }
         else if (workout.sort == "Distance") {
@@ -100,10 +100,12 @@ const WorkoutForm = (props) => {
             navigate("/");
           })
           .catch((err) => {
-            console.log("Error in WorkoutForm!")
+            console.log(err.response);
+            setError(JSON.stringify(err.response.data));
         });
         }
     };
+    
     const showSortErrors = () => {
       sortErrorRef.current.style.display = "block";
     };
@@ -208,21 +210,12 @@ const WorkoutForm = (props) => {
                   onChildChange={onChange}
                   />}
                   
-                  {/* {workout.sort === "" ? 
-                  <div className="btn btn-outline-warning btn-block mt-4 mb-4 w-100">Please pick an exercise type!</div> : 
-                  workout.musclegroup === "" ? 
-                  <div className="btn btn-outline-warning btn-block mt-4 mb-4 w-100">Please pick a musclegroup!</div> :
-                  <button
-                  type="submit"
-                  className="btn btn-outline-warning btn-block mt-4 mb-4 w-100">
-                  Submit
-                  </button>
-                } */}
                 <button
                   type="submit"
                   className="btn btn-outline-warning btn-block mt-4 mb-4 w-100">
                   Submit
                 </button>
+                {error && <div className='error'>{error}</div>}
                 </form>
               </div>
             </div>
