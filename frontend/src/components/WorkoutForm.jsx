@@ -124,7 +124,7 @@ const WorkoutForm = (props) => {
                       value={workout.sort}
                       onChange={onChange}
                     >
-                      <option value="None">Type of Exercise</option>
+                      <option value="">Type of Exercise</option>
                       <option value="Under Load">Under Load</option>
                       <option value="Duration">Duration</option>
                       <option value="Distance">Distance</option>
@@ -180,13 +180,15 @@ const WorkoutForm = (props) => {
                   laps={workout.laps}
                   onChildChange={onChange}
                   />}
-
+                  
+                  {workout.sort === "" ? 
+                  <div className="btn btn-outline-warning btn-block mt-4 mb-4 w-100">Please pick an exercise type!</div> : 
                   <button
-                    type="submit"
-                    className="btn btn-outline-warning btn-block mt-4 mb-4 w-100"
-                  >
-                    Submit
+                  type="submit"
+                  className="btn btn-outline-warning btn-block mt-4 mb-4 w-100">
+                  Submit
                   </button>
+                }
                 </form>
               </div>
             </div>

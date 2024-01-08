@@ -24,7 +24,7 @@ function Home() {
     // const workoutList =
     //   workouts.length === 0
     //     ? 'there is no workout record!'
-    //     : workouts.map((workout, k) => <BookCard book={book} key={k} />);
+    //     : workouts.map((workout, k) => <WorkoutCard workout={workout} key={k} />);
 
     return(
         <div className="home">

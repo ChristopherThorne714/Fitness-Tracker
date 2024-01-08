@@ -3,7 +3,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
 
-function ShowWorkoutDetails(props) {
+function WorkoutCard(props) {
     const [workout, setWorkout] = useState({});
   
     const { id } = useParams();
