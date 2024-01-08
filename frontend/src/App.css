@@ -182,7 +182,7 @@ input.error {
 }
 .workout-form-error{
   display: none;
-  color: rgb(231, 25, 25);
+  color: var(--error);
   padding-left: 3px;
   font-size: smaller;
 }
