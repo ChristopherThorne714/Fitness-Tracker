@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
 
@@ -8,10 +8,9 @@ const onDeleteClick = (id) => {
   axios
     .delete(`http://localhost:5000/api/workouts/${id}`)
     .then((res) => {
-      navigate('/');
     })
     .catch((err) => {
-      console.log('Error form WorkoutCard_deleteClick');
+      console.log(err);
     });
 };
 
