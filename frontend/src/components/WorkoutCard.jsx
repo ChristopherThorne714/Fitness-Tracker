@@ -3,31 +3,23 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
 
-function WorkoutCard(props) {
-    const [workout, setWorkout] = useState({});
-  
-    const { id } = useParams();
-    const navigate = useNavigate();
-  
-    useEffect(() => {
-      axios
-        .get(`http://localhost:5000/api/workouts/${id}`)
-        .then((res) => {
-          setBook(res.data);
-        })
-        .catch((err) => {
-          console.log('Error from WorkoutDetails');
-        });
-    }, [id]);
-  
-    const onDeleteClick = (id) => {
-      axios
-        .delete(`http://localhost:5000/api/books/${id}`)
-        .then((res) => {
-          navigate('/');
-        })
-        .catch((err) => {
-          console.log('Error form ShowBookDetails_deleteClick');
-        });
-    };
+function WorkoutCard({workout}) {
+  return (
+    <div className='card-container'>
+      <img
+        src='https://images.unsplash.com/photo-1495446815901-a7297e633e8d'
+        alt='Books'
+        height={200}
+      />
+      <div className='desc'>
+        <h2>
+          <Link to={`/show-book/${workout._id}`}>{workout.title}</Link>
+        </h2>
+        <h3>{workout.sort}</h3>
+        <p>{workout.musclegroup}</p>
+      </div>
+    </div>
+  );
 };
+
+export default WorkoutCard;

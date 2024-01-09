@@ -3,7 +3,7 @@ import '../App.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-// import WorkoutDetails from '../components/WorkoutDetails';
+import WorkoutCard from '../components/WorkoutCard';
 import WorkoutForm from '../components/WorkoutForm';
 
 
@@ -17,22 +17,19 @@ function Home() {
           setWorkouts(res.data);
         })
         .catch((err) => {
-          console.log('Error from Home');
+          console.log(err);
         });
     }, []);
   
-    // const workoutList =
-    //   workouts.length === 0
-    //     ? 'there is no workout record!'
-    //     : workouts.map((workout, k) => <WorkoutCard workout={workout} key={k} />);
+    const workoutList =
+      workouts.length === 0
+        ? 'there is no workout record!'
+        : workouts.map((workout, k) => <WorkoutCard workout={workout} key={k} />);
 
     return(
         <div className="home">
         <div className="workouts">
-          {workouts && workouts.map((workout) => (
-            // <WorkoutDetails key={workout._id} workout={workout} />
-            <p key={workout._id} workout={workout} />
-          ))}
+        <div className='list'>{workoutList}</div>
         </div>
         <WorkoutForm />
       </div>

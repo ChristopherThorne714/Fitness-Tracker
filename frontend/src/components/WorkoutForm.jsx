@@ -3,9 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
 
-// import Form from 'react-bootstrap/Form';
-// import InputGroup from 'react-bootstrap/InputGroup';
-
 const WorkoutForm = (props) => {
     const navigate = useNavigate();
     const sortErrorRef = useRef(null);
