@@ -1,10 +1,12 @@
 import React, { useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
 import '../App.css';
 import axios from 'axios';
 
 const WorkoutForm = (props) => {
-    const navigate = useNavigate();
+    const { dispatch } = useWorkoutsContext();
+
+
     const sortErrorRef = useRef(null);
     const groupErrorRef = useRef(null);
 
@@ -69,7 +71,7 @@ const WorkoutForm = (props) => {
           .post('http://localhost:5000/api/underloadworkouts', workout)
           .then((res) => {
             resetWorkout();
-            navigate("/");
+            
           })
           .catch((err) => {
             console.log(err.response);
@@ -82,7 +84,7 @@ const WorkoutForm = (props) => {
           .post('http://localhost:5000/api/durationworkouts', workout)
           .then((res) => {
             resetWorkout(e);
-            navigate("/");
+
           })
           .catch((err) => {
             console.log(err.response);
@@ -94,7 +96,7 @@ const WorkoutForm = (props) => {
           .post('http://localhost:5000/api/distanceworkouts', workout)
           .then((res) => {
             resetWorkout(e);
-            navigate("/");
+
           })
           .catch((err) => {
             console.log(err.response);
