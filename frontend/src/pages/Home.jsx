@@ -15,6 +15,7 @@ function Home() {
         .get('http://localhost:5000/api/workouts')
         .then((res) => {
           setWorkouts(res.data);
+          console.log(res.data);
         })
         .catch((err) => {
           console.log(err);
