@@ -103,6 +103,8 @@ header a {
   gap: 100px;
 }
 .card-container {
+  display: grid;
+  grid-template-columns: 40% 60%;
   background: #fff;
   border-radius: 4px;
   margin: 20px auto;
@@ -120,15 +122,13 @@ header a {
   font-size: 0.9em;
   color: #555;
 }
-.card-container span {
+.card-container button {
   position: absolute;
   top: 20px;
   right: 20px;
   cursor: pointer;
   background: #f1f1f1;
   padding: 6px;
-  border-radius: 50%;
-  color: #333;
 }
 
 /* new workout form */
