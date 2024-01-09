@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-// import App from './App.jsx'
-// import './index.css';
+import { WorkoutsContextProvider } from "./context/WorkoutContext";
 
 
 // Bootstrap CSS & JS imports
@@ -52,6 +51,8 @@ function NavbarWrapper(){
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <WorkoutsContextProvider>
+      <RouterProvider router={router} />
+    </WorkoutsContextProvider>
   </React.StrictMode>,
 )
