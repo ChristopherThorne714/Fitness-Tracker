@@ -18,11 +18,10 @@ export const workoutsReducer = (state, action) => {
           }
         default:
           return state
-    }
-}
+    };
+};
 
-export const WorkoutsContextProvider = ({ children }) => {
-    
+export const WorkoutsContextProvider = ({ children }) => {  
     const [state, dispatch] = useReducer(workoutsReducer, {
         workouts: null
     });

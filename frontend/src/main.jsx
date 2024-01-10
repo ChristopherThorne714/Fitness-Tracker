@@ -46,7 +46,7 @@ function NavbarWrapper(){
       <Navbar />
       <Outlet />
     </div>
-  )
+  );
 };
 
 ReactDOM.createRoot(document.getElementById('root')).render(
