@@ -71,8 +71,8 @@ const WorkoutForm = (props) => {
           .post('http://localhost:5000/api/underloadworkouts', workout)
           .then((res) => {
             resetWorkout();
-            console.log('new workout added', json)
-            dispatch({type: 'CREATE_WORKOUT', payload: json});
+            console.log('new workout added', res)
+            dispatch({type: 'CREATE_WORKOUT', payload: res.data});
           })
           .catch((err) => {
             console.log(err.response);
@@ -85,7 +85,8 @@ const WorkoutForm = (props) => {
           .post('http://localhost:5000/api/durationworkouts', workout)
           .then((res) => {
             resetWorkout(e);
-            dispatch({type: 'CREATE_WORKOUT', payload: json});
+            console.log('new workout added', res.data)
+            dispatch({type: 'CREATE_WORKOUT', payload: res.data});
           })
           .catch((err) => {
             console.log(err.response);
@@ -97,7 +98,8 @@ const WorkoutForm = (props) => {
           .post('http://localhost:5000/api/distanceworkouts', workout)
           .then((res) => {
             resetWorkout(e);
-            dispatch({type: 'CREATE_WORKOUT', payload: json});
+            console.log('new workout added', res.data)
+            dispatch({type: 'CREATE_WORKOUT', payload: res.data});
           })
           .catch((err) => {
             console.log(err.response);

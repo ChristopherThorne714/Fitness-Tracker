@@ -21,6 +21,7 @@ function Home() {
         .get('http://localhost:5000/api/workouts')
         .then((res) => {
           // useDispatch('SET_WORKOUTS', res.data);
+          console.log(res)
           dispatch({type: 'SET_WORKOUTS', payload: res.data});
         })
         .catch((err) => {

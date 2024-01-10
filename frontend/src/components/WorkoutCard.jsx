@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
 import '../App.css';
 import axios from 'axios';
 
 
-const onDeleteClick = (id) => {
-  axios
-    .delete(`http://localhost:5000/api/workouts/${id}`)
-    .then((res) => {
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-
 function WorkoutCard({workout}) {
+  const { dispatch } = useWorkoutsContext();
+
+  const onDeleteClick = (id) => {
+    axios
+      .delete(`http://localhost:5000/api/workouts/${id}`)
+      .then((res) => {
+        console.log(res.data)
+        dispatch({type: 'DELETE_WORKOUT', payload: res.data})
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className='card-container'>
       <div className='desc'>
