@@ -67,11 +67,28 @@ const WorkoutForm = (props) => {
           };
         }
         else if (workout.sort == "Under Load") {
+          // const response = await fetch('http://localhost:5000/api/underloadworkouts', {
+          //   method: 'POST',
+          //   body: JSON.stringify(workout),
+          //   headers: {
+          //     'Content-Type': 'application/json'
+          //   }
+          // })
+          // const json = await response.json()
+      
+          // if (!response.ok) {
+          //   setError(JSON.stringify(err.response.data));
+          // }
+          // if (response.ok) {
+          //   resetWorkout();
+          //   console.log('new workout added', json)
+          //   dispatch({type: 'CREATE_WORKOUT', payload: json})
+          // }
           axios
           .post('http://localhost:5000/api/underloadworkouts', workout)
           .then((res) => {
             resetWorkout();
-            console.log('new workout added', res)
+            console.log('new workout added', res.data);
             dispatch({type: 'CREATE_WORKOUT', payload: res.data});
           })
           .catch((err) => {
