@@ -17,6 +17,8 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 // Components imports and pages imports
 import Navbar from "./components/Navbar"
 import Home from "./pages/Home";
+import ShowWorkoutDetails from "./pages/ShowWorkoutDetails";
+import UpdateWorkout from "./pages/UpdateWorkout";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 
@@ -31,10 +33,14 @@ const router = createBrowserRouter([
       path: "/",
       element: <Home />
     },
-    // {
-    //   path: "/show-workout/:id",
-    //   element: <ShowWorkoutDetails />
-    // },
+    {
+      path: "/show-workout/:id",
+      element: <ShowWorkoutDetails />
+    },
+    {
+      path: "/edit-workout/:id",
+      element: <UpdateWorkout />
+    },
   ]},
   { path: "/login", element: <Login /> },
   { path: "/signup", element: <Signup /> },
