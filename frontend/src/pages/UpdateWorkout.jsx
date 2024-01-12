@@ -1,11 +1,12 @@
-import React, { useState, useRef } from 'react';
-import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
-import '../App.css';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import '../App.css';
 
-const WorkoutForm = (props) => {
-    const { dispatch } = useWorkoutsContext();
 
+function UpdateWorkout(props) {
+    const { id } = useParams();
+    const navigate = useNavigate();
 
     const sortErrorRef = useRef(null);
     const groupErrorRef = useRef(null);
@@ -27,104 +28,105 @@ const WorkoutForm = (props) => {
         laps: 0,
     });
 
+    const setDuration = () => {
+        const drtn = workout.hours + ":" + workout.minutes + ":" + workout.seconds;
+        workout.duration = drtn;
+      };
+
     const onChange = (e) => {
         setWorkout({ ...workout, [e.target.name]: e.target.value });
-    };
+      };
 
-    const setDuration = () => {
-      const drtn = workout.hours + ":" + workout.minutes + ":" + workout.seconds;
-      workout.duration = drtn;
-    };
+    useEffect(() => {
+    axios
+        .get(`http://localhost:5000/api/workouts/${id}`)
+        .then((res) => {
+        setWorkout({
+            title: res.data.title,
+            sort: res.data.sort,
+            musclegroup: res.data.musclegroup,
+            reps: res.data.reps,
+            sets: res.data.sets,
+            load: res.data.load,
+            hours: res.data.hours,
+            minutes: res.data.minutes,
+            seconds: res.data.seconds,
+            duration: res.data.duration,
+            distance: res.data.distance,
+            laps: res.data.laps,
+        });
+        })
+        .catch((err) => {
+        console.log(err.response);
+        });
+    }, [id]);
 
-    const resetWorkout = () => {
-      setWorkout({
-        title: "",
-        sort: "",
-        musclegroup: "",
-        reps: 0,
-        sets: 0,
-        load: 0,
-        hours: 0,
-        minutes: 0,
-        seconds: 0,
-        duration: "",
-        distance: 0,
-        laps: 0,
-      });
-    };
 
-    // If musclegroup and sort have no value, throw relevant errors 
-    // Else check the selected exercise sort and choose correct model for post
     const onSubmit = (e) => {
-        e.preventDefault();
+    e.preventDefault();
 
-        if (workout.sort === "" || workout.musclegroup === "") {
-          if (workout.sort === "" ) {
-            showSortErrors();
-          };
-          if (workout.musclegroup === "") {
-            showMGErrors();
-          };
-        }
-        else if (workout.sort == "Under Load") {
-          axios
-          .post('http://localhost:5000/api/underloadworkouts', workout)
-          .then((res) => {
-            resetWorkout();
-            dispatch({type: 'CREATE_WORKOUT', payload: res.data});
-          })
-          .catch((err) => {
-            console.log(err.response);
-            setError(JSON.stringify(err.response.data));
-        });
-        }
-        else if (workout.sort == "Duration") {
-          setDuration();
-          axios
-          .post('http://localhost:5000/api/durationworkouts', workout)
-          .then((res) => {
-            resetWorkout(e);
-            dispatch({type: 'CREATE_WORKOUT', payload: res.data});
-          })
-          .catch((err) => {
-            console.log(err.response);
-            setError(JSON.stringify(err.response.data));
-        });
-        }
-        else if (workout.sort == "Distance") {
-          axios
-          .post('http://localhost:5000/api/distanceworkouts', workout)
-          .then((res) => {
-            resetWorkout(e);
-            dispatch({type: 'CREATE_WORKOUT', payload: res.data});
-          })
-          .catch((err) => {
-            console.log(err.response);
-            setError(JSON.stringify(err.response.data));
-        });
-        }
+    if (workout.sort === "" || workout.musclegroup === "") {
+        if (workout.sort === "" ) {
+          showSortErrors();
+        };
+        if (workout.musclegroup === "") {
+          showMGErrors();
+        };
+      }
+
+    const data = {
+        title: workout.title,
+        sort: workout.sort,
+        musclegroup: workout.musclegroup,
+        reps: workout.reps,
+        sets: workout.sets,
+        load: workout.load,
+        hours: workout.hours,
+        minutes: workout.minutes,
+        seconds: workout.seconds,
+        duration: workout.duration,
+        distance: workout.distance,
+        laps: workout.laps,
     };
-    
+
+    axios
+        .put(`http://localhost:5000/api/workouts/${id}`, data)
+        .then((res) => {
+        navigate('/');
+        // navigate(`/show-workout/${id}`);
+        })
+        .catch((err) => {
+        console.log(err.response);
+        });
+    };
+
     const showSortErrors = () => {
-      sortErrorRef.current.style.display = "block";
+        sortErrorRef.current.style.display = "block";
     };
     const showMGErrors = () => {
-      groupErrorRef.current.style.display = "block";
+        groupErrorRef.current.style.display = "block";
     };
 
     return (
-        <div className="CreateWorkout">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-8 m-auto">
-                <br />
-              </div>
-              <div className="col-md-10 m-auto">
-                <h1 className="display-4 text-center">Add Workout</h1>
-                <p className="lead text-center">Create new workout</p>
-                <form noValidate onSubmit={onSubmit}>
-                  
-                  <div className="form-group">
+    <div className='UpdateBookInfo'>
+        <div className='container'>
+        <div className='row'>
+            <div className='col-md-8 m-auto'>
+            <br />
+            <Link to='/' className='btn btn-outline-primary float-left'>
+                Home
+            </Link>
+            </div>
+            <div className='col-md-8 m-auto'>
+            <h1 className='display-4 text-center'>Edit Workout</h1>
+            <p className='lead text-center'>Update Workout details</p>
+            </div>
+        </div>
+
+        <div className='col-md-8 m-auto'>
+            <form noValidate onSubmit={onSubmit}>
+
+            <div className="form-group">
                     <label>Name</label>
                     <input
                       type="text"
@@ -208,19 +210,19 @@ const WorkoutForm = (props) => {
                   laps={workout.laps}
                   onChildChange={onChange}
                   />}
-                  
-                <button
-                  type="submit"
-                  className="btn btn-outline-warning btn-block mt-4 mb-4 w-100">
-                  Submit
-                </button>
-                {error && <div className='error'>{error}</div>}
-                </form>
-              </div>
-            </div>
-          </div>
+
+            <button
+                type='submit'
+                className='btn btn-outline-info btn-lg btn-block'
+            >
+                Update Workout
+            </button>
+            {error && <div className='error'>{error}</div>}
+            </form>
         </div>
-      );
+        </div>
+    </div>
+    );
 };
 
 // child component for underLoad selection choice
@@ -361,4 +363,4 @@ function DistanceForm({distance, laps, onChildChange}) {
     );
 };
 
-export default WorkoutForm;
+export default UpdateWorkout;
