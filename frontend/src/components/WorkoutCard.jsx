@@ -48,6 +48,7 @@ function WorkoutCard({workout}) {
             <h3>Laps: {workout.laps}</h3>
           </div>
         }
+        <div className='button-container'>
          <button
               type='button'
               className='btn btn-outline-danger btn-lg btn-block'
@@ -57,6 +58,16 @@ function WorkoutCard({workout}) {
             >
               Delete Workout
             </button>
+            <button
+              type='button'
+              className='btn btn-outline-warning btn-lg btn-block'
+              onClick={() => {
+                // onDeleteClick(workout._id);
+              }}
+            >
+              Update Workout
+            </button>
+          </div>
     </div>
   );
 };
