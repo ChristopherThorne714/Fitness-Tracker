@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
 import '../App.css';
 import axios from 'axios';
@@ -7,6 +7,7 @@ import axios from 'axios';
 
 function WorkoutCard({workout}) {
   const { dispatch } = useWorkoutsContext();
+  const navigate = useNavigate();
 
   const onDeleteClick = (id) => {
     axios
@@ -62,7 +63,7 @@ function WorkoutCard({workout}) {
               type='button'
               className='btn btn-outline-warning btn-lg btn-block'
               onClick={() => {
-                // onDeleteClick(workout._id);
+                navigate(`/edit-workout/${workout._id}`);
               }}
             >
               Update Workout
