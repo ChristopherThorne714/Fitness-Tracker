@@ -76,7 +76,7 @@ const WorkoutForm = (props) => {
           .catch((err) => {
             console.log(err.response);
             setError(JSON.stringify(err.response.data));
-        });
+          });
         }
         else if (workout.sort == "Duration") {
           setDuration();
@@ -89,7 +89,7 @@ const WorkoutForm = (props) => {
           .catch((err) => {
             console.log(err.response);
             setError(JSON.stringify(err.response.data));
-        });
+          });
         }
         else if (workout.sort == "Distance") {
           axios
@@ -101,8 +101,8 @@ const WorkoutForm = (props) => {
           .catch((err) => {
             console.log(err.response);
             setError(JSON.stringify(err.response.data));
-        });
-        }
+          });
+        };
     };
     
     const showSortErrors = () => {

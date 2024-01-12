@@ -31,11 +31,18 @@ function UpdateWorkout(props) {
     const setDuration = () => {
         const drtn = workout.hours + ":" + workout.minutes + ":" + workout.seconds;
         workout.duration = drtn;
-      };
+    };
+
+    const getDuration = () => {
+        const dtnsplit = workout.duration.split(":");
+        workout.hours = dtnsplit[0];
+        workout.minutes = dtnsplit[1];
+        workout.seconds = dtnsplit[2];
+    }
 
     const onChange = (e) => {
         setWorkout({ ...workout, [e.target.name]: e.target.value });
-      };
+    };
 
     useEffect(() => {
     axios
@@ -64,16 +71,6 @@ function UpdateWorkout(props) {
 
     const onSubmit = (e) => {
     e.preventDefault();
-
-    if (workout.sort === "" || workout.musclegroup === "") {
-        if (workout.sort === "" ) {
-          showSortErrors();
-        };
-        if (workout.musclegroup === "") {
-          showMGErrors();
-        };
-      }
-
     const data = {
         title: workout.title,
         sort: workout.sort,
@@ -89,16 +86,55 @@ function UpdateWorkout(props) {
         laps: workout.laps,
     };
 
-    axios
-        .put(`http://localhost:5000/api/workouts/${id}`, data)
+    // need to copy the conditional statements from onSubmit in WorkoutForm
+    // server is not saving the workout info correctly with api/workouts route
+    if (workout.sort === "" || workout.musclegroup === "") {
+        if (workout.sort === "" ) {
+          showSortErrors();
+        };
+        if (workout.musclegroup === "") {
+          showMGErrors();
+        };
+      }
+
+    else if (workout.sort == "Under Load") {
+        axios
+        .put(`http://localhost:5000/api/underloadworkouts/${id}`, data)
         .then((res) => {
-        navigate('/');
-        // navigate(`/show-workout/${id}`);
+            navigate('/');
+            // navigate(`/show-workout/${id}`);
         })
         .catch((err) => {
-        console.log(err.response);
+            console.log(err.response);
+            setError(JSON.stringify(err.response.data));
+        });
+    }
+    else if (workout.sort == "Duration") {
+        setDuration();
+        axios
+        .put(`http://localhost:5000/api/durationworkouts/${id}`, data)
+        .then((res) => {
+            navigate('/');
+            // navigate(`/show-workout/${id}`);
+        })
+        .catch((err) => {
+            console.log(err.response);
+            setError(JSON.stringify(err.response.data));
+        });
+    }
+    else if (workout.sort == "Distance") {
+        axios
+        .put(`http://localhost:5000/api/distanceworkouts/${id}`, data)
+        .then((res) => {
+            navigate('/');
+            // navigate(`/show-workout/${id}`);
+        })
+        .catch((err) => {
+            console.log(err.response);
+            setError(JSON.stringify(err.response.data));
         });
     };
+    }
 
     const showSortErrors = () => {
         sortErrorRef.current.style.display = "block";
