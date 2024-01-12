@@ -12,7 +12,7 @@ function WorkoutCard({workout}) {
     axios
       .delete(`http://localhost:5000/api/workouts/${id}`)
       .then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
         dispatch({type: 'DELETE_WORKOUT', payload: res.data})
       })
       .catch((err) => {

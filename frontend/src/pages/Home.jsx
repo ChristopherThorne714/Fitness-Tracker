@@ -11,17 +11,12 @@ import WorkoutForm from '../components/WorkoutForm';
 function Home() {
     // const [workouts, setWorkouts] = useState([]);
     const {workouts, dispatch} = useWorkoutsContext();
-    // const useDispatch = (type, payload) => {
-    //   dispatch({type: type, payload: payload});
-    // }
 
     useEffect(() => {
       const fetchWorkouts = async () => {
         axios
         .get('http://localhost:5000/api/workouts')
         .then((res) => {
-          // useDispatch('SET_WORKOUTS', res.data);
-          console.log(res)
           dispatch({type: 'SET_WORKOUTS', payload: res.data});
         })
         .catch((err) => {
@@ -30,25 +25,6 @@ function Home() {
       };
       fetchWorkouts();
     }, [dispatch]);
-  
-    // const workoutList =
-    //   workouts.length === 0
-    //     ? 'there is no workout record!'
-    //     : workouts.map((workout, k) => <WorkoutCard workout={workout} key={k} />);
-
-    // useEffect(() => {
-    //   const fetchworkouts = async () => {
-    //     const response = await axios.get('http://localhost:5000/api/workouts');
-    //     const json = await response.data;
-
-    //     if (response.statusText === 'OK') {
-    //       dispatch({type: 'SET_WORKOUTS', payload: json});
-    //     };
-    //   };
-
-    //   fetchworkouts();
-    // }, [dispatch]);
-
 
     return(
         <div className="home">
