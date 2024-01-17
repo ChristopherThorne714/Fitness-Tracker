@@ -116,7 +116,6 @@ function UpdateWorkout(props) {
     }
     else if (workout.sort == "Duration") {
         setDuration();
-        console.log(workout.duration)
         axios
         .put(`http://localhost:5000/api/durationworkouts/${id}`, workout)
         .then((res) => {
@@ -189,6 +188,7 @@ function UpdateWorkout(props) {
                       placeholder="Type of Exercise"
                       name="sort"
                       className="form-control"
+                      id="update-form-type"
                       value={workout.sort}
                       onChange={onChange}
                     >

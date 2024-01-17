@@ -184,6 +184,10 @@ input.error {
   padding-left: 3px;
   font-size: smaller;
 }
+#update-form-type{
+  background: #f1f1f1;
+  pointer-events: none;
+}
 
 /* navbar */
 nav {
