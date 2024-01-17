@@ -34,11 +34,16 @@ function UpdateWorkout(props) {
     };
 
     const getDuration = () => {
+      if (workout.seconds == undefined) {
         const dtnsplit = workout.duration.split(":");
-        workout.hours = dtnsplit[0];
-        workout.minutes = dtnsplit[1];
-        workout.seconds = dtnsplit[2];
-    }
+        workout.hours = parseInt(dtnsplit[0]);
+        workout.minutes = parseInt(dtnsplit[1]);
+        workout.seconds = parseInt(dtnsplit[2]);
+      }
+      else {
+        return;
+      }
+    };
 
     const onChange = (e) => {
         setWorkout({ ...workout, [e.target.name]: e.target.value });
@@ -55,9 +60,9 @@ function UpdateWorkout(props) {
             reps: res.data.reps,
             sets: res.data.sets,
             load: res.data.load,
-            hours: res.data.hours,
-            minutes: res.data.minutes,
-            seconds: res.data.seconds,
+            // hours: res.data.hours,
+            // minutes: res.data.minutes,
+            // seconds: res.data.seconds,
             duration: res.data.duration,
             distance: res.data.distance,
             laps: res.data.laps,
@@ -71,20 +76,20 @@ function UpdateWorkout(props) {
 
     const onSubmit = (e) => {
     e.preventDefault();
-    const data = {
-        title: workout.title,
-        sort: workout.sort,
-        musclegroup: workout.musclegroup,
-        reps: workout.reps,
-        sets: workout.sets,
-        load: workout.load,
-        hours: workout.hours,
-        minutes: workout.minutes,
-        seconds: workout.seconds,
-        duration: workout.duration,
-        distance: workout.distance,
-        laps: workout.laps,
-    };
+    // const data = {
+    //     title: workout.title,
+    //     sort: workout.sort,
+    //     musclegroup: workout.musclegroup,
+    //     reps: workout.reps,
+    //     sets: workout.sets,
+    //     load: workout.load,
+    //     hours: workout.hours,
+    //     minutes: workout.minutes,
+    //     seconds: workout.seconds,
+    //     duration: workout.duration,
+    //     distance: workout.distance,
+    //     laps: workout.laps,
+    // };
 
     // need to copy the conditional statements from onSubmit in WorkoutForm
     // server is not saving the workout info correctly with api/workouts route
@@ -99,7 +104,7 @@ function UpdateWorkout(props) {
 
     else if (workout.sort == "Under Load") {
         axios
-        .put(`http://localhost:5000/api/underloadworkouts/${id}`, data)
+        .put(`http://localhost:5000/api/underloadworkouts/${id}`, workout)
         .then((res) => {
             navigate('/');
             // navigate(`/show-workout/${id}`);
@@ -111,8 +116,9 @@ function UpdateWorkout(props) {
     }
     else if (workout.sort == "Duration") {
         setDuration();
+        console.log(workout.duration)
         axios
-        .put(`http://localhost:5000/api/durationworkouts/${id}`, data)
+        .put(`http://localhost:5000/api/durationworkouts/${id}`, workout)
         .then((res) => {
             navigate('/');
             // navigate(`/show-workout/${id}`);
@@ -124,7 +130,7 @@ function UpdateWorkout(props) {
     }
     else if (workout.sort == "Distance") {
         axios
-        .put(`http://localhost:5000/api/distanceworkouts/${id}`, data)
+        .put(`http://localhost:5000/api/distanceworkouts/${id}`, workout)
         .then((res) => {
             navigate('/');
             // navigate(`/show-workout/${id}`);
@@ -142,6 +148,8 @@ function UpdateWorkout(props) {
     const showMGErrors = () => {
         groupErrorRef.current.style.display = "block";
     };
+
+    getDuration();
 
     return (
     <div className='UpdateBookInfo'>
@@ -230,7 +238,6 @@ function UpdateWorkout(props) {
                   sets={workout.sets}
                   load={workout.load}
                   onChildChange={onChange}
-
                  />}
 
                   {workout.sort === "Duration" && <DurationForm 
@@ -239,6 +246,7 @@ function UpdateWorkout(props) {
                   seconds={workout.seconds}
                   sets={workout.sets}
                   onChildChange={onChange}
+                  getDuration={getDuration}
                   />}
 
                   {workout.sort === "Distance" && <DistanceForm 
@@ -310,8 +318,8 @@ function LoadForm({reps, sets, load, onChildChange}) {
 };
 
 // child component for Duration selection choice
-function DurationForm({hours, minutes, seconds, sets, onChildChange}) {
-
+function DurationForm({hours, minutes, seconds, sets, onChildChange, getDuration}) {
+    getDuration();
     return (
       <div className="DurationForm">
         <div className="form-group">
