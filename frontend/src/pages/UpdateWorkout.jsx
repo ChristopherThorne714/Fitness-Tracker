@@ -147,8 +147,9 @@ function UpdateWorkout(props) {
     const showMGErrors = () => {
         groupErrorRef.current.style.display = "block";
     };
-
-    getDuration();
+    if (workout.sort === "Duration") {
+      getDuration();
+    };
 
     return (
     <div className='UpdateBookInfo'>
