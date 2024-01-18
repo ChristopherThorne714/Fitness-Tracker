@@ -15,12 +15,13 @@ import { Typography } from '@mui/material';
 function Home() {
     // const [workouts, setWorkouts] = useState([]);
     const {workouts, dispatch} = useWorkoutsContext();
-    const [date, setDate] = useState();
+    const [date, setDate] = useState(new Date());
 
     useEffect(() => {
       const fetchWorkouts = async () => {
+        console.log(date);
         axios
-        .get('http://localhost:5000/api/workouts')
+        .get('http://localhost:5000/api/workouts', date)
         .then((res) => {
           dispatch({type: 'SET_WORKOUTS', payload: res.data});
         })
@@ -33,6 +34,7 @@ function Home() {
 
     const dateChange = (e) => {
       setDate(e.$d);
+      fetchWorkouts();
     }
 
     return(
