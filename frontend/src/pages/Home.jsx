@@ -3,6 +3,8 @@ import '../App.css';
 import axios from 'axios';
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 import { DatePicker } from '@mui/x-date-pickers';
+import { css } from '@emotion/react'
+import dayjs from 'dayjs'
 // import { Link } from 'react-router-dom';
 
 import WorkoutCard from '../components/WorkoutCard';
@@ -28,8 +30,16 @@ function Home() {
     }, [dispatch]);
 
     return(
+      <div className='home-container'>
+        <div className='date-picker'>
+          <DatePicker 
+            defaultValue={dayjs(new Date())}
+            css={css`
+            height: 100px;
+            margin-left: 20px;
+            `}/>
+        </div>
         <div className="home">
-          <DatePicker />
           <div className="workouts">
           {/* <div className='list'>{workoutList}</div> */}
           {workouts && workouts.map((workout) => (
@@ -37,6 +47,7 @@ function Home() {
           ))}
           </div>
           <WorkoutForm />
+        </div>
         </div>
     );
 };

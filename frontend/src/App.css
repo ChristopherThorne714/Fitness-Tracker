@@ -136,6 +136,12 @@ header a {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+.date-picker{
+  width: 100%;
+  position: relative;
+  left: 60px;
+  margin: 10px 0 -10px 20px;
+}
 
 /* new workout form */
 .duration-form-group{
