@@ -9,11 +9,13 @@ import dayjs from 'dayjs'
 
 import WorkoutCard from '../components/WorkoutCard';
 import WorkoutForm from '../components/WorkoutForm';
+import { Typography } from '@mui/material';
 
 
 function Home() {
     // const [workouts, setWorkouts] = useState([]);
     const {workouts, dispatch} = useWorkoutsContext();
+    const [date, setDate] = useState();
 
     useEffect(() => {
       const fetchWorkouts = async () => {
@@ -29,16 +31,19 @@ function Home() {
       fetchWorkouts();
     }, [dispatch]);
 
+    const dateChange = (e) => {
+      setDate(e.$d);
+    }
+
     return(
       <div className='home-container'>
         <div className='date-picker'>
+          <h2>Select Date:</h2>
           <DatePicker 
+            onChange={dateChange}
             defaultValue={dayjs(new Date())}
             maxDate={dayjs(new Date())}
-            css={css`
-            height: 100px;
-            margin-left: 20px;
-            `}/>
+          />
         </div>
         <div className="home">
           <div className="workouts">
