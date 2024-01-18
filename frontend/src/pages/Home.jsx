@@ -34,6 +34,7 @@ function Home() {
         <div className='date-picker'>
           <DatePicker 
             defaultValue={dayjs(new Date())}
+            maxDate={dayjs(new Date())}
             css={css`
             height: 100px;
             margin-left: 20px;
