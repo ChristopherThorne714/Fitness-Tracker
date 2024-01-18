@@ -74,6 +74,7 @@ body {
   background: #f1f1f1;
   margin: 0;
   font-family: "Poppins";
+  overflow-x: hidden;
 }
 header {
   background: #fff;
@@ -137,7 +138,7 @@ header a {
   margin-bottom: 10px;
 }
 .date-picker{
-  width: 100%;
+  width: 50vw;
   position: relative;
   left: 60px;
   margin: 10px 0 -10px 20px;

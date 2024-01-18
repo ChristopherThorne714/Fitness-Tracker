@@ -17,6 +17,10 @@ const baseWorkoutSchema = new mongoose.Schema({
         type: String, 
         enum: ["Biceps", "Triceps", "Shoulders", "Forearms", "Chest", "Back", "Abs", "Quads", "Hamstrings", "Calves", "Cardio"],
         required: true
+    },
+    performedOn: {
+        type: Date,
+        required: true
     }
 }, { timestamps: true }, options);
 const Workout = mongoose.model('workout', baseWorkoutSchema);
