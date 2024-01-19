@@ -17,18 +17,18 @@ function Home() {
     const {workouts, dispatch} = useWorkoutsContext();
     const [date, setDate] = useState(new Date());
 
+    const fetchWorkouts = async () => {
+      axios
+      .get('http://localhost:5000/api/workouts', { params: { performedOn: date }})
+      .then((res) => {
+        dispatch({type: 'SET_WORKOUTS', payload: res.data});
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    };
+
     useEffect(() => {
-      const fetchWorkouts = async () => {
-        console.log(date);
-        axios
-        .get('http://localhost:5000/api/workouts', date)
-        .then((res) => {
-          dispatch({type: 'SET_WORKOUTS', payload: res.data});
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      };
       fetchWorkouts();
     }, [dispatch]);
 
