@@ -3,23 +3,17 @@ import '../App.css';
 import axios from 'axios';
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 import { DatePicker } from '@mui/x-date-pickers';
-// import { css } from '@emotion/react'
 import dayjs from 'dayjs'
-// import { Link } from 'react-router-dom';
 
 import WorkoutCard from '../components/WorkoutCard';
 import WorkoutForm from '../components/WorkoutForm';
-// import { Typography } from '@mui/material';
 
 
 function Home() {
-
     var currentDate = dayjs();
-    // console.log(currentDate)
-    // const [workouts, setWorkouts] = useState([]);
 
     const {workouts, dispatch} = useWorkoutsContext();
-    const [date, setDate] = useState(currentDate.format('MM/DD/YYYY'));
+    const [date, setDate] = useState(currentDate.format('YYYY-MM-DD'));
 
     const fetchWorkouts = async () => {
       axios
@@ -37,8 +31,8 @@ function Home() {
     }, [dispatch]);
 
     const dateChange = (e) => {
-      var d = e.format('MM/DD/YYYY')
-      setDate(d);
+      var d = e.format('YYYY-MM-DD');
+      setDate(e);
       fetchWorkouts();
     };
 
@@ -48,7 +42,7 @@ function Home() {
           <h2>Select Date:</h2>
           <DatePicker 
             onChange={dateChange}
-            format="MM/DD/YYYY"
+            format='YYYY-MM-DD'
             defaultValue={dayjs()}
             disableFuture
           />
@@ -60,7 +54,8 @@ function Home() {
             <WorkoutCard key={workout._id} workout={workout} />
           ))}
           </div>
-          <WorkoutForm />
+          <WorkoutForm 
+          date={date} />
         </div>
         </div>
     );

@@ -15,6 +15,7 @@ const WorkoutForm = (props) => {
     const [workout, setWorkout] = useState({
         title: "",
         sort: "",
+        performedOn: props.date,
         musclegroup: "",
         reps: 0,
         sets: 0,
@@ -132,6 +133,18 @@ const WorkoutForm = (props) => {
                       name="title"
                       className="form-control"
                       value={workout.title}
+                      onChange={onChange}
+                    />
+                  </div>
+                  <br />
+                  <div className="form-group">
+                    <label>Performed on</label>
+                    <input
+                      type="text"
+                      placeholder="Performance date"
+                      name="performedOn"
+                      className="form-control"
+                      value={workout.performedOn}
                       onChange={onChange}
                     />
                   </div>

@@ -13,8 +13,10 @@ router.get('/test', (req, res) => res.send('Workouts testing!'));
 // @desc    Get all workouts
 // @access  Public
 router.get('/', (req, res) => {
-    console.log(req.query);
-    Workout.find({ createdAt: req.query }).sort({ createdAt: -1 }) // displays most recent entries first
+    // console.log(req.query);
+    // const date = JSON.stringify(req.query);
+    // console.log(date);
+    Workout.find({ performedOn: req.query.performedOn }).sort({ createdAt: -1 }) // displays most recent entries first
     .then(workouts => res.json(workouts))
     .catch(err => res.status(404).json({ noworkoutsfound : 'No workouts found'}));
 });
