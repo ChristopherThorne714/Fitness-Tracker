@@ -160,8 +160,8 @@ label, input {
 }
 input {
   padding: 10px;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  /* margin-top: 5px;
+  margin-bottom: 5px; */
   width: 100%;
   border: 1px solid #ddd;
   border-radius: 4px;

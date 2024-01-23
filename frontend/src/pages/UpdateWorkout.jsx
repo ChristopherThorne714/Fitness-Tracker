@@ -16,6 +16,7 @@ function UpdateWorkout(props) {
     const [workout, setWorkout] = useState({
         title: "",
         sort: "",
+        performedOn: new Date(),
         musclegroup: "",
         reps: 0,
         sets: 0,

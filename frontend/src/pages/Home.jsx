@@ -13,9 +13,13 @@ import WorkoutForm from '../components/WorkoutForm';
 
 
 function Home() {
+
+    var currentDate = dayjs();
+    // console.log(currentDate)
     // const [workouts, setWorkouts] = useState([]);
+
     const {workouts, dispatch} = useWorkoutsContext();
-    const [date, setDate] = useState(new Date());
+    const [date, setDate] = useState(currentDate.format('MM/DD/YYYY'));
 
     const fetchWorkouts = async () => {
       axios
@@ -33,9 +37,10 @@ function Home() {
     }, [dispatch]);
 
     const dateChange = (e) => {
-      setDate(e.$d);
+      var d = e.format('MM/DD/YYYY')
+      setDate(d);
       fetchWorkouts();
-    }
+    };
 
     return(
       <div className='home-container'>
@@ -43,8 +48,9 @@ function Home() {
           <h2>Select Date:</h2>
           <DatePicker 
             onChange={dateChange}
-            defaultValue={dayjs(new Date())}
-            maxDate={dayjs(new Date())}
+            format="MM/DD/YYYY"
+            defaultValue={dayjs()}
+            disableFuture
           />
         </div>
         <div className="home">
