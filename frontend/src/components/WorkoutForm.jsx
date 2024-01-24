@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
 import '../App.css';
 import axios from 'axios';
+import dayjs from 'dayjs';
 
 const WorkoutForm = (props) => {
     const { dispatch } = useWorkoutsContext();
@@ -32,6 +33,12 @@ const WorkoutForm = (props) => {
         setWorkout({ ...workout, [e.target.name]: e.target.value });
     };
 
+    const dateChange = (e) => {
+      const date = dayjs(new Date(e));
+      const d = date.format('YYYY-MM-DD');
+      workout.performedOn = d;
+    };
+
     const setDuration = () => {
       const drtn = workout.hours + ":" + workout.minutes + ":" + workout.seconds;
       workout.duration = drtn;
@@ -41,6 +48,7 @@ const WorkoutForm = (props) => {
       setWorkout({
         title: "",
         sort: "",
+        performedOn: props.date,
         musclegroup: "",
         reps: 0,
         sets: 0,
@@ -145,7 +153,7 @@ const WorkoutForm = (props) => {
                       name="performedOn"
                       className="form-control"
                       value={workout.performedOn}
-                      onChange={onChange}
+                      onChange={dateChange}
                     />
                   </div>
                   <br />

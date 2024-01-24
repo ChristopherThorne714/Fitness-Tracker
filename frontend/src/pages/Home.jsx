@@ -32,9 +32,6 @@ function Home() {
     }, [dispatch]);
 
     // handle changes from DatePicker
-    // setDate is not run before fetchWorkouts
-    // this means that fetchworkouts is always getting an old value after initial load
-    // needs change
     const dateChange = (e) => {
       const d = e.format('YYYY-MM-DD');
       date = d;
