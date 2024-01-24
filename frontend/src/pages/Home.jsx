@@ -13,12 +13,8 @@ function Home() {
     var currentDate = dayjs();
 
     const {workouts, dispatch} = useWorkoutsContext();
-    const [date, setDate] = useState(currentDate.format('YYYY-MM-DD'));
+    var [date, setDate] = useState(currentDate.format('YYYY-MM-DD'));
 
-    // function that fetches workouts for the current date from db
-    // context needs an update or extra call
-    // changing date does not reset workouts on screen, just calls for more
-    // needs change
     const fetchWorkouts = async () => {
       axios
       .get('http://localhost:5000/api/workouts', { params: { performedOn: date }})
@@ -30,6 +26,7 @@ function Home() {
       });
     };
 
+    // initial workouts fetch for default date
     useEffect(() => {
       fetchWorkouts();
     }, [dispatch]);
@@ -39,8 +36,8 @@ function Home() {
     // this means that fetchworkouts is always getting an old value after initial load
     // needs change
     const dateChange = (e) => {
-      var d = e.format('YYYY-MM-DD');
-      setDate(d);
+      const d = e.format('YYYY-MM-DD');
+      date = d;
       fetchWorkouts();
     };
 
