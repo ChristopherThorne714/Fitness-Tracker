@@ -33,11 +33,11 @@ const WorkoutForm = (props) => {
         setWorkout({ ...workout, [e.target.name]: e.target.value });
     };
 
-    const dateChange = (e) => {
-      const date = dayjs(new Date(e));
-      const d = date.format('YYYY-MM-DD');
-      workout.performedOn = d;
-    };
+    // const dateChange = (e) => {
+    //   const date = dayjs(new Date(e));
+    //   const d = date.format('YYYY-MM-DD');
+    //   workout.performedOn = d;
+    // };
 
     const setDuration = () => {
       const drtn = workout.hours + ":" + workout.minutes + ":" + workout.seconds;
@@ -149,11 +149,12 @@ const WorkoutForm = (props) => {
                     <label>Performed on</label>
                     <input
                       type="text"
-                      placeholder="Performance date"
+                      placeholder="YYYY-MM-DD"
                       name="performedOn"
                       className="form-control"
                       value={workout.performedOn}
-                      onChange={dateChange}
+                      onChange={onChange}
+                      // onChange={dateChange}
                     />
                   </div>
                   <br />
