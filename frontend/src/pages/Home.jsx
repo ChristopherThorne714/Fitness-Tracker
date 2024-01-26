@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../App.css';
 import axios from 'axios';
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
+import { useDateContext } from '../hooks/useDateContext';
 import { DatePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 
@@ -10,10 +11,11 @@ import WorkoutForm from '../components/WorkoutForm';
 
 
 function Home() {
-    var currentDate = dayjs();
+    // var currentDate = dayjs();
 
     const {workouts, dispatch} = useWorkoutsContext();
-    var [date, setDate] = useState(currentDate.format('YYYY-MM-DD'));
+    // var [date, setDate] = useState(currentDate.format('YYYY-MM-DD'));
+    const {date, dateDispatch } = useDateContext();
 
     const fetchWorkouts = async () => {
       axios
@@ -33,8 +35,8 @@ function Home() {
 
     // handle changes from DatePicker
     const dateChange = (e) => {
-      const d = e.format('YYYY-MM-DD');
-      date = d;
+      // const d = e.format('YYYY-MM-DD');
+      // date = d;
       fetchWorkouts();
     };
 

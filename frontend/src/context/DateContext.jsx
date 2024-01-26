@@ -1,6 +1,6 @@
 import { createContext, useReducer } from 'react';
 import dayjs from 'dayjs';
-const currentDate = dayjs();
+var currentDate = dayjs();
 
 export const DateContext = createContext();
 

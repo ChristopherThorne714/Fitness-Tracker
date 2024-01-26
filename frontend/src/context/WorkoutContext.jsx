@@ -5,7 +5,7 @@ export const WorkoutsContext = createContext();
 export const workoutsReducer = (state, action) => {
     switch (action.type) {
         case 'SET_WORKOUTS': 
-        // console.log('state:', state, 'action: ', action)
+        console.log('state:', state, 'action: ', action)
           return {
             workouts: action.payload
           }
