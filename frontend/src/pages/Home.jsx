@@ -17,7 +17,7 @@ function Home() {
 
     const fetchWorkouts = async () => {
       axios
-      .get('http://localhost:5000/api/workouts', { params: { performedOn: date }})
+      .get('http://localhost:5000/api/workouts', { params: { performedOn : date }})
       .then((res) => {
         dispatch({type: 'SET_WORKOUTS', payload: res.data});
       })
@@ -52,9 +52,9 @@ function Home() {
         <div className="home">
           <div className="workouts">
           {/* <div className='list'>{workoutList}</div> */}
-          {workouts && workouts.map((workout) => (
+          {workouts ? workouts.map((workout) => (
             <WorkoutCard key={workout._id} workout={workout} />
-          ))}
+          )) : <h2>No workouts found</h2>}
           </div>
           <WorkoutForm 
           date={date} />
