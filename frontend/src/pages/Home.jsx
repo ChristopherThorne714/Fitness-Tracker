@@ -3,7 +3,7 @@ import '../App.css';
 import axios from 'axios';
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 import { DatePicker } from '@mui/x-date-pickers';
-import dayjs from 'dayjs'
+import dayjs from 'dayjs';
 
 import WorkoutCard from '../components/WorkoutCard';
 import WorkoutForm from '../components/WorkoutForm';
