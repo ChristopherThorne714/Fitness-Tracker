@@ -4,7 +4,7 @@ import '../App.css';
 import axios from 'axios';
 // import dayjs from 'dayjs';
 
-const WorkoutForm = (props) => {
+const WorkoutForm = () => {
     const { date, dispatch } = useWorkoutsContext();
 
 
@@ -146,6 +146,7 @@ const WorkoutForm = (props) => {
                       placeholder="YYYY-MM-DD"
                       name="performedOn"
                       className="form-control"
+                      id="update-form-type"
                       value={date}
                       onChange={onChange}
                     />

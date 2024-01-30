@@ -16,7 +16,6 @@ function UpdateWorkout(props) {
     const [workout, setWorkout] = useState({
         title: "",
         sort: "",
-        performedOn: new Date(),
         musclegroup: "",
         reps: 0,
         sets: 0,
@@ -77,23 +76,7 @@ function UpdateWorkout(props) {
 
     const onSubmit = (e) => {
     e.preventDefault();
-    // const data = {
-    //     title: workout.title,
-    //     sort: workout.sort,
-    //     musclegroup: workout.musclegroup,
-    //     reps: workout.reps,
-    //     sets: workout.sets,
-    //     load: workout.load,
-    //     hours: workout.hours,
-    //     minutes: workout.minutes,
-    //     seconds: workout.seconds,
-    //     duration: workout.duration,
-    //     distance: workout.distance,
-    //     laps: workout.laps,
-    // };
 
-    // need to copy the conditional statements from onSubmit in WorkoutForm
-    // server is not saving the workout info correctly with api/workouts route
     if (workout.sort === "" || workout.musclegroup === "") {
         if (workout.sort === "" ) {
           showSortErrors();
