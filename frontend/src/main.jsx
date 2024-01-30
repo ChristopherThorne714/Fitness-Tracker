@@ -5,7 +5,6 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { WorkoutsContextProvider } from "./context/WorkoutContext";
-import { DateContextProvider } from './context/DateContext';
 
 
 // Bootstrap CSS & JS imports
@@ -63,9 +62,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <WorkoutsContextProvider>
-        <DateContextProvider>
-          <RouterProvider router={router} />
-        </DateContextProvider>
+        <RouterProvider router={router} />
       </WorkoutsContextProvider>
     </LocalizationProvider>
   </React.StrictMode>,

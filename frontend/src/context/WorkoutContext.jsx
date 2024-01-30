@@ -1,13 +1,15 @@
 import { createContext, useReducer } from 'react';
+import dayjs from 'dayjs';
+var currentDate = dayjs();
 
 export const WorkoutsContext = createContext();
 
 export const workoutsReducer = (state, action) => {
     switch (action.type) {
         case 'SET_WORKOUTS': 
-        console.log('state:', state, 'action: ', action)
+        // console.log('state:', state, 'action: ', action)
           return {
-            workouts: action.payload
+            workouts: action.payload,
           }
         case 'CREATE_WORKOUT':
           // console.log('state:', state, 'action: ', action)
@@ -19,6 +21,11 @@ export const workoutsReducer = (state, action) => {
           return {
             workouts: state.workouts.filter((w) => w._id !== action.payload._id)
           }
+        case 'SET_DATE': 
+          // console.log('state:', state, 'action: ', action)
+          return {
+            date: action.payload
+          }
         default:
           // console.log('state:', state, 'action: ', action)
           return state
@@ -27,7 +34,8 @@ export const workoutsReducer = (state, action) => {
 
 export const WorkoutsContextProvider = ({ children }) => {  
     const [state, dispatch] = useReducer(workoutsReducer, {
-        workouts: null
+        workouts: null,
+        date: currentDate.format('YYYY-MM-DD')
     });
 
     return (
