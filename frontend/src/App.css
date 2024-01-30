@@ -138,11 +138,9 @@ header a {
   margin-bottom: 10px;
 }
 .date-picker{
-  width: 50vw;
   display: flex;
   align-items: center;
-  position: relative;
-  left: 60px;
+  position: static;
   margin: 10px 0 -10px 20px;
 }
 .date-picker h2{
@@ -153,7 +151,7 @@ header a {
 .duration-form-group{
   display: flex;
   flex-direction: row;
-  margin-bottom: -2rem;
+  margin-bottom: -1rem;
 }
 label, input {
   display: block;
