@@ -25,7 +25,7 @@ function WorkoutCard({workout}) {
     <div className='card-container'>
       <div className='desc'>
         <h2>
-          <Link to={`/show-workout/${workout._id}`}>{workout.title}</Link>
+          <Link to={`/show-workout/${workout.title}`}>{workout.title}</Link>
         </h2>
         <h3>{workout.sort}</h3>
         <h4>{workout.musclegroup}</h4>

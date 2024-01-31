@@ -19,6 +19,15 @@ router.get('/', (req, res) => {
     .catch(err => res.status(404).json({ noworkoutsfound : 'No workouts found'}));
 });
 
+// @route   GET api/workouts/:id/
+// @desc    Get all workouts
+// @access  Public
+router.get('/:title', (req, res) => {
+    Workout.find({ title: req.query.title }).sort({ createdAt: -1 })
+    .then(workouts => res.json(workouts))
+    .catch(err => res.status(404).json({ noworkoutsfound : "No workouts found"}));
+});
+
 // @route   GET api/workouts/:id
 // @desc    Get single workout by id
 // @access  Public

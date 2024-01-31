@@ -10,10 +10,11 @@ import WorkoutForm from '../components/WorkoutForm';
 
 
 function Home() {
-     var currentDate = dayjs();
-
     const {workouts, dispatch} = useWorkoutsContext();
     var { date } = useWorkoutsContext();
+
+    // old method of tracking and setting date variable
+    // var currentDate = dayjs();
     // var [date, setDate] = useState(currentDate.format('YYYY-MM-DD'));
 
     const fetchWorkouts = async () => {
