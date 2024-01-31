@@ -25,7 +25,7 @@ function ShowWorkoutDetails() {
             <div className="workout-details">
                 <div className="workouts">
                 {workouts && workouts.map((workout) => (
-                    <WorkoutCard key={workout._id} workout={workout} />
+                    <WorkoutCard key={workout._id} workout={workout} showDate={true}/>
                 ))}
                 </div>
             </div>

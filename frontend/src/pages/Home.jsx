@@ -56,7 +56,7 @@ function Home() {
           <div className="workouts">
           {/* <div className='list'>{workoutList}</div> */}
           {workouts && workouts.map((workout) => (
-            <WorkoutCard key={workout._id} workout={workout} />
+            <WorkoutCard key={workout._id} workout={workout} showDate={false}/>
           ))}
           </div>
           <WorkoutForm />

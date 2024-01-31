@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
+import dayjs from 'dayjs';
 import '../App.css';
 import axios from 'axios';
 
 
-function WorkoutCard({workout}) {
+function WorkoutCard({workout, showDate}) {
   const { dispatch } = useWorkoutsContext();
   const navigate = useNavigate();
 
@@ -13,7 +14,6 @@ function WorkoutCard({workout}) {
     axios
       .delete(`http://localhost:5000/api/workouts/${id}`)
       .then((res) => {
-        // console.log(res.data)
         dispatch({type: 'DELETE_WORKOUT', payload: res.data})
       })
       .catch((err) => {
@@ -29,6 +29,7 @@ function WorkoutCard({workout}) {
         </h2>
         <h3>{workout.sort}</h3>
         <h4>{workout.musclegroup}</h4>
+        {showDate == true && <h5>{workout.performedOn.slice(0, 10)}</h5>}
       </div>
         {workout.sort === "Under Load" && 
           <div className='stats'>
