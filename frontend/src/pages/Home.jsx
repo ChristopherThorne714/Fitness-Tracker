@@ -43,7 +43,7 @@ function Home() {
     return(
       <div className='home-container'>
         <div className='date-picker'>
-          <h2>Select Date:</h2>
+          <h3>Select Date:</h3>
           <DatePicker 
           oneTap={true}
           defaultValue={new Date()}

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 import { DateRangePicker } from 'rsuite';
-// import 'rsuite/dist/rsuite.min.css';
 import 'rsuite/dist/rsuite-no-reset.min.css';
 import '../App.css';
 import axios from 'axios';
@@ -24,18 +23,30 @@ function ShowWorkoutDetails() {
             });
         }, [title]);
 
-        return(
-            <div className="workout-details">
-                <DateRangePicker />
-                <div className="graph-container">
-                </div>
-                <div className="workouts">
-                {workouts && workouts.map((workout) => (
-                    <WorkoutCard key={workout._id} workout={workout} showDate={true}/>
-                ))}
-                </div>
+    // handle changes from DatePicker
+    const dateChange = (e) => {
+        console.log(e)
+        const d = e.toISOString().split('T')[0];
+        dispatch({type: 'SET_DATE', payload: d});
+        date = d;
+        fetchWorkouts();
+    };
+
+    return(
+        <div className="workout-details">
+            <h3>Select Date:</h3>
+            <DateRangePicker 
+
+            onChange={dateChange}/>
+            <div className="graph-container">
             </div>
-        );
+            <div className="workouts">
+            {workouts && workouts.map((workout) => (
+                <WorkoutCard key={workout._id} workout={workout} showDate={true}/>
+            ))}
+            </div>
+        </div>
+    );
 };
 
 export default ShowWorkoutDetails;
