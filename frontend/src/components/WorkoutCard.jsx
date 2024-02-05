@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
-import dayjs from 'dayjs';
 import '../App.css';
 import axios from 'axios';
 

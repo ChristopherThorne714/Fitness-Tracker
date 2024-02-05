@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react';
 import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
 import '../App.css';
 import axios from 'axios';
-// import dayjs from 'dayjs';
 
 const WorkoutForm = () => {
     const { date, dispatch } = useWorkoutsContext();

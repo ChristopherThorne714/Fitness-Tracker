@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { WorkoutsContextProvider } from "./context/WorkoutContext";
@@ -60,10 +59,8 @@ function NavbarWrapper(){
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <WorkoutsContextProvider>
-        <RouterProvider router={router} />
-      </WorkoutsContextProvider>
-    </LocalizationProvider>
+    <WorkoutsContextProvider>
+      <RouterProvider router={router} />
+    </WorkoutsContextProvider>
   </React.StrictMode>,
 );

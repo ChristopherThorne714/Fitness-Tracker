@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../App.css';
 import axios from 'axios';
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
-import { DatePicker } from '@mui/x-date-pickers';
-import dayjs from 'dayjs';
+import { DatePicker } from 'rsuite';
 
 import WorkoutCard from '../components/WorkoutCard';
 import WorkoutForm from '../components/WorkoutForm';
@@ -35,7 +34,7 @@ function Home() {
 
     // handle changes from DatePicker
     const dateChange = (e) => {
-      const d = e.format('YYYY-MM-DD');
+      const d = e.toISOString().split('T')[0];
       dispatch({type: 'SET_DATE', payload: d});
       date = d;
       fetchWorkouts();
@@ -46,11 +45,9 @@ function Home() {
         <div className='date-picker'>
           <h2>Select Date:</h2>
           <DatePicker 
-            onChange={dateChange}
-            format='YYYY-MM-DD'
-            defaultValue={dayjs()}
-            disableFuture
-          />
+          oneTap={true}
+          defaultValue={new Date()}
+          onChange={dateChange}/>
         </div>
         <div className="home">
           <div className="workouts">

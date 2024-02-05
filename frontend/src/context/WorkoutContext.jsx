@@ -1,6 +1,5 @@
 import { createContext, useReducer } from 'react';
-import dayjs from 'dayjs';
-var currentDate = dayjs();
+var currentDate = new Date();
 
 export const WorkoutsContext = createContext();
 
@@ -35,7 +34,7 @@ export const workoutsReducer = (state, action) => {
 export const WorkoutsContextProvider = ({ children }) => {  
     const [state, dispatch] = useReducer(workoutsReducer, {
         workouts: null,
-        date: currentDate.format('YYYY-MM-DD')
+        date: currentDate.toISOString().split('T')[0]
     });
 
     return (
