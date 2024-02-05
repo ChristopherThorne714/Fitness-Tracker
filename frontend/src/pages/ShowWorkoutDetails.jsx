@@ -15,7 +15,7 @@ function ShowWorkoutDetails() {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:5000/api/workouts/${title}/`, { params: { title : title }})
+            .get(`http://localhost:5000/api/workouts/show-workout/${title}/`, { params: { title : title }})
             .then((res) => {
                 dispatch({type: 'SET_WORKOUTS', payload: res.data });
             })

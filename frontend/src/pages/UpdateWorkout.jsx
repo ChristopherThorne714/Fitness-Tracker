@@ -50,7 +50,7 @@ function UpdateWorkout(props) {
     };
 
     useEffect(() => {
-    axios
+      axios
         .get(`http://localhost:5000/api/workouts/${id}`)
         .then((res) => {
         setWorkout({
