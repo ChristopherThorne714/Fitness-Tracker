@@ -13,7 +13,7 @@ router.get('/test', (req, res) => res.send('Workouts testing!'));
 // @desc    Get all workouts with a matching title
 // @access  Public
 router.get('/show-workout/:title', (req, res) => {
-    Workout.find({ title: req.query.title }).sort({ createdAt: -1 })
+    Workout.find({ title: req.params.title }).sort({ createdAt: -1 })
       .then(workouts => res.json(workouts))
       .catch(err => res.status(404).json({ noworkoutsfound : "No workouts found"}));
     });

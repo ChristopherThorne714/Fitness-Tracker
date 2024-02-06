@@ -14,7 +14,7 @@ function ShowWorkoutDetails() {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:5000/api/workouts/show-workout/${title}/`, { params: { title : title }})
+            .get(`http://localhost:5000/api/workouts/show-workout/${title}/`)
             .then((res) => {
                 dispatch({type: 'SET_WORKOUTS', payload: res.data });
             })
@@ -36,7 +36,7 @@ function ShowWorkoutDetails() {
         <div className="workout-details">
             <h3>Select Date:</h3>
             <DateRangePicker 
-
+            oneTap={true}
             onChange={dateChange}/>
             <div className="graph-container">
             </div>
