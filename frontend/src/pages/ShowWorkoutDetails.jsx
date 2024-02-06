@@ -5,8 +5,9 @@ import { DateRangePicker } from 'rsuite';
 import 'rsuite/dist/rsuite-no-reset.min.css';
 import '../App.css';
 import axios from 'axios';
-import WorkoutCard from '../components/WorkoutCard';
 
+import WorkoutCard from '../components/WorkoutCard';
+import DetailsGraph from "../components/DetailsGraph";
 
 function ShowWorkoutDetails() {
     const { title } = useParams();
@@ -41,6 +42,7 @@ function ShowWorkoutDetails() {
             oneTap={true}
             onChange={dateChange}/>
             <div className="graph-container">
+                <DetailsGraph />
             </div>
             <div className="workouts">
             {workouts && workouts.map((workout) => (

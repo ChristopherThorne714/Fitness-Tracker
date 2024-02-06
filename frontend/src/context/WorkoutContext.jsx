@@ -26,7 +26,7 @@ export const workoutsReducer = (state, action) => {
             date: action.payload
           }
         case 'SET_DATE_RANGE': 
-        console.log('state:', state, 'action: ', action)
+        // console.log('state:', state, 'action: ', action)
           return {
             dateRange: action.payload
           }
