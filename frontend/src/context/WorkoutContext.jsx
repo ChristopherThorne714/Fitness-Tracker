@@ -25,6 +25,11 @@ export const workoutsReducer = (state, action) => {
           return {
             date: action.payload
           }
+        case 'SET_DATE_RANGE': 
+        console.log('state:', state, 'action: ', action)
+          return {
+            dateRange: action.payload
+          }
         default:
           // console.log('state:', state, 'action: ', action)
           return state
@@ -34,7 +39,8 @@ export const workoutsReducer = (state, action) => {
 export const WorkoutsContextProvider = ({ children }) => {  
     const [state, dispatch] = useReducer(workoutsReducer, {
         workouts: null,
-        date: currentDate.toISOString().split('T')[0]
+        date: currentDate.toISOString().split('T')[0],
+        dateRange: []
     });
 
     return (

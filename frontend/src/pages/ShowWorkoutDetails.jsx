@@ -11,6 +11,7 @@ import WorkoutCard from '../components/WorkoutCard';
 function ShowWorkoutDetails() {
     const { title } = useParams();
     const {workouts, dispatch} = useWorkoutsContext();
+    var { dateRange } = useWorkoutsContext();
 
     useEffect(() => {
         axios
@@ -25,11 +26,12 @@ function ShowWorkoutDetails() {
 
     // handle changes from DatePicker
     const dateChange = (e) => {
-        console.log(e)
-        const d = e.toISOString().split('T')[0];
-        dispatch({type: 'SET_DATE', payload: d});
-        date = d;
-        fetchWorkouts();
+        const dr = [];
+        for (let i = 0; i < e.length; i++) {
+            dr[i] = e[i].toISOString().split('T')[0]
+        };
+        dispatch({type: 'SET_DATE_RANGE', payload: dr});
+        dateRange = dr;
     };
 
     return(
