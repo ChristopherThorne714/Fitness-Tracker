@@ -76,7 +76,7 @@ const WorkoutForm = () => {
             dispatch({type: 'CREATE_WORKOUT', payload: res.data});
           })
           .catch((err) => {
-            console.log(err.response);
+            console.log(err);
             setError(JSON.stringify(err.response.data));
           });
         }
@@ -85,11 +85,11 @@ const WorkoutForm = () => {
           axios
           .post('http://localhost:5000/api/durationworkouts', workout)
           .then((res) => {
-            resetWorkout(e);
+            resetWorkout();
             dispatch({type: 'CREATE_WORKOUT', payload: res.data});
           })
           .catch((err) => {
-            console.log(err.response);
+            console.log(err);
             setError(JSON.stringify(err.response.data));
           });
         }
@@ -97,11 +97,11 @@ const WorkoutForm = () => {
           axios
           .post('http://localhost:5000/api/distanceworkouts', workout)
           .then((res) => {
-            resetWorkout(e);
+            resetWorkout();
             dispatch({type: 'CREATE_WORKOUT', payload: res.data});
           })
           .catch((err) => {
-            console.log(err.response);
+            console.log(err);
             setError(JSON.stringify(err.response.data));
           });
         };
