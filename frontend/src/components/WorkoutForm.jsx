@@ -79,7 +79,8 @@ const WorkoutForm = () => {
           .post('http://localhost:5000/api/underloadworkouts', workout)
           .then((res) => {
             resetWorkout();
-            dispatch({type: 'CREATE_WORKOUT', payload: res.data});
+            // dispatch({type: 'CREATE_WORKOUT', payload: res.data});
+            dispatch(createWorkout(res.data));
           })
           .catch((err) => {
             console.log(err);
@@ -92,7 +93,8 @@ const WorkoutForm = () => {
           .post('http://localhost:5000/api/durationworkouts', workout)
           .then((res) => {
             resetWorkout();
-            dispatch({type: 'CREATE_WORKOUT', payload: res.data});
+            // dispatch({type: 'CREATE_WORKOUT', payload: res.data});
+            dispatch(createWorkout(res.data));
           })
           .catch((err) => {
             console.log(err);
@@ -104,7 +106,8 @@ const WorkoutForm = () => {
           .post('http://localhost:5000/api/distanceworkouts', workout)
           .then((res) => {
             resetWorkout();
-            dispatch({type: 'CREATE_WORKOUT', payload: res.data});
+            // dispatch({type: 'CREATE_WORKOUT', payload: res.data});
+            dispatch(createWorkout(res.data));
           })
           .catch((err) => {
             console.log(err);

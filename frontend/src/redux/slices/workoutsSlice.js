@@ -10,10 +10,10 @@ export const workoutsSlice = createSlice({
             state.value = action.payload
         },
         createWorkout: (state, action) => {
-            state += action.payload
+            state.value = [action.payload, ...state.value]
         },
         deleteWorkout: (state, action) => {
-            state -= action.payload
+            state.value = state.value.filter((w) => w._id !== action.payload._id)
         },
     },
 });
