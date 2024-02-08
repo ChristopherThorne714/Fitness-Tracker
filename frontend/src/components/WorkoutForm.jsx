@@ -3,10 +3,14 @@ import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
 import '../App.css';
 import axios from 'axios';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { createWorkout } from '../redux/slices/workoutsSlice';
+
 const WorkoutForm = () => {
     const { date, dispatch } = useWorkoutsContext();
-    var dateRef = useRef(date);
-    console.log(dateRef.current)
+    // const dispatch = useDispatch()
+    // var dateRef = useRef(date);
+    // console.log(dateRef.current)
 
     const sortErrorRef = useRef(null);
     const groupErrorRef = useRef(null);
@@ -16,7 +20,7 @@ const WorkoutForm = () => {
     const [workout, setWorkout] = useState({
         title: "",
         sort: "",
-        performedOn: dateRef.current,
+        performedOn: date,
         musclegroup: "",
         reps: 0,
         sets: 0,
@@ -42,7 +46,7 @@ const WorkoutForm = () => {
       setWorkout({
         title: "",
         sort: "",
-        performedOn: dateRef.current,
+        performedOn: date,
         musclegroup: "",
         reps: 0,
         sets: 0,

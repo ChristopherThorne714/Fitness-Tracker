@@ -9,9 +9,15 @@ export const workoutsSlice = createSlice({
         setWorkouts: (state, action) => {
             state.value = action.payload
         },
+        createWorkout: (state, action) => {
+            state += action.payload
+        },
+        deleteWorkout: (state, action) => {
+            state -= action.payload
+        },
     },
 });
 
-export const { setWorkouts } = workoutsSlice.actions;
+export const { setWorkouts, createWorkout, deleteWorkout } = workoutsSlice.actions;
 
 export default workoutsSlice.reducer;
