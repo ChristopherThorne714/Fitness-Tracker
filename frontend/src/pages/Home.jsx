@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css';
 import axios from 'axios';
-import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
+// import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
 import { DatePicker } from 'rsuite';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setWorkouts } from '../redux/slices/workoutsSlice';
+import { setDate } from '../redux/slices/dateSlice';
 
 import WorkoutCard from '../components/WorkoutCard';
 import WorkoutForm from '../components/WorkoutForm';
@@ -16,7 +17,9 @@ function Home() {
     const workouts = useSelector((state) => state.workouts.value);
     const dispatch = useDispatch();
 
-    var { date } = useWorkoutsContext();
+    // var { date } = useWorkoutsContext();
+    const date = useSelector((state) => state.date.value);
+    console.log(date)
 
     // old method of tracking and setting date variable
     // var currentDate = dayjs();
@@ -43,7 +46,7 @@ function Home() {
     const dateChange = (e) => {
       const d = e.toISOString().split('T')[0];
       dispatch({type: 'SET_DATE', payload: d});
-      date = d;
+      // date = d;
       fetchWorkouts();
     };
 
