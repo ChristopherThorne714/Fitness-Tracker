@@ -31,7 +31,7 @@ router.get('/:id', (req, res) => {
 // @desc    Add/save underloadworkout
 // @access  Public
 router.post('/', (req, res) => {
-    console.log(req)
+    console.log(req.body);
     UnderLoadWorkout.create(req.body)
       .then(workout => res.json(workout))
       .catch(err => res.status(400).json({ error: 'Unable to add this workout' }));

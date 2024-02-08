@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { LocalizationProvider } from '@mui/x-date-pickers';
+// import { LocalizationProvider } from '@mui/x-date-pickers';
 
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { WorkoutsContextProvider } from "./context/WorkoutContext";
 
+import { Provider } from 'react-redux'
+import store from './store'
 
 // Bootstrap CSS & JS imports
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -60,7 +62,9 @@ function NavbarWrapper(){
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <WorkoutsContextProvider>
-      <RouterProvider router={router} />
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
     </WorkoutsContextProvider>
   </React.StrictMode>,
 );

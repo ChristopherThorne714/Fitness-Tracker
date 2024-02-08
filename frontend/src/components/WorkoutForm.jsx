@@ -5,7 +5,8 @@ import axios from 'axios';
 
 const WorkoutForm = () => {
     const { date, dispatch } = useWorkoutsContext();
-
+    var dateRef = useRef(date);
+    console.log(dateRef.current)
 
     const sortErrorRef = useRef(null);
     const groupErrorRef = useRef(null);
@@ -15,7 +16,7 @@ const WorkoutForm = () => {
     const [workout, setWorkout] = useState({
         title: "",
         sort: "",
-        performedOn: date,
+        performedOn: dateRef.current,
         musclegroup: "",
         reps: 0,
         sets: 0,
@@ -41,7 +42,7 @@ const WorkoutForm = () => {
       setWorkout({
         title: "",
         sort: "",
-        performedOn: date,
+        performedOn: dateRef.current,
         musclegroup: "",
         reps: 0,
         sets: 0,
@@ -58,6 +59,7 @@ const WorkoutForm = () => {
     // If musclegroup and sort have no value, throw relevant errors 
     // Else check the selected exercise sort and choose correct model for post
     const onSubmit = (e) => {
+      console.log(workout.performedOn)
         e.preventDefault();
 
         if (workout.sort === "" || workout.musclegroup === "") {
