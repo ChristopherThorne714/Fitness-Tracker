@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css';
 import axios from 'axios';
-import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
+import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
 import { DatePicker } from 'rsuite';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { setWorkouts } from '../redux/slices/workoutsSlice';
 
 import WorkoutCard from '../components/WorkoutCard';
 import WorkoutForm from '../components/WorkoutForm';
 
 
 function Home() {
-    const {workouts, dispatch} = useWorkoutsContext();
+    // const {workouts, dispatch} = useWorkoutsContext();
+    const workouts = useSelector((state) => state.workouts.value);
+    const dispatch = useDispatch();
+
     var { date } = useWorkoutsContext();
 
     // old method of tracking and setting date variable
@@ -20,7 +26,8 @@ function Home() {
       axios
       .get('http://localhost:5000/api/workouts', { params: { performedOn : date }})
       .then((res) => {
-        dispatch({type: 'SET_WORKOUTS', payload: res.data});
+        // dispatch({type: 'SET_WORKOUTS', payload: res.data});
+        dispatch(setWorkouts(res.data));
       })
       .catch((err) => {
         console.log(err);

@@ -5,8 +5,8 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { WorkoutsContextProvider } from "./context/WorkoutContext";
 
-import { Provider } from 'react-redux'
-import store from './store'
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 // Bootstrap CSS & JS imports
 import "bootstrap/dist/css/bootstrap.min.css";
