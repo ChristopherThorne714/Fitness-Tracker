@@ -12,6 +12,7 @@
 ![image](https://github.com/ChristopherThorne714/Fitness-Tracker/assets/90929224/5e86a2f9-1fba-42b9-b2bf-d1567d313273)
 
 ### show-workout-details page for tracking progress in a specific exercise over time. 
+#### Graph is currently an incomplete placeholder
 ![image](https://github.com/ChristopherThorne714/Fitness-Tracker/assets/90929224/ff3471ba-ab44-459e-b9c7-86b780774a99)
 
 # More to come in the future
