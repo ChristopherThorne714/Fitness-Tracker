@@ -63,7 +63,6 @@ const WorkoutForm = () => {
     // If musclegroup and sort have no value, throw relevant errors 
     // Else check the selected exercise sort and choose correct model for post
     const onSubmit = (e) => {
-      console.log(workout.performedOn)
         e.preventDefault();
 
         if (workout.sort === "" || workout.musclegroup === "") {

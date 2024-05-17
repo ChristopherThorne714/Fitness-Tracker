@@ -13,13 +13,13 @@ import WorkoutForm from '../components/WorkoutForm';
 
 
 function Home() {
+    // const currentDate = new Date();
     // const {workouts, dispatch} = useWorkoutsContext();
     const workouts = useSelector((state) => state.workouts.value);
     const dispatch = useDispatch();
 
     // var { date } = useWorkoutsContext();
-    const date = useSelector((state) => state.date.value);
-    console.log(date)
+    var date = useSelector((state) => state.date.value);
 
     // old method of tracking and setting date variable
     // var currentDate = dayjs();
@@ -30,6 +30,7 @@ function Home() {
       .get('http://localhost:5000/api/workouts', { params: { performedOn : date }})
       .then((res) => {
         // dispatch({type: 'SET_WORKOUTS', payload: res.data});
+        console.log(date)
         dispatch(setWorkouts(res.data));
       })
       .catch((err) => {
@@ -45,8 +46,9 @@ function Home() {
     // handle changes from DatePicker
     const dateChange = (e) => {
       const d = e.toISOString().split('T')[0];
-      dispatch({type: 'SET_DATE', payload: d});
-      // date = d;
+      // dispatch({type: 'SET_DATE', payload: d});
+      dispatch(setDate(d))
+      date = d;
       fetchWorkouts();
     };
 
