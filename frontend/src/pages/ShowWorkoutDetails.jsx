@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
+
+// import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 import { useSelector, useDispatch } from 'react-redux';
 import { setWorkouts } from '../redux/slices/workoutsSlice';
+import { setDateRange } from '../redux/slices/dateRangeSlice';
 
 import { DateRangePicker } from 'rsuite';
 import 'rsuite/dist/rsuite-no-reset.min.css';
@@ -18,7 +20,8 @@ function ShowWorkoutDetails() {
     const workouts = useSelector((state) => state.workouts.value);
     const dispatch = useDispatch();
 
-    var { dateRange } = useWorkoutsContext();
+    // var { dateRange } = useWorkoutsContext();
+    var dateRange = useSelector((state) => state.dateRange.value)
 
     const fetchWorkouts = () => {
         axios
@@ -43,6 +46,7 @@ function ShowWorkoutDetails() {
             dr[i] = e[i].toISOString().split('T')[0]
         };
         // dispatch({type: 'SET_DATE_RANGE', payload: dr});
+        dispatch(setDateRange(dr))
         dateRange = dr;
         fetchWorkouts();
     };
