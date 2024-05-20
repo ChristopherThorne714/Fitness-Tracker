@@ -25,12 +25,11 @@ function Home() {
     // var currentDate = dayjs();
     // var [date, setDate] = useState(currentDate.format('YYYY-MM-DD'));
 
-    const fetchWorkouts = async () => {
+    const fetchWorkouts = () => {
       axios
       .get('http://localhost:5000/api/workouts', { params: { performedOn : date }})
       .then((res) => {
         // dispatch({type: 'SET_WORKOUTS', payload: res.data});
-        console.log(date)
         dispatch(setWorkouts(res.data));
       })
       .catch((err) => {
