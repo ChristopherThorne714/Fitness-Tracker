@@ -44,7 +44,8 @@ function Home() {
 
     // handle changes from DatePicker
     const dateChange = (e) => {
-      const d = e.toISOString().split('T')[0];
+      var d = '';
+      e != null ? d = e.toISOString().split('T')[0] : d = new Date().toISOString().split('T')[0]
       // dispatch({type: 'SET_DATE', payload: d});
       dispatch(setDate(d))
       date = d;

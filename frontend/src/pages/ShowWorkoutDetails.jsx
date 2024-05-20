@@ -42,9 +42,16 @@ function ShowWorkoutDetails() {
     // handle changes from DatePicker
     const dateChange = (e) => {
         const dr = [];
-        for (let i = 0; i < e.length; i++) {
-            dr[i] = e[i].toISOString().split('T')[0]
-        };
+        if (e != null) {
+            for (let i = 0; i < e.length; i++) {
+                dr[i] = e[i].toISOString().split('T')[0]
+            };
+        }
+        else {
+            const d = new Date().toISOString().split('T')[0]
+            dr[0] = d
+            dr[1] = d
+        }
         // dispatch({type: 'SET_DATE_RANGE', payload: dr});
         dispatch(setDateRange(dr))
         dateRange = dr;
