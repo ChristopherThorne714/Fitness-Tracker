@@ -1,12 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
-const currentDate = new Date();
-const cd = currentDate.toISOString().split('T')[0];
-
 
 export const dateSlice = createSlice({
     name: 'date',
     initialState: {
-        value: cd
+        value: new Date().toISOString().split('T')[0]
     },
     reducers: {
         setDate: (state, action) => {

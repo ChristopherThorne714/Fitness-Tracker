@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-// import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 import { useSelector, useDispatch } from 'react-redux';
 import { setWorkouts } from '../redux/slices/workoutsSlice';
 import { setDateRange } from '../redux/slices/dateRangeSlice';
@@ -16,18 +15,15 @@ import DetailsGraph from "../components/DetailsGraph";
 
 function ShowWorkoutDetails() {
     const { title } = useParams();
-    // const {workouts, dispatch} = useWorkoutsContext();
     const workouts = useSelector((state) => state.workouts.value);
     const dispatch = useDispatch();
 
-    // var { dateRange } = useWorkoutsContext();
     var dateRange = useSelector((state) => state.dateRange.value)
 
     const fetchWorkouts = () => {
         axios
             .get(`http://localhost:5000/api/workouts/show-workout/${title}/`)
             .then((res) => {
-                // dispatch({type: 'SET_WORKOUTS', payload: res.data });
                 dispatch(setWorkouts(res.data));
             })
             .catch((err) => {
@@ -52,7 +48,6 @@ function ShowWorkoutDetails() {
             dr[0] = d
             dr[1] = d
         }
-        // dispatch({type: 'SET_DATE_RANGE', payload: dr});
         dispatch(setDateRange(dr))
         dateRange = dr;
         fetchWorkouts();
@@ -62,7 +57,7 @@ function ShowWorkoutDetails() {
         <div className="workout-details">
             <h3>Select Date:</h3>
             <DateRangePicker 
-            oneTap={true}
+            // oneTap={true}
             onChange={dateChange}/>
             <div className="graph-container">
                 <DetailsGraph />
