@@ -64,9 +64,9 @@ function Home() {
         <div className="home">
           <div className="workouts">
           {/* <div className='list'>{workoutList}</div> */}
-          {workouts && workouts.map((workout) => (
+          {!workouts || Object.entries(workouts).length == 0 ? <p className='missing-workouts'>No workouts found...</p> : (workouts.map((workout) => (
             <WorkoutCard key={workout._id} workout={workout} showDate={false}/>
-          ))}
+          ))) }
           </div>
           <WorkoutForm />
         </div>

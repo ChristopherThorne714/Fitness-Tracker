@@ -138,6 +138,11 @@ header a {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+.missing-workouts {
+  font-size: x-large;
+  padding-top: 20vh;
+  text-align: center;
+}
 .date-picker{
   display: flex;
   align-items: center;
