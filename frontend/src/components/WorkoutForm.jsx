@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
+// import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
 import '../App.css';
 import axios from 'axios';
 
@@ -7,8 +7,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { createWorkout } from '../redux/slices/workoutsSlice';
 
 const WorkoutForm = () => {
-    const { date, dispatch } = useWorkoutsContext();
-    // const dispatch = useDispatch()
+    // const { date, dispatch } = useWorkoutsContext();
+    const date = useSelector((state) => state.date.value);
+    const dispatch = useDispatch()
     // var dateRef = useRef(date);
     // console.log(dateRef.current)
 

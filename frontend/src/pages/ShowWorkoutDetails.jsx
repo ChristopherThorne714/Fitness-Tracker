@@ -55,10 +55,15 @@ function ShowWorkoutDetails() {
 
     return(
         <div className="workout-details">
-            <h3>Select Date:</h3>
+            <h3>Select Range:</h3>
             <DateRangePicker 
             // oneTap={true}
             onChange={dateChange}/>
+            <div class="btn-group" role="group" aria-label="Date Range">
+                <button type="button" class="btn btn-secondary">Left</button>
+                <button type="button" class="btn btn-secondary">Middle</button>
+                <button type="button" class="btn btn-secondary">Right</button>
+            </div>
             <div className="graph-container">
                 <DetailsGraph />
             </div>
