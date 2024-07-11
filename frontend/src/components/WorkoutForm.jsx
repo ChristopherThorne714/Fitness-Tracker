@@ -38,7 +38,7 @@ const WorkoutForm = () => {
       setWorkout({ ...workout, [e.target.name]: e.target.value });
     };
 
-    const dateChange = () => {
+    const setDate = () => {
       workout.performedOn = date;
     }
 
@@ -68,7 +68,7 @@ const WorkoutForm = () => {
     // If musclegroup and sort have no value, throw relevant errors 
     // Else check the selected exercise sort and choose correct model for post
     const onSubmit = (e) => {
-      dateChange();
+      setDate();
       e.preventDefault();
 
       if (workout.sort === "" || workout.musclegroup === "") {
@@ -80,7 +80,6 @@ const WorkoutForm = () => {
         };
       }
       else if (workout.sort == "Under Load") {
-        console.log(workout)
         axios
         .post('http://localhost:5000/api/underloadworkouts', workout)
         .then((res) => {
@@ -321,7 +320,7 @@ function DurationForm({hours, minutes, seconds, sets, onChildChange}) {
             <input
             type="number"
             min="0"
-            max="1000"
+            max="60"
             name="minutes"
             className="form-control"
             value={minutes}
@@ -330,7 +329,7 @@ function DurationForm({hours, minutes, seconds, sets, onChildChange}) {
             <input
             type="number"
             min="0"
-            max="1000"
+            max="60"
             name="seconds"
             className="form-control"
             value={seconds}
