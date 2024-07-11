@@ -64,7 +64,6 @@
 
 /* google font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
-/* rsuite style */
 
 /* layout */
 :root {
@@ -203,6 +202,40 @@ input.error {
 #update-form-type{
   background: #f1f1f1;
   pointer-events: none;
+}
+
+.dr-button {
+  float: left;
+  margin: 0 5px 0 0;
+  width: 100px;
+  height: 40px;
+  position: relative;
+}
+
+.dr-button label,
+.dr-button input {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.dr-button input[type="radio"] {
+  opacity: 0.011;
+  z-index: 100;
+}
+
+.dr-button input[type="radio"]:checked + label {
+  background: #a9a9a9;
+  border-radius: 4px;
+}
+
+.dr-button label {
+  cursor: pointer;
+  z-index: 90;
+  line-height: 1em;
 }
 
 /* navbar */

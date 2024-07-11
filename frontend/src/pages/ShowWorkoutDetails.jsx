@@ -57,13 +57,20 @@ function ShowWorkoutDetails() {
         <div className="workout-details">
             <h3>Select Range:</h3>
             <DateRangePicker 
-            // oneTap={true}
             onChange={dateChange}/>
-            <div class="btn-group" role="group" aria-label="Date Range">
-                <button type="button" class="btn btn-secondary">Left</button>
-                <button type="button" class="btn btn-secondary">Middle</button>
-                <button type="button" class="btn btn-secondary">Right</button>
+            <div class="dr-button">
+                <input type="radio" id="a25" name="check-substitution-2" />
+                <label class="btn btn-default" for="a25">Last Month</label>
             </div>
+            <div class="dr-button">
+                <input type="radio" id="a50" name="check-substitution-2" />
+                <label class="btn btn-default" for="a50">Last Six Months</label>
+            </div>
+            <div class="dr-button">
+                <input type="radio" id="a75" name="check-substitution-2" />
+                <label class="btn btn-default" for="a75">Last Year</label>
+            </div>
+            
             <div className="graph-container">
                 <DetailsGraph />
             </div>

@@ -35,8 +35,12 @@ const WorkoutForm = () => {
     });
 
     const onChange = (e) => {
-        setWorkout({ ...workout, [e.target.name]: e.target.value });
+      setWorkout({ ...workout, [e.target.name]: e.target.value });
     };
+
+    const dateChange = () => {
+      workout.performedOn = date;
+    }
 
     const setDuration = () => {
       const drtn = workout.hours + ":" + workout.minutes + ":" + workout.seconds;
@@ -64,56 +68,58 @@ const WorkoutForm = () => {
     // If musclegroup and sort have no value, throw relevant errors 
     // Else check the selected exercise sort and choose correct model for post
     const onSubmit = (e) => {
-        e.preventDefault();
+      dateChange();
+      e.preventDefault();
 
-        if (workout.sort === "" || workout.musclegroup === "") {
-          if (workout.sort === "" ) {
-            showSortErrors();
-          };
-          if (workout.musclegroup === "") {
-            showMGErrors();
-          };
-        }
-        else if (workout.sort == "Under Load") {
-          axios
-          .post('http://localhost:5000/api/underloadworkouts', workout)
-          .then((res) => {
-            resetWorkout();
-            // dispatch({type: 'CREATE_WORKOUT', payload: res.data});
-            dispatch(createWorkout(res.data));
-          })
-          .catch((err) => {
-            console.log(err);
-            setError(JSON.stringify(err.response.data));
-          });
-        }
-        else if (workout.sort == "Duration") {
-          setDuration();
-          axios
-          .post('http://localhost:5000/api/durationworkouts', workout)
-          .then((res) => {
-            resetWorkout();
-            // dispatch({type: 'CREATE_WORKOUT', payload: res.data});
-            dispatch(createWorkout(res.data));
-          })
-          .catch((err) => {
-            console.log(err);
-            setError(JSON.stringify(err.response.data));
-          });
-        }
-        else if (workout.sort == "Distance") {
-          axios
-          .post('http://localhost:5000/api/distanceworkouts', workout)
-          .then((res) => {
-            resetWorkout();
-            // dispatch({type: 'CREATE_WORKOUT', payload: res.data});
-            dispatch(createWorkout(res.data));
-          })
-          .catch((err) => {
-            console.log(err);
-            setError(JSON.stringify(err.response.data));
-          });
+      if (workout.sort === "" || workout.musclegroup === "") {
+        if (workout.sort === "" ) {
+          showSortErrors();
         };
+        if (workout.musclegroup === "") {
+          showMGErrors();
+        };
+      }
+      else if (workout.sort == "Under Load") {
+        console.log(workout)
+        axios
+        .post('http://localhost:5000/api/underloadworkouts', workout)
+        .then((res) => {
+          resetWorkout();
+          // dispatch({type: 'CREATE_WORKOUT', payload: res.data});
+          dispatch(createWorkout(res.data));
+        })
+        .catch((err) => {
+          console.log(err);
+          setError(JSON.stringify(err.response.data));
+        });
+      }
+      else if (workout.sort == "Duration") {
+        setDuration();
+        axios
+        .post('http://localhost:5000/api/durationworkouts', workout)
+        .then((res) => {
+          resetWorkout();
+          // dispatch({type: 'CREATE_WORKOUT', payload: res.data});
+          dispatch(createWorkout(res.data));
+        })
+        .catch((err) => {
+          console.log(err);
+          setError(JSON.stringify(err.response.data));
+        });
+      }
+      else if (workout.sort == "Distance") {
+        axios
+        .post('http://localhost:5000/api/distanceworkouts', workout)
+        .then((res) => {
+          resetWorkout();
+          // dispatch({type: 'CREATE_WORKOUT', payload: res.data});
+          dispatch(createWorkout(res.data));
+        })
+        .catch((err) => {
+          console.log(err);
+          setError(JSON.stringify(err.response.data));
+        });
+      };
     };
     
     const showSortErrors = () => {
