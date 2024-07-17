@@ -204,9 +204,18 @@ input.error {
   pointer-events: none;
 }
 
-.dr-button {
-  float: left;
+.controls-container{
+  display: flex;
+  flex-direction: row;
+}
+.controls-container h3{
   margin: 0 5px 0 0;
+}
+
+.dr-button {
+  /* border-radius: 4px; */
+  border: solid;
+  /* margin: 0 5px 0 0; */
   width: 100px;
   height: 40px;
   position: relative;
@@ -225,17 +234,18 @@ input.error {
 .dr-button input[type="radio"] {
   opacity: 0.011;
   z-index: 100;
+  cursor: pointer;
 }
 
 .dr-button input[type="radio"]:checked + label {
   background: #a9a9a9;
-  border-radius: 4px;
+  border-radius: 1px;
 }
 
 .dr-button label {
-  cursor: pointer;
+  /* cursor: pointer; */
   z-index: 90;
-  line-height: 1em;
+  line-height: 0.8em;
 }
 
 /* navbar */

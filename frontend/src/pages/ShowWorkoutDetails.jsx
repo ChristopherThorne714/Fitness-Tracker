@@ -19,6 +19,7 @@ function ShowWorkoutDetails() {
     const dispatch = useDispatch();
 
     var dateRange = useSelector((state) => state.dateRange.value)
+    var dr = "week";
 
     const fetchWorkouts = () => {
         axios
@@ -35,40 +36,56 @@ function ShowWorkoutDetails() {
         fetchWorkouts();
         }, [title]);
 
-    // handle changes from DatePicker
-    const dateChange = (e) => {
-        const dr = [];
-        if (e != null) {
-            for (let i = 0; i < e.length; i++) {
-                dr[i] = e[i].toISOString().split('T')[0]
-            };
+    const rangeSelect = (e) => {
+        if (e.target.id === "week"){
+            
         }
-        else {
-            const d = new Date().toISOString().split('T')[0]
-            dr[0] = d
-            dr[1] = d
-        }
-        dispatch(setDateRange(dr))
-        dateRange = dr;
-        fetchWorkouts();
     };
+
+    // handle changes from DatePicker
+    // const dateChange = (e) => {
+    //     const dr = [];
+    //     if (e != null) {
+    //         for (let i = 0; i < e.length; i++) {
+    //             dr[i] = e[i].toISOString().split('T')[0]
+    //         };
+    //     }
+    //     else {
+    //         const d = new Date().toISOString().split('T')[0]
+    //         dr[0] = d
+    //         dr[1] = d
+    //     }
+    //     dispatch(setDateRange(dr))
+    //     dateRange = dr;
+    //     fetchWorkouts();
+    // };
 
     return(
         <div className="workout-details">
-            <h3>Select Range:</h3>
-            <DateRangePicker 
-            onChange={dateChange}/>
-            <div class="dr-button">
-                <input type="radio" id="a25" name="check-substitution-2" />
-                <label class="btn btn-default" for="a25">Last Month</label>
-            </div>
-            <div class="dr-button">
-                <input type="radio" id="a50" name="check-substitution-2" />
-                <label class="btn btn-default" for="a50">Last Six Months</label>
-            </div>
-            <div class="dr-button">
-                <input type="radio" id="a75" name="check-substitution-2" />
-                <label class="btn btn-default" for="a75">Last Year</label>
+            <div className="controls-container">
+                <h3>Select Range:</h3>
+                {/* <DateRangePicker 
+                onChange={dateChange}/> */}
+                <div className="dr-button">
+                    <input type="radio" id="week" name="check-substitution-2" defaultChecked onChange={rangeSelect}/>
+                    <label className="btn btn-default" htmlFor="week">Last Week</label>
+                </div>
+                <div className="dr-button">
+                    <input type="radio" id="month" name="check-substitution-2" onChange={rangeSelect}/>
+                    <label className="btn btn-default" htmlFor="month">Last Month</label>
+                </div>
+                <div className="dr-button">
+                    <input type="radio" id="sixmonth" name="check-substitution-2" onChange={rangeSelect}/>
+                    <label className="btn btn-default" htmlFor="sixmonth">Last Six Months</label>
+                </div>
+                <div className="dr-button">
+                    <input type="radio" id="year" name="check-substitution-2" onChange={rangeSelect}/>
+                    <label className="btn btn-default" htmlFor="year">Last Year</label>
+                </div>
+                <div className="dr-button">
+                    <input type="radio" id="sixyear" name="check-substitution-2" onChange={rangeSelect}/>
+                    <label className="btn btn-default" htmlFor="sixyear">Last Six Years</label>
+                </div>
             </div>
             
             <div className="graph-container">
