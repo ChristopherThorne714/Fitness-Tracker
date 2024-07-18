@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setWorkouts } from '../redux/slices/workoutsSlice';
 import { setDateRange } from '../redux/slices/dateRangeSlice';
 
-import { DateRangePicker } from 'rsuite';
+// import { DateRangePicker } from 'rsuite';
 import 'rsuite/dist/rsuite-no-reset.min.css';
 import '../App.css';
 import axios from 'axios';
@@ -18,8 +18,10 @@ function ShowWorkoutDetails() {
     const workouts = useSelector((state) => state.workouts.value);
     const dispatch = useDispatch();
 
-    var dateRange = useSelector((state) => state.dateRange.value)
-    var dr = "week";
+    var dateRange = useSelector((state) => state.dateRange.value);
+
+    var currentDate = new Date();
+    var startDate = null;
 
     const fetchWorkouts = () => {
         axios
@@ -36,9 +38,53 @@ function ShowWorkoutDetails() {
         fetchWorkouts();
         }, [title]);
 
+    const addMonths = (date, months) => {
+        var d = date.getDate();
+        date.setMonth(date.getMonth() + +months);
+        if (date.getDate() != d) {
+            date.setDate(0);
+        }
+        return date;
+    };
+
+    const rangeSet = (s) => {
+        if (s === "week") {
+            startDate = new Date(currentDate.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+        }
+        else if (s === "month") {
+            startDate = addMonths(currentDate, -1).toISOString().split('T')[0];
+        }
+        else if (s === "sixmonth") {
+            startDate = addMonths(currentDate, -6).toISOString().split('T')[0];
+        }
+        else if (s === "year") {
+            startDate = addMonths(currentDate, -12).toISOString().split('T')[0];
+        }
+        else if (s === "sixyear") {
+            startDate = addMonths(currentDate, -72).toISOString().split('T')[0];
+        }
+        currentDate = new Date();
+        var dr = [startDate, currentDate.toISOString().split('T')[0]];
+        dispatch(setDateRange(dr));
+        dateRange = dr;
+        // console.log(dr);
+    };
+
     const rangeSelect = (e) => {
         if (e.target.id === "week"){
-            
+            rangeSet("week");
+        }
+        else if (e.target.id === "month") {
+            rangeSet("month");
+        }
+        else if (e.target.id === "sixmonth") {
+            rangeSet("sixmonth");
+        }
+        else if (e.target.id === "year") {
+            rangeSet("year");
+        }
+        else if (e.target.id === "sixyear") {
+            rangeSet("sixyear");
         }
     };
 

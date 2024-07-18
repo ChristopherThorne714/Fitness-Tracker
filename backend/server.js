@@ -10,7 +10,7 @@ const durationRoutes = require("./routes/api/durationworkouts");
 const distanceRoutes = require("./routes/api/distanceworkouts");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const DistanceWorkout = require("./models/DistanceWorkout");
+// const DistanceWorkout = require("./models/DistanceWorkout");
 
 
 const app = express();

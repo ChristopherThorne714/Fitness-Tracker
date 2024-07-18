@@ -9,7 +9,7 @@ const Workout = require('../../models/Workout');
 // @access  Public
 router.get('/test', (req, res) => res.send('Workouts testing!'));
 
-// @route   GET api/workouts/:title/
+// @route   GET api/workouts/:title
 // @desc    Get all workouts with a matching title
 // @access  Public
 router.get('/show-workout/:title', (req, res) => {
@@ -55,12 +55,17 @@ router.delete('/:id', (req, res) => {
     });
 
 // @route   GET api/workouts
-// @desc    Get all workouts
+// @desc    Get all workouts performed on a given date
 // @access  Public
 router.get('/', (req, res) => {
     Workout.find({ performedOn: req.query.performedOn }).sort({ createdAt: -1 }) // displays most recent entries first
       .then(workouts => res.json(workouts))
       .catch(err => res.status(404).json({ noworkoutsfound : 'No workouts found'}));
     });
+
+// @route   GET api/workouts/:title/:
+// @desc    Get all workouts performed within a given date range pertaining to a given name
+// @access  Public
+
 
   module.exports = router;
