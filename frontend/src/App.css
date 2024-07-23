@@ -205,6 +205,7 @@ input.error {
 }
 
 .controls-container{
+  margin-top: 10px;
   display: flex;
   flex-direction: row;
 }
@@ -246,6 +247,9 @@ input.error {
   /* cursor: pointer; */
   z-index: 90;
   line-height: 0.8em;
+}
+.graph {
+  margin-top: 10px;
 }
 
 /* navbar */
