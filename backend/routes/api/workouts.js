@@ -10,10 +10,13 @@ const Workout = require('../../models/Workout');
 router.get('/test', (req, res) => res.send('Workouts testing!'));
 
 // @route   GET api/workouts/:title
-// @desc    Get all workouts with a matching title
+// @desc    Get all workouts with a matching title AND between a given date range
 // @access  Public
 router.get('/show-workout/:title', (req, res) => {
-    Workout.find({ title: req.params.title }).sort({ createdAt: -1 })
+    Workout.find({ 
+      title: req.params.title, 
+      performedOn: {$gte: req.query.dateRange[0], $lte: req.query.dateRange[1]}})
+      .sort({ createdAt: -1 })
       .then(workouts => res.json(workouts))
       .catch(err => res.status(404).json({ noworkoutsfound : "No workouts found"}));
     });
@@ -62,10 +65,5 @@ router.get('/', (req, res) => {
       .then(workouts => res.json(workouts))
       .catch(err => res.status(404).json({ noworkoutsfound : 'No workouts found'}));
     });
-
-// @route   GET api/workouts/:title/:
-// @desc    Get all workouts performed within a given date range pertaining to a given name
-// @access  Public
-
 
   module.exports = router;

@@ -25,19 +25,20 @@ function ShowWorkoutDetails() {
 
     const fetchWorkouts = () => {
         axios
-            .get(`http://localhost:5000/api/workouts/show-workout/${title}/`)
-            .then((res) => {
-                dispatch(setWorkouts(res.data));
-            })
-            .catch((err) => {
-            console.log(err.response);
-            });
+        .get(`http://localhost:5000/api/workouts/show-workout/${title}/`, { params: { dateRange : dateRange }})
+        .then((res) => {
+            dispatch(setWorkouts(res.data));
+        })
+        .catch((err) => {
+        console.log(err.response);
+        });
     };
 
     useEffect(() => {
         fetchWorkouts();
-        }, [title]);
+        }, [title, dispatch]);
 
+    // helper function for getting the correct date range from radio button clicks
     const addMonths = (date, months) => {
         var d = date.getDate();
         date.setMonth(date.getMonth() + +months);
@@ -47,6 +48,7 @@ function ShowWorkoutDetails() {
         return date;
     };
 
+    // builds the dateRange list before calling dispatch
     const rangeSet = (s) => {
         if (s === "week") {
             startDate = new Date(currentDate.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
@@ -67,9 +69,10 @@ function ShowWorkoutDetails() {
         var dr = [startDate, currentDate.toISOString().split('T')[0]];
         dispatch(setDateRange(dr));
         dateRange = dr;
-        // console.log(dr);
+        fetchWorkouts();
+        // console.log(dateRange);
     };
-
+    // triggers when radio buttons are clicked
     const rangeSelect = (e) => {
         if (e.target.id === "week"){
             rangeSet("week");
