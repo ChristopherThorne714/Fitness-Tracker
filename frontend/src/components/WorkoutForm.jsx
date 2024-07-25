@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { createWorkout } from '../redux/slices/workoutsSlice';
 
-const WorkoutForm = () => {
+const WorkoutForm = (props) => {
     // const { date, dispatch } = useWorkoutsContext();
     const date = useSelector((state) => state.date.value);
     const dispatch = useDispatch()
@@ -83,7 +83,7 @@ const WorkoutForm = () => {
         axios
         .post('http://localhost:5000/api/underloadworkouts', workout)
         .then((res) => {
-          resetWorkout();
+          // resetWorkout();
           // dispatch({type: 'CREATE_WORKOUT', payload: res.data});
           dispatch(createWorkout(res.data));
         })
@@ -97,7 +97,7 @@ const WorkoutForm = () => {
         axios
         .post('http://localhost:5000/api/durationworkouts', workout)
         .then((res) => {
-          resetWorkout();
+          // resetWorkout();
           // dispatch({type: 'CREATE_WORKOUT', payload: res.data});
           dispatch(createWorkout(res.data));
         })
@@ -110,7 +110,7 @@ const WorkoutForm = () => {
         axios
         .post('http://localhost:5000/api/distanceworkouts', workout)
         .then((res) => {
-          resetWorkout();
+          // resetWorkout();
           // dispatch({type: 'CREATE_WORKOUT', payload: res.data});
           dispatch(createWorkout(res.data));
         })
@@ -129,15 +129,22 @@ const WorkoutForm = () => {
     };
 
     return (
-        <div className="CreateWorkout">
-          <div className="container">
+        <div className="create-workout">
+          <div className="form-container">
+          <div className='closing-ex' onClick={() => {
+                props.toggle();
+              }}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+              <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+            </svg>
+          </div>
             <div className="row">
               <div className="col-md-8 m-auto">
                 <br />
               </div>
               <div className="col-md-10 m-auto">
-                <h1 className="display-4 text-center">Add Workout</h1>
-                <p className="lead text-center">Create new workout</p>
+                <h1 className="display-4 text-center">New Workout</h1>
+                {/* <p className="lead text-center">Create new workout</p> */}
                 <form noValidate onSubmit={onSubmit}>
                   
                   <div className="form-group">

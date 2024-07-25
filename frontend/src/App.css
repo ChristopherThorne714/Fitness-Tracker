@@ -100,8 +100,8 @@ header a {
 /* homepage */
 .home {
   display: grid;
-  grid-template-columns: 3fr 1fr;
-  gap: 100px;
+  /* grid-template-columns: 3fr 1fr;
+  gap: 100px; */
 }
 .card-container {
   display: grid;
@@ -112,6 +112,7 @@ header a {
   padding: 20px;
   position: relative;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  max-width: 80%;
 }
 .card-container h4 {
   margin: 0 0 10px 0;
@@ -137,21 +138,180 @@ header a {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+.workouts button {
+  display: grid;
+}
+.workouts button svg {
+  justify-self: center;
+}
 .missing-workouts {
   font-size: x-large;
   padding-top: 20vh;
   text-align: center;
 }
-.date-picker{
+#add-workout-button{
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+}
+.date-picker {
   display: flex;
   align-items: center;
   position: static;
-  margin: 10px 0 -10px 20px;
+  margin: 10px 0 -10px 10%;
 }
-.date-picker h2{
+.date-picker h2 {
   padding: 5px;
 }
+.controls-container{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+}
+.controls-container h3{
+  margin: 0 5px 0 0;
+}
+.dr-button {
+  /* border-radius: 4px; */
+  border: solid;
+  /* margin: 0 5px 0 0; */
+  width: 100px;
+  height: 40px;
+  position: relative;
+}
+.dr-button label,
+.dr-button input {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.dr-button input[type="radio"] {
+  opacity: 0.011;
+  z-index: 100;
+  cursor: pointer;
+}
+.dr-button input[type="radio"]:checked + label {
+  background: #a9a9a9;
+  border-radius: 1px;
+}
+.dr-button label {
+  /* cursor: pointer; */
+  z-index: 90;
+  line-height: 0.8em;
+}
+.graph {
+  margin-top: 10px;
+}
+/* navbar */
+nav {
+  display: flex;
+  align-items: center;
+}
+nav a {
+  margin-left: 10px;
+}
+/* auth forms */
+form.signup, form.login {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 4px;
+}
+.workout-details {
+  padding: 0 5vw 0 5vw;
+}
 
+/* css for the new workout form */
+.create-workout {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.form-container {
+  background-color: white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+  width: 40%;
+  margin-top: 10px;
+}
+
+.form-container h2 {
+  margin-top: 0;
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form-container input {
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.form-container button[type="submit"],
+.form-container button[type="button"] {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.form-container button[type="submit"]:hover,
+.form-container button[type="button"]:hover {
+  background-color: #45a049;
+}
+
+.form-container button[type="submit"] {
+  margin-top: 20px;
+}
+
+.form-container button[type="button"] {
+  margin-top: 20px;
+  background-color: #f44336;
+}
+
+.form-container button[type="button"]:hover {
+  background-color: #da190b;
+}
+
+.form-container button[type="submit"]:disabled {
+  background-color: #bfbfbf;
+  color: #ffffff;
+  cursor: not-allowed;
+}
+
+.form-container button[type="button"]:disabled {
+  background-color: #bfbfbf;
+  color: #ffffff;
+  cursor: not-allowed;
+}
 /* new workout form */
 .duration-form-group{
   display: flex;
@@ -204,70 +364,6 @@ input.error {
   pointer-events: none;
 }
 
-.controls-container{
-  margin-top: 10px;
-  display: flex;
-  flex-direction: row;
-}
-.controls-container h3{
-  margin: 0 5px 0 0;
-}
-
-.dr-button {
-  /* border-radius: 4px; */
-  border: solid;
-  /* margin: 0 5px 0 0; */
-  width: 100px;
-  height: 40px;
-  position: relative;
-}
-
-.dr-button label,
-.dr-button input {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
-.dr-button input[type="radio"] {
-  opacity: 0.011;
-  z-index: 100;
+.closing-ex {
   cursor: pointer;
-}
-
-.dr-button input[type="radio"]:checked + label {
-  background: #a9a9a9;
-  border-radius: 1px;
-}
-
-.dr-button label {
-  /* cursor: pointer; */
-  z-index: 90;
-  line-height: 0.8em;
-}
-.graph {
-  margin-top: 10px;
-}
-
-/* navbar */
-nav {
-  display: flex;
-  align-items: center;
-}
-nav a {
-  margin-left: 10px;
-}
-/* auth forms */
-form.signup, form.login {
-  max-width: 400px;
-  margin: 40px auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 4px;
-}
-.workout-details {
-  padding: 0 5vw 0 5vw;
 }

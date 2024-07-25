@@ -32,7 +32,8 @@ function WorkoutCard({workout, showDate}) {
         </h2>
         <h3>{workout.sort}</h3>
         <h4>{workout.musclegroup}</h4>
-        {showDate == true && <h5>{workout.performedOn.slice(0, 10)}</h5>}
+        {/* I don't know what my idea was for including this line */}
+        {/* {showDate == true && <h5>{workout.performedOn.slice(0, 10)}</h5>} */}
       </div>
         {workout.sort === "Under Load" && 
           <div className='stats'>
