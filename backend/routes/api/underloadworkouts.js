@@ -57,4 +57,4 @@ router.delete('/:id', (req, res) => {
       .catch(err => res.status(404).json({ error: 'No such workout entry' }));
   });
 
-  module.exports = router;
+module.exports = router;

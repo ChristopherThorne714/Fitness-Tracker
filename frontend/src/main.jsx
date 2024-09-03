@@ -38,6 +38,14 @@ const router = createBrowserRouter([
       element: <Home />
     },
     {
+      path: "/login", 
+      element: <Login />
+    },
+    {
+      path: "/signup",
+      element: <Signup />
+    },
+    {
       path: "/show-workout/:title",
       element: <ShowWorkoutDetails />
     },
@@ -46,8 +54,8 @@ const router = createBrowserRouter([
       element: <UpdateWorkout />
     },
   ]},
-  { path: "/login", element: <Login /> },
-  { path: "/signup", element: <Signup /> },
+  // { path: "/login", element: <Login /> },
+  // { path: "/signup", element: <Signup /> },
 ]);
 
 function NavbarWrapper(){

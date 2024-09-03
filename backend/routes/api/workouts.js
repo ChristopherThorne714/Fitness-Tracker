@@ -9,7 +9,7 @@ const Workout = require('../../models/Workout');
 // @access  Public
 router.get('/test', (req, res) => res.send('Workouts testing!'));
 
-// @route   GET api/workouts/:title
+// @route   GET api/workouts/show-workout/:title
 // @desc    Get all workouts with a matching title AND between a given date range
 // @access  Public
 router.get('/show-workout/:title', (req, res) => {
@@ -66,4 +66,4 @@ router.get('/', (req, res) => {
       .catch(err => res.status(404).json({ noworkoutsfound : 'No workouts found'}));
     });
 
-  module.exports = router;
+module.exports = router;

@@ -25,7 +25,7 @@ router.get('/:id', (req, res) => {
     DistanceWorkout.findById(req.params.id)
       .then(workout => res.json(workout))
       .catch(err => res.status(404).json({ noworkoutfound: 'No workout found' }));
-  });
+});
 
 // @route   POST api/distanceworkouts
 // @desc    Add/save workout
@@ -34,7 +34,7 @@ router.post('/', (req, res) => {
     DistanceWorkout.create(req.body)
       .then(workout => res.json(workout))
       .catch(err => res.status(400).json({ error: 'Unable to add this workout' }));
-  });
+});
   
 // @route   PUT api/distanceworkouts/:id
 // @desc    Update workout by id
@@ -54,6 +54,6 @@ router.delete('/:id', (req, res) => {
     DistanceWorkout.findByIdAndDelete(req.params.id)
       .then(workout => res.json({ mgs: 'Workout entry deleted successfully' }))
       .catch(err => res.status(404).json({ error: 'No such workout entry' }));
-  });
+});
 
-  module.exports = router;
+module.exports = router;

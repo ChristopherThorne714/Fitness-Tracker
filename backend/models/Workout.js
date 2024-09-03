@@ -21,10 +21,12 @@ const baseWorkoutSchema = new mongoose.Schema({
     performedOn: {
         type: Date,
         required: true
+    },
+    user: {
+        type: String,
+        required: true,
     }
 }, { timestamps: true }, options);
-const Workout = mongoose.model('workout', baseWorkoutSchema);
-
 
 // each type of workout should be discriminated from each other
 // workout types:
@@ -32,4 +34,4 @@ const Workout = mongoose.model('workout', baseWorkoutSchema);
 // duration
 // laps/distance
 
-module.exports = Workout;
+module.exports = Workout = mongoose.model('workout', baseWorkoutSchema);
