@@ -17,9 +17,12 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         axios
-        .post('http://localhost:5000/api/users', {'email' : email, 'password': password})
+        .post('http://localhost:5000/api/users/signup', {'email' : email, 'password': password})
         .then((res) => {
-            dispatch(login(res.data.email));
+            if (res.data.success == true) {
+                dispatch(login(res.data.user.email));
+                
+            }
         })
         .catch((err) => {
             console.log(err);

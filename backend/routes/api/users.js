@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
+// load Signup controller
+const { Signup, Login } = require("../../controllers/AuthController");
+const { userVerification } = require("../../middleware/AuthMiddleware");
+
 // Load User model
 const User = require('../../models/User');
 
@@ -9,13 +13,19 @@ const User = require('../../models/User');
 // @access  Public
 router.get('/test', (req, res) => res.send('Users testing!'));
 
-// @route   POST api/users
+// @route   POST api/users/signup
 // @desc    create new user
 // @access  Public
-router.post('/', (req, res) => {
-  User.create(req.body)
-    .then(user => res.json(user))
-    .catch(err => res.status(400).json({ error: 'Unable to create user' }));
-  });
+router.post('/signup', Signup);
+
+// @route post api/users/login
+// @desc login existing user
+// @access Public
+router.post('/login', Login);
+
+// @route post api/users/verify
+// @desc verify current user
+// @access Public
+router.post('/verify', userVerification);
 
 module.exports = router;
