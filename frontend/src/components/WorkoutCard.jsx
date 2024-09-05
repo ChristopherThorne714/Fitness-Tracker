@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-// import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
 import { useDispatch } from 'react-redux';
 import { deleteWorkout } from '../redux/slices/workoutsSlice'
 import '../App.css';
@@ -8,7 +7,6 @@ import axios from 'axios';
 
 
 function WorkoutCard({workout, showDate}) {
-  // const { dispatch } = useWorkoutsContext();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -16,7 +14,6 @@ function WorkoutCard({workout, showDate}) {
     axios
       .delete(`http://localhost:5000/api/workouts/${id}`)
       .then((res) => {
-        // dispatch({type: 'DELETE_WORKOUT', payload: res.data});
         dispatch(deleteWorkout(res.data));
       })
       .catch((err) => {

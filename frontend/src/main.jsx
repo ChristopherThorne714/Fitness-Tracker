@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
 // import { LocalizationProvider } from '@mui/x-date-pickers';
 
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
@@ -25,6 +27,8 @@ import ShowWorkoutDetails from "./pages/ShowWorkoutDetails";
 import UpdateWorkout from "./pages/UpdateWorkout";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+
+axios.defaults.withCredentials = true;
 
 // Routes
 const router = createBrowserRouter([

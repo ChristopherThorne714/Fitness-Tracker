@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css';
 import axios from 'axios';
-// import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
+import { useNavigate } from 'react-router-dom';
 import { DatePicker } from 'rsuite';
+import { useCookies } from "react-cookie";
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setWorkouts } from '../redux/slices/workoutsSlice';
@@ -13,25 +14,21 @@ import WorkoutForm from '../components/WorkoutForm';
 
 
 function Home() {
-    // const currentDate = new Date();
-    // const {workouts, dispatch} = useWorkoutsContext();
+    const navigate = useNavigate();
+
     const workouts = useSelector((state) => state.workouts.value);
     const dispatch = useDispatch();
 
-    // var { date } = useWorkoutsContext();
     var date = useSelector((state) => state.date.value);
 
     const [seen, setSeen] = useState(false);
 
-    // old method of tracking and setting date variable
-    // var currentDate = dayjs();
-    // var [date, setDate] = useState(currentDate.format('YYYY-MM-DD'));
+    const [cookies, removeCookie] = useCookies([]);
 
     const fetchWorkouts = () => {
       axios
       .get('http://localhost:5000/api/workouts', { params: { performedOn : date }})
       .then((res) => {
-        // dispatch({type: 'SET_WORKOUTS', payload: res.data});
         dispatch(setWorkouts(res.data));
       })
       .catch((err) => {
@@ -39,16 +36,32 @@ function Home() {
       });
     };
 
-    // initial workouts fetch for default date
+    // verify cookies and fetch initial workouts for default date
     useEffect(() => {
+      console.log(cookies);
+      const verifyCookie = async () => {
+        if (!cookies.token) {
+          navigate("/login");
+        }
+
+        axios
+        .post('http://localhost:5000/api/users/verify', {})
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      }
+
+      verifyCookie();
       fetchWorkouts();
-    }, [dispatch]);
+    }, [dispatch, cookies, navigate, removeCookie]);
 
     // handle changes from DatePicker
     const dateChange = (e) => {
       var d = '';
       e != null ? d = e.toISOString().split('T')[0] : d = new Date().toISOString().split('T')[0]
-      // dispatch({type: 'SET_DATE', payload: d});
       dispatch(setDate(d))
       date = d;
       fetchWorkouts();
@@ -69,7 +82,6 @@ function Home() {
         </div>
         <div className="home">
           <div className="workouts">
-          {/* <div className='list'>{workoutList}</div> */}
           {!workouts || Object.entries(workouts).length == 0 ? <p className='missing-workouts'>No workouts found...</p> : (workouts.map((workout) => (
             <WorkoutCard key={workout._id} workout={workout} showDate={false}/>
           )))}

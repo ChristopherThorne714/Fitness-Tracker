@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 // import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
-import '../App.css';
 import axios from 'axios';
 
 import { useSelector, useDispatch } from 'react-redux';
