@@ -2,11 +2,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../App.css';
+import { useSelector } from 'react-redux';
 
 
 function UpdateWorkout(props) {
     const { id } = useParams();
     const navigate = useNavigate();
+
+    const auth = useSelector((state) => auth.state.value);
 
     const sortErrorRef = useRef(null);
     const groupErrorRef = useRef(null);
@@ -16,6 +19,8 @@ function UpdateWorkout(props) {
     const [workout, setWorkout] = useState({
         title: "",
         sort: "",
+        performedOn: date,
+        user: auth,
         musclegroup: "",
         reps: 0,
         sets: 0,
@@ -60,9 +65,6 @@ function UpdateWorkout(props) {
             reps: res.data.reps,
             sets: res.data.sets,
             load: res.data.load,
-            // hours: res.data.hours,
-            // minutes: res.data.minutes,
-            // seconds: res.data.seconds,
             duration: res.data.duration,
             distance: res.data.distance,
             laps: res.data.laps,
