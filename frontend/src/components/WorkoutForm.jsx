@@ -1,16 +1,13 @@
 import React, { useState, useRef } from 'react';
-// import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
 import axios from 'axios';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { createWorkout } from '../redux/slices/workoutsSlice';
 
 const WorkoutForm = (props) => {
-    // const { date, dispatch } = useWorkoutsContext();
     const date = useSelector((state) => state.date.value);
+    const auth = useSelector((state) => state.auth.value);
     const dispatch = useDispatch()
-    // var dateRef = useRef(date);
-    // console.log(dateRef.current)
 
     const sortErrorRef = useRef(null);
     const groupErrorRef = useRef(null);
@@ -21,6 +18,7 @@ const WorkoutForm = (props) => {
         title: "",
         sort: "",
         performedOn: date,
+        user: auth,
         musclegroup: "",
         reps: 0,
         sets: 0,
@@ -51,6 +49,7 @@ const WorkoutForm = (props) => {
         title: "",
         sort: "",
         performedOn: date,
+        user: "",
         musclegroup: "",
         reps: 0,
         sets: 0,
@@ -69,7 +68,7 @@ const WorkoutForm = (props) => {
     const onSubmit = (e) => {
       e.preventDefault();
       setDate();
-
+      console.log(workout);
       if (workout.sort === "" || workout.musclegroup === "") {
         if (workout.sort === "" ) {
           showSortErrors();
@@ -83,7 +82,6 @@ const WorkoutForm = (props) => {
         .post('http://localhost:5000/api/underloadworkouts', workout)
         .then((res) => {
           // resetWorkout();
-          // dispatch({type: 'CREATE_WORKOUT', payload: res.data});
           dispatch(createWorkout(res.data));
         })
         .catch((err) => {
@@ -97,7 +95,6 @@ const WorkoutForm = (props) => {
         .post('http://localhost:5000/api/durationworkouts', workout)
         .then((res) => {
           // resetWorkout();
-          // dispatch({type: 'CREATE_WORKOUT', payload: res.data});
           dispatch(createWorkout(res.data));
         })
         .catch((err) => {
@@ -110,7 +107,6 @@ const WorkoutForm = (props) => {
         .post('http://localhost:5000/api/distanceworkouts', workout)
         .then((res) => {
           // resetWorkout();
-          // dispatch({type: 'CREATE_WORKOUT', payload: res.data});
           dispatch(createWorkout(res.data));
         })
         .catch((err) => {

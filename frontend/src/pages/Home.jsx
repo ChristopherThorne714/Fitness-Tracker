@@ -38,16 +38,15 @@ function Home() {
 
     // verify cookies and fetch initial workouts for default date
     useEffect(() => {
-      console.log(cookies);
       const verifyCookie = async () => {
-        if (!cookies.token) {
-          navigate("/login");
-        }
-
         axios
         .post('http://localhost:5000/api/users/verify', {})
         .then((res) => {
           console.log(res.data);
+          if (!res.data.status) {
+            removeCookie('token');
+            navigate('/login')
+          }
         })
         .catch((err) => {
           console.log(err);

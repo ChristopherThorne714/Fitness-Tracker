@@ -130,3 +130,4 @@ dist
 .pnp.*
 server/config.env
 *.env
+backend/config.env
