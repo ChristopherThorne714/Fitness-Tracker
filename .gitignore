@@ -131,3 +131,4 @@ dist
 server/config.env
 *.env
 backend/config.env
+backend/config.env
