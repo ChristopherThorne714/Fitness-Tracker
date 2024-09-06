@@ -16,6 +16,7 @@ import WorkoutForm from '../components/WorkoutForm';
 function Home() {
     const navigate = useNavigate();
 
+    const user = useSelector((state) => state.auth.value);
     const workouts = useSelector((state) => state.workouts.value);
     const dispatch = useDispatch();
 
@@ -27,7 +28,7 @@ function Home() {
 
     const fetchWorkouts = () => {
       axios
-      .get('http://localhost:5000/api/workouts', { params: { performedOn : date }})
+      .get(`http://localhost:5000/api/workouts/${user}`, { params: { performedOn : date }})
       .then((res) => {
         dispatch(setWorkouts(res.data));
       })

@@ -15,6 +15,7 @@ import DetailsGraph from "../components/DetailsGraph";
 
 function ShowWorkoutDetails() {
     const { title } = useParams();
+    const user = useSelector((state) => state.auth.value);
     const workouts = useSelector((state) => state.workouts.value);
     const dispatch = useDispatch();
 
@@ -25,7 +26,7 @@ function ShowWorkoutDetails() {
 
     const fetchWorkouts = () => {
         axios
-        .get(`http://localhost:5000/api/workouts/show-workout/${title}/`, { params: { dateRange : dateRange }})
+        .get(`http://localhost:5000/api/workouts/show-workout/${user}/${title}/`, { params: { dateRange : dateRange }})
         .then((res) => {
             dispatch(setWorkouts(res.data));
         })
