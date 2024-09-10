@@ -1,5 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const { getWorkouts } = require('../../controllers/workoutController');
+const { reqAuth } = require('../../middleware/AuthMiddleware');
+
+router.use(reqAuth);
 
 // Load Workout model
 const Workout = require('../../models/Workout');
@@ -26,19 +30,19 @@ router.get('/:user', (req, res) => {
     user: req.params.user,
     performedOn: req.query.performedOn }).sort({ createdAt: -1 }) // displays most recent entries first
     .then(workouts => res.json(workouts))
-    .catch(err => res.status(404).json({ noworkoutsfound : 'No workouts found'}));
+    .catch(err => console.log(err));
 });
 
 // @route   GET api/workouts/show-workout/:title
 // @desc    Get all workouts with a matching title AND between a given date range
 // @access  Public
 router.get('/show-workout/:title', (req, res) => {
-    Workout.find({ 
-      title: req.params.title, 
-      performedOn: {$gte: req.query.dateRange[0], $lte: req.query.dateRange[1]}})
-      .sort({ createdAt: -1 })
-      .then(workouts => res.json(workouts))
-      .catch(err => res.status(404).json({ noworkoutsfound : "No workouts found"}));
+  Workout.find({ 
+    title: req.params.title, 
+    performedOn: {$gte: req.query.dateRange[0], $lte: req.query.dateRange[1]}})
+    .sort({ createdAt: -1 })
+    .then(workouts => res.json(workouts))
+    .catch(err => res.status(404).json({ noworkoutsfound : "No workouts found"}));
 });
 // @route   GET api/workouts/show-workout/:title
 // @desc    Get all workouts with a matching title AND between a given date range by a specific user
@@ -56,36 +60,36 @@ router.get('/show-workout/:user/:title', (req, res) => {
 // @desc    Get single workout by id
 // @access  Public
 router.get('/:id', (req, res) => {
-    Workout.findById(req.params.id)
-      .then(workout => res.json(workout))
-      .catch(err => res.status(404).json({ noworkoutfound: 'No workout found' }));
+  Workout.findById(req.params.id)
+    .then(workout => res.json(workout))
+    .catch(err => res.status(404).json({ noworkoutfound: 'No workout found' }));
 });
 
 // @route   POST api/workouts
 // @desc    Add/save workout
 // @access  Public
 router.post('/', (req, res) => {
-    Workout.create(req.body)
-      .then(workout => res.json(workout))
-      .catch(err => res.status(400).json({ error: 'Unable to add this workout' }));
+  Workout.create(req.body)
+    .then(workout => res.json(workout))
+    .catch(err => res.status(400).json({ error: 'Unable to add this workout' }));
 });
   
 // @route   PUT api/workouts/:id
 // @desc    Update workout by id
 // @access  Public
 router.put('/:id', (req, res) => {
-    Workout.findByIdAndUpdate(req.params.id, req.body)
-      .then(workout => res.json({ msg: 'Updated successfully' }))
-      .catch(err => res.status(400).json({ error: 'Unable to update the Database' }));
+  Workout.findByIdAndUpdate(req.params.id, req.body)
+    .then(workout => res.json({ msg: 'Updated successfully' }))
+    .catch(err => res.status(400).json({ error: 'Unable to update the Database' }));
 });
 
 // @route   DELETE api/workouts/:id
 // @desc    Delete workout by id
 // @access  Public
 router.delete('/:id', (req, res) => {
-    Workout.findByIdAndDelete(req.params.id)
-      .then(workout => res.json(workout))
-      .catch(err => res.status(404).json({ error: 'No such workout entry' }));
+  Workout.findByIdAndDelete(req.params.id)
+    .then(workout => res.json(workout))
+    .catch(err => res.status(404).json({ error: 'No such workout entry' }));
 });
 
 module.exports = router;

@@ -1,4 +1,5 @@
 import React from 'react';
+import {useEffect} from 'react';
 import ReactDOM from 'react-dom/client';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
@@ -61,6 +62,12 @@ const router = createBrowserRouter([
   // { path: "/login", element: <Login /> },
   // { path: "/signup", element: <Signup /> },
 ]);
+
+// store.subscribe(() => {
+//   const state = store.getState();
+//   const user = JSON.parse(localStorage.getItem('user'))
+//   console.log(user);
+// })
 
 function NavbarWrapper(){
   return (

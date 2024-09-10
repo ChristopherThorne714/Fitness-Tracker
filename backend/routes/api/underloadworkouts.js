@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const { reqAuth } = require('../../middleware/AuthMiddleware');
+
+router.use(reqAuth);
 
 // Load UnderLoadWorkout model
 const UnderLoadWorkout = require('../../models/UnderLoadWorkout');

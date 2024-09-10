@@ -8,6 +8,7 @@ import { useCookies } from "react-cookie";
 import { useSelector, useDispatch } from 'react-redux';
 import { setWorkouts } from '../redux/slices/workoutsSlice';
 import { setDate } from '../redux/slices/dateSlice';
+import { login, logout } from '../redux/slices/authSlice';
 
 import WorkoutCard from '../components/WorkoutCard';
 import WorkoutForm from '../components/WorkoutForm';
@@ -18,12 +19,10 @@ function Home() {
 
     const user = useSelector((state) => state.auth.value);
     const workouts = useSelector((state) => state.workouts.value);
+    var date = useSelector((state) => state.date.value);
     const dispatch = useDispatch();
 
-    var date = useSelector((state) => state.date.value);
-
     const [seen, setSeen] = useState(false);
-
     const [cookies, removeCookie] = useCookies([]);
 
     const fetchWorkouts = () => {
@@ -43,10 +42,13 @@ function Home() {
         axios
         .post('http://localhost:5000/api/users/verify', {})
         .then((res) => {
-          console.log(res.data);
           if (!res.data.status) {
             removeCookie('token');
+            dispatch(logout());
             navigate('/login')
+          } else {
+            dispatch(login(res.data.user));
+            fetchWorkouts();
           }
         })
         .catch((err) => {
@@ -55,7 +57,6 @@ function Home() {
       }
 
       verifyCookie();
-      fetchWorkouts();
     }, [dispatch, cookies, navigate, removeCookie]);
 
     // handle changes from DatePicker
