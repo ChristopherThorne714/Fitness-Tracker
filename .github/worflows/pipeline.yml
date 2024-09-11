@@ -12,12 +12,12 @@ env:
 
 jobs:
   build-and-deploy:
-  strategy:
-    matrix:
+    strategy:
+      matrix:
           platform: [macos-latest, windows-latest, ubuntu-latest]
 
-  runs-on: ${{ matrix.platform }}
-  steps:
+    runs-on: ${{ matrix.platform }}
+    steps:
         # Checkout the code from github repo
         - name: Checkout code
           uses: actions/checkout@v4
