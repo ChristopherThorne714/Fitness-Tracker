@@ -11,10 +11,11 @@ env:
   TOKEN_KEY: ${{ secrets.TOKEN_KEY }}
 
 jobs:
-  build-and-deploy:
+  build:
     strategy:
       matrix:
           platform: [macos-latest, windows-latest, ubuntu-latest]
+          node-version: ['20.x']
 
     runs-on: ${{ matrix.platform }}
     steps:
