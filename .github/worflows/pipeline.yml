@@ -1,0 +1,39 @@
+name: Build and deploy
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  ATLAS_URI: ${{ secrets.ATLAST_URI }}
+  TOKEN_KEY: ${{ secrets.TOKEN_KEY }}
+
+jobs:
+  build-and-deploy:
+  strategy:
+    matrix:
+          platform: [macos-latest, windows-latest, ubuntu-latest]
+
+  runs-on: ${{ matrix.platform }}
+  steps:
+        # Checkout the code from github repo
+        - name: Checkout code
+          uses: actions/checkout@v4
+
+        # install dependencies and run tests on frontend
+        - name: Install and Test Client
+          working-directory: ./frontend
+          run: |
+            npm install
+            npm run test
+
+
+        # Install dependencies, export environment variables to be used by application and run tests on the server
+        - name: Install and Test Server
+          working-directory: ./backend
+          run: |
+            npm install
+            export ATLAS_URI=$ATLAS_URI
+            export TOKEN_KEY=$TOKEN_KEY
+            npm run test
