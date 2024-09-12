@@ -84,7 +84,7 @@ function Home() {
         <div className="home">
           <div className="workouts">
           {!workouts || Object.entries(workouts).length == 0 ? <p className='missing-workouts'>No workouts found...</p> : (workouts.map((workout) => (
-            <WorkoutCard key={workout._id} workout={workout} showDate={false}/>
+            <WorkoutCard key={workout._id} workout={workout}/>
           )))}
           <button
               type='button'
@@ -94,7 +94,7 @@ function Home() {
                 toggleForm();
               }}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" className="bi bi-plus-lg" viewBox="0 0 16 16">
+              <svg title="form-toggle" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" className="bi bi-plus-lg" viewBox="0 0 16 16">
                 <path fillRule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
               </svg>
               Add Workout

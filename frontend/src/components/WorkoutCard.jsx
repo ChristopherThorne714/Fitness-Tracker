@@ -6,7 +6,7 @@ import '../App.css';
 import axios from 'axios';
 
 
-function WorkoutCard({workout, showDate}) {
+function WorkoutCard({workout}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -29,8 +29,6 @@ function WorkoutCard({workout, showDate}) {
         </h2>
         <h3>{workout.sort}</h3>
         <h4>{workout.musclegroup}</h4>
-        {/* I don't know what my idea was for including this line */}
-        {/* {showDate == true && <h5>{workout.performedOn.slice(0, 10)}</h5>} */}
       </div>
         {workout.sort === "Under Load" && 
           <div className='stats'>

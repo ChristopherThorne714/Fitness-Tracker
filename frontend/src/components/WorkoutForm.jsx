@@ -44,31 +44,11 @@ const WorkoutForm = (props) => {
       workout.duration = drtn;
     };
 
-    const resetWorkout = () => {
-      setWorkout({
-        title: "",
-        sort: "",
-        performedOn: date,
-        user: "",
-        musclegroup: "",
-        reps: 0,
-        sets: 0,
-        load: 0,
-        hours: 0,
-        minutes: 0,
-        seconds: 0,
-        duration: "",
-        distance: 0,
-        laps: 0,
-      });
-    };
-
     // If musclegroup and sort have no value, throw relevant errors 
     // Else check the selected exercise sort and choose correct model for post
     const onSubmit = (e) => {
       e.preventDefault();
       setDate();
-      console.log(workout);
       if (workout.sort === "" || workout.musclegroup === "") {
         if (workout.sort === "" ) {
           showSortErrors();
@@ -140,7 +120,7 @@ const WorkoutForm = (props) => {
               <div className="col-md-10 m-auto">
                 <h1 className="display-4 text-center">New Workout</h1>
                 {/* <p className="lead text-center">Create new workout</p> */}
-                <form noValidate onSubmit={onSubmit}>
+                <form noValidate name="workout form" onSubmit={onSubmit}>
                   
                   <div className="form-group">
                     <label>Name</label>
