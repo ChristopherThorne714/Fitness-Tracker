@@ -17,7 +17,7 @@ import WorkoutForm from '../components/WorkoutForm';
 function Home() {
     const navigate = useNavigate();
 
-    const user = useSelector((state) => state.auth.value);
+    var user = useSelector((state) => state.auth.value);
     const workouts = useSelector((state) => state.workouts.value);
     var date = useSelector((state) => state.date.value);
     const dispatch = useDispatch();
@@ -48,6 +48,7 @@ function Home() {
             navigate('/login')
           } else {
             dispatch(login(res.data.user));
+            user  = res.data.user;
             fetchWorkouts();
           }
         })
@@ -86,6 +87,7 @@ function Home() {
           {!workouts || Object.entries(workouts).length == 0 ? <p className='missing-workouts'>No workouts found...</p> : (workouts.map((workout) => (
             <WorkoutCard key={workout._id} workout={workout}/>
           )))}
+          
           <button
               type='button'
               className='btn btn-outline-info btn-lg btn-block'

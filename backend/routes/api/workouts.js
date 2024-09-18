@@ -11,7 +11,7 @@ const Workout = require('../../models/Workout');
 // @route   GET api/workouts/test
 // @desc    Tests workouts route
 // @access  Public
-router.get('/test', (req, res) => res.send('Workouts testing!'));
+router.get('/test', (req, res) => res.status(200).json({ message: "Workouts testing!" }));
 
 // @route   GET api/workouts
 // @desc    Get all workouts performed on a given date

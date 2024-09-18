@@ -28,15 +28,19 @@ module.exports.Signup = async (req, res, next) => {
 
 module.exports.Login = async (req, res, next) => {
     try {
+
         const { email, password } = req.body;
         if (!email || !password) {
             return res.json({ message : 'All fields are requried!' });
         }
 
         const user = await User.findOne({ email });
-        const auth = await bcrypt.compare(password, user.password);
+        if (!user) {
+            return res.json({ message : "Incorrect email or password" });
+        }
 
-        if (!user || !auth) {
+        const auth = await bcrypt.compare(password, user.password);
+        if (!auth) {
             return res.json({ message : 'Incorrect email or password' });
         }
 
@@ -46,9 +50,9 @@ module.exports.Login = async (req, res, next) => {
             httpOnly: false,
         });
 
-        res.status(201).json({ message: "User logged in successfully", success: true, user });
+        res.status(201).json({ message: "User logged in successfully", success: true, user, token });
         next();
     } catch (error)  {
-        console.error(error)
+        console.error(error);
     }
 }

@@ -16,6 +16,7 @@ const userVerification = async (req, res) => {
   })
 }
 const reqAuth = async (req, res, next) => {
+  console.log(req.cookies);
   const token = req.cookies.token;
   if (!token) return res.status(401).json({status: false, error: 'Authorization token required'});
 

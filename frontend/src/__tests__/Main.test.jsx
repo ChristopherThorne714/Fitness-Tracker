@@ -2,7 +2,6 @@
 import { describe, expect, test, vi } from 'vitest';
 import { render, screen, unmount } from "@testing-library/react";
 import userEvent from '@testing-library/user-event'
-import { useNavigate } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
@@ -41,8 +40,8 @@ describe("Home component", () => {
         "__t" : "Duration",
         "__v" : "0",
         "_id" : "66db3c8caab6fa42e5004a2a",
-    }]
-    const initialState = {workouts: mockWorkouts, auth: 'a@a', date: '2024-09-06'}
+    }];
+    const initialState = {workouts: mockWorkouts, auth: 'a@a', date: '2024-09-06'};
     const mockStore = configureStore();
     let store;
 
@@ -79,11 +78,5 @@ describe("Home component", () => {
         await user.click(screen.getByTitle('form-toggle'));
         expect(screen.getByRole('form', {name: ''})).toBeDefined();
         unmount();
-    })
-
-    // test("render a list of workouts", async () => {
-    //     render(<WorkoutCard />);
-    //     const workouts = await screen.findAllByTestId("card-container");
-    //     expect(workouts).toBeDefined();
-    // });
+    });
 });
