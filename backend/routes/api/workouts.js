@@ -29,7 +29,7 @@ router.get('/:user', (req, res) => {
   Workout.find({ 
     user: req.params.user,
     performedOn: req.query.performedOn }).sort({ createdAt: -1 }) // displays most recent entries first
-    .then(workouts => res.json(workouts))
+    .then(workouts => res.status(200).json(workouts))
     .catch(err => console.log(err));
 });
 
@@ -49,6 +49,7 @@ router.get('/show-workout/:title', (req, res) => {
 // @access  Public
 router.get('/show-workout/:user/:title', (req, res) => {
   Workout.find({ 
+    user: req.params.user,
     title: req.params.title, 
     performedOn: {$gte: req.query.dateRange[0], $lte: req.query.dateRange[1]}})
     .sort({ createdAt: -1 })
