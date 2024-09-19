@@ -8,7 +8,8 @@ import { useCookies } from "react-cookie";
 import { useSelector, useDispatch } from 'react-redux';
 import { setWorkouts } from '../redux/slices/workoutsSlice';
 import { setDate } from '../redux/slices/dateSlice';
-import { login, logout } from '../redux/slices/authSlice';
+
+import { useVerifyCookie } from '../hooks/useVerifyCookie';
 
 import WorkoutCard from '../components/WorkoutCard';
 import WorkoutForm from '../components/WorkoutForm';
@@ -21,6 +22,8 @@ function Home() {
     const workouts = useSelector((state) => state.workouts.value);
     var date = useSelector((state) => state.date.value);
     const dispatch = useDispatch();
+
+    const isVerified = useVerifyCookie();
 
     const [seen, setSeen] = useState(false);
     const [cookies, removeCookie] = useCookies([]);
@@ -38,26 +41,8 @@ function Home() {
 
     // verify cookies and fetch initial workouts for default date
     useEffect(() => {
-      const verifyCookie = async () => {
-        axios
-        .post('http://localhost:5000/api/users/verify', {})
-        .then((res) => {
-          if (!res.data.status) {
-            removeCookie('token');
-            dispatch(logout());
-            navigate('/login')
-          } else {
-            dispatch(login(res.data.user));
-            user  = res.data.user;
-            fetchWorkouts();
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      }
-
-      verifyCookie();
+      if (!isVerified) navigate('/login');
+      fetchWorkouts();
     }, [dispatch, cookies, navigate, removeCookie]);
 
     // handle changes from DatePicker

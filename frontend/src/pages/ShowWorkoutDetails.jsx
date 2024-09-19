@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setWorkouts } from '../redux/slices/workoutsSlice';
 import { setDateRange } from '../redux/slices/dateRangeSlice';
+import { useVerifyCookie } from '../hooks/useVerifyCookie';
 
 // import { DateRangePicker } from 'rsuite';
 import 'rsuite/dist/rsuite-no-reset.min.css';
@@ -15,16 +16,17 @@ import DetailsGraph from "../components/DetailsGraph";
 
 function ShowWorkoutDetails() {
     const { title } = useParams();
+    var dateRange = useSelector((state) => state.dateRange.value);
     const user = useSelector((state) => state.auth.value);
     const workouts = useSelector((state) => state.workouts.value);
+    const isVerified = useVerifyCookie();
     const dispatch = useDispatch();
-
-    var dateRange = useSelector((state) => state.dateRange.value);
 
     var currentDate = new Date();
     var startDate = null;
 
     const fetchWorkouts = () => {
+        console.log(dateRange);
         axios
         .get(`http://localhost:5000/api/workouts/show-workout/${user}/${title}/`, { params: { dateRange : dateRange }})
         .then((res) => {
@@ -36,8 +38,9 @@ function ShowWorkoutDetails() {
     };
 
     useEffect(() => {
+        if (!isVerified) navigate('/login');
         fetchWorkouts();
-        }, [title, dispatch]);
+        },[]);
 
     // helper function for getting the correct date range from radio button clicks
     const addMonths = (date, months) => {
