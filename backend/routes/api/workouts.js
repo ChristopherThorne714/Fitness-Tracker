@@ -41,7 +41,7 @@ router.get('/show-workout/:title', (req, res) => {
     title: req.params.title, 
     performedOn: {$gte: req.query.dateRange[0], $lte: req.query.dateRange[1]}})
     .sort({ createdAt: -1 })
-    .then(workouts => res.json(workouts))
+    .then(workouts => res.status(200).json(workouts))
     .catch(err => res.status(404).json({ noworkoutsfound : "No workouts found"}));
 });
 // @route   GET api/workouts/show-workout/:title
@@ -53,7 +53,7 @@ router.get('/show-workout/:user/:title', (req, res) => {
     title: req.params.title, 
     performedOn: {$gte: req.query.dateRange[0], $lte: req.query.dateRange[1]}})
     .sort({ createdAt: -1 })
-    .then(workouts => res.json(workouts))
+    .then(workouts => res.status(200).json(workouts))
     .catch(err => res.status(404).json({ noworkoutsfound : "No workouts found"}));
 });
 
@@ -62,7 +62,7 @@ router.get('/show-workout/:user/:title', (req, res) => {
 // @access  Public
 router.get('/:id', (req, res) => {
   Workout.findById(req.params.id)
-    .then(workout => res.json(workout))
+    .then(workout => res.status(200).json(workout))
     .catch(err => res.status(404).json({ noworkoutfound: 'No workout found' }));
 });
 
@@ -89,7 +89,7 @@ router.put('/:id', (req, res) => {
 // @access  Public
 router.delete('/:id', (req, res) => {
   Workout.findByIdAndDelete(req.params.id)
-    .then(workout => res.json(workout))
+    .then(workout => res.status(200).json(workout))
     .catch(err => res.status(404).json({ error: 'No such workout entry' }));
 });
 

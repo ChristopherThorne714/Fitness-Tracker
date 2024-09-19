@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Plot from 'react-plotly.js';
 import '../App.css';
@@ -8,6 +8,9 @@ function DetailsGraph() {
     const workouts = useSelector((state) => state.workouts.value);
     const dateRange = useSelector((state) => state.dateRange.value);
     console.log(workouts);
+    const [data, setData] = useState([]);
+
+    
 
     return(
         <div className='graph'>
@@ -18,7 +21,7 @@ function DetailsGraph() {
                 data={[
                 {
                     x: dateRange,
-                    y: [2, 6, 3],
+                    y: data,
                     type: 'scatter',
                     mode: 'lines+markers',
                     marker: {color: 'blue'},

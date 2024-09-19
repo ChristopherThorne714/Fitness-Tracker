@@ -15,6 +15,7 @@ export const workoutsSlice = createSlice({
         deleteWorkout: (state, action) => {
             state.value = state.value.filter((w) => w._id !== action.payload._id)
         },
+        // add a function to clear all workouts later
     },
 });
 
