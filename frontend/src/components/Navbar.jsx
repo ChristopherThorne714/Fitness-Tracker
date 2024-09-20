@@ -6,7 +6,7 @@ import { useCookies } from "react-cookie";
 const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [cookies, removeCookie] = useCookies([]);
+  const [cookies, setCookie, removeCookie] = useCookies([]);
 
   const user = useSelector((state) => state.auth.value);
 

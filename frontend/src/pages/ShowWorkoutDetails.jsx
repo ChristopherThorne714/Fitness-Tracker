@@ -4,9 +4,11 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setWorkouts } from '../redux/slices/workoutsSlice';
 import { setDateRange } from '../redux/slices/dateRangeSlice';
-import { useVerifyCookie } from '../hooks/useVerifyCookie';
+import { useCookies } from "react-cookie";
+import { useNavigate } from 'react-router-dom';
+import { getVerification } from '../utils/getVerification';
+import { login, logout } from '../redux/slices/authSlice';
 
-// import { DateRangePicker } from 'rsuite';
 import 'rsuite/dist/rsuite-no-reset.min.css';
 import '../App.css';
 import axios from 'axios';
@@ -17,10 +19,11 @@ import DetailsGraph from "../components/DetailsGraph";
 function ShowWorkoutDetails() {
     const { title } = useParams();
     var dateRange = useSelector((state) => state.dateRange.value);
-    const user = useSelector((state) => state.auth.value);
+    var user = useSelector((state) => state.auth.value);
     const workouts = useSelector((state) => state.workouts.value);
-    const isVerified = useVerifyCookie();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [cookies, setCookie, removeCookie] = useCookies([]);
 
     var currentDate = new Date();
     var startDate = null;
@@ -38,9 +41,20 @@ function ShowWorkoutDetails() {
     };
 
     useEffect(() => {
-        if (!isVerified) navigate('/login');
-        fetchWorkouts();
-        },[]);
+        const verify = async () => {
+            const isVerified = await getVerification();
+            if (isVerified === false) {
+              removeCookie('token');
+              dispatch(logout());
+              navigate('/login');
+            } else {
+              dispatch(login(isVerified));
+              user = isVerified;
+              fetchWorkouts();
+            }
+          };
+          verify();
+        }, [dispatch, navigate, setCookie, removeCookie]);
 
     // helper function for getting the correct date range from radio button clicks
     const addMonths = (date, months) => {

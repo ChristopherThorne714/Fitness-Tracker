@@ -1,16 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { useVerifyCookie } from '../hooks/useVerifyCookie';
+import { useSelector, useDispatch } from 'react-redux';
+import { useCookies } from "react-cookie";
+import { getVerification } from '../utils/getVerification';
+import { login, logout } from '../redux/slices/authSlice';
 import axios from 'axios';
 import '../App.css';
 
 function UpdateWorkout(props) {
   const { id } = useParams();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isVerified = useVerifyCookie();
+  const [cookies, setCookie, removeCookie] = useCookies([]);
 
-  const user = useSelector((state) => state.auth.value);
+  var user = useSelector((state) => state.auth.value);
 
   const sortErrorRef = useRef(null);
   const groupErrorRef = useRef(null);
@@ -56,7 +59,18 @@ function UpdateWorkout(props) {
   };
 
   useEffect(() => {
-    if (!isVerified) navigate('/login');
+    const verify = async () => {
+      const isVerified = await getVerification();
+      if (isVerified === false) {
+        removeCookie('token');
+        dispatch(logout());
+        navigate('/login');
+      } else {
+        dispatch(login(isVerified));
+        user = isVerified;
+      }
+    };
+    verify();
 
     axios
       .get(`http://localhost:5000/api/workouts/${id}`)
@@ -77,7 +91,7 @@ function UpdateWorkout(props) {
       .catch((err) => {
       console.log(err.response);
       });
-  }, [id]);
+  }, [id, dispatch, navigate, setCookie, removeCookie]);
 
 
   const onSubmit = (e) => {
