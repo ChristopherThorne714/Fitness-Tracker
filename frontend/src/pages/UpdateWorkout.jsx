@@ -73,9 +73,8 @@ function UpdateWorkout(props) {
     verify();
 
     axios
-      .get(`http://localhost:5000/api/workouts/${id}`)
+      .get(`http://localhost:5000/api/workouts/workout/${id}`)
       .then((res) => {
-        console.log(res.data);
         setWorkout({
             title: res.data.title,
             sort: res.data.sort,
