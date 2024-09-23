@@ -27,7 +27,7 @@ jobs:
 
         - name: Install and Test Server
           env:
-            ATLAS_URI: ${{ secrets.ATLAST_URI }}
+            ATLAS_URI: ${{ secrets.ATLAS_URI }}
             TOKEN_KEY: ${{ secrets.TOKEN_KEY }}
             PORT: ${{ secrets.PORT }}
           working-directory: ./backend
