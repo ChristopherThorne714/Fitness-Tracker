@@ -6,11 +6,6 @@ on:
     branches:
       - main
 
-env:
-  ATLAS_URI: ${{ secrets.ATLAST_URI }}
-  TOKEN_KEY: ${{ secrets.TOKEN_KEY }}
-  PORT: ${{ secrets.PORT }}
-
 jobs:
   build-and-deploy:
     strategy:
@@ -20,6 +15,7 @@ jobs:
 
     runs-on: ${{ matrix.platform }}
     steps:
+      
         - name: Checkout code
           uses: actions/checkout@v4
 
@@ -30,12 +26,13 @@ jobs:
             npm run test
 
         - name: Install and Test Server
+          env:
+            ATLAS_URI: ${{ secrets.ATLAST_URI }}
+            TOKEN_KEY: ${{ secrets.TOKEN_KEY }}
+            PORT: ${{ secrets.PORT }}
           working-directory: ./backend
           run: |
             npm install
-            export ATLAS_URI=$ATLAS_URI
-            export TOKEN_KEY=$TOKEN_KEY
-            export PORT=$PORT
             npm run test
 
       
