@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
-    "test": "jest --watch --verbose"
+    "test": "jest --verbose",
+    "test-continuous": "jest --watch"
   },
   "author": "",
   "license": "ISC",
