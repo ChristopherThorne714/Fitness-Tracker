@@ -16,11 +16,13 @@ require("dotenv").config({ path: "./config.env" });
 const constants = {user : {email : 'a@a', password : 'a'}, performedOn : '2024-09-18', dateRange : ['2024-09-12', '2024-09-19'], title : 'something crazy', id : '66eb1b89d5b7955eefc3787b', token : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZWIxYWUyMTc2NjQ0MjFiYmIyNmM5NiIsImlhdCI6MTcyNjY4Njg2MiwiZXhwIjoxNzI2Njk3NjYyfQ.dRgh5eGHVO1UkYkgZttkuEzsLO_c62jjB95fzeXlGXg'};
 
 beforeAll(async () => {
+    jest.setTimeout(30000);
     await mongoose.connect(process.env.ATLAS_URI);
-});
+}, 30000);
 afterAll(async() => {
+    jest.setTimeout(30000);
     await mongoose.connection.close();
-});
+}, 30000);
 
 describe('Workouts endpoints', () => {
     test('POST /api/users/login and GET /api/workouts/test', async () => {

@@ -20,10 +20,10 @@ const constants = {
     id : '66eb1b89d5b7955eefc3787b', 
     token : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZWIxYWUyMTc2NjQ0MjFiYmIyNmM5NiIsImlhdCI6MTcyNjY4Njg2MiwiZXhwIjoxNzI2Njk3NjYyfQ.dRgh5eGHVO1UkYkgZttkuEzsLO_c62jjB95fzeXlGXg'};
 
-beforeEach(async () => {
+beforeAll(async () => {
     await mongoose.connect(process.env.ATLAS_URI);
 });
-afterEach(async() => {
+afterAll(async() => {
     await mongoose.connection.close();
 });
 

@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
-    "test": "NODE_ENV=test jest --verbose --testTimeout=15000",
+    "test": "jest --verbose --testTimeout=20000",
     "test-continuous": "jest --watch"
   },
   "author": "",
