@@ -9,6 +9,7 @@ const app = require('./app')
 connectDB();
 
 const port = process.env.PORT || 8082;
-app.listen(port, () => console.log(`Server running on port ${port}`));
 
-// module.exports = app;
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(port, () => console.log(`Server running on port ${port}`));
+}

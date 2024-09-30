@@ -9,7 +9,7 @@ module.exports.Signup = async (req, res, next) => {
 
         if (existingUser) {
             return res.status(400).json({ message: "User already exists" });
-        }
+        };
 
         const user = await User.create({ email, password });
         const token = createSecretToken(user._id);
@@ -55,4 +55,21 @@ module.exports.Login = async (req, res, next) => {
     } catch (error)  {
         console.error(error);
     }
-}
+};
+
+module.exports.Delete = async (req, res, next) => {
+    try {
+        const { email} = req.body;
+        const existingUser = await User.findOne({ email });
+
+        if (!existingUser) {
+            return res.status(400).json({ message: 'user does not exist'});
+        };
+        console.log(existingUser._id);
+        await User.findByIdAndDelete(existingUser._id);
+        res.status(200).json({ message : 'user deleted successfully ', success : true })
+        next();
+    } catch (error) {
+        console.error(error);
+    };
+};

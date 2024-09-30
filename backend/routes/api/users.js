@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // load Signup controller
-const { Signup, Login } = require("../../controllers/AuthController");
+const { Signup, Login, Delete } = require("../../controllers/AuthController");
 const { userVerification } = require("../../middleware/AuthMiddleware");
 
 // Load User model
@@ -22,6 +22,11 @@ router.post('/signup', Signup);
 // @desc login existing user
 // @access Public
 router.post('/login', Login);
+
+// @route post api/users/login
+// @desc login existing user
+// @access Public
+router.post('/delete/', Delete);
 
 // @route post api/users/verify
 // @desc verify current user
