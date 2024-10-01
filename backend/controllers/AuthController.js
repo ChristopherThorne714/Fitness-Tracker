@@ -65,7 +65,6 @@ module.exports.Delete = async (req, res, next) => {
         if (!existingUser) {
             return res.status(400).json({ message: 'user does not exist'});
         };
-        console.log(existingUser._id);
         await User.findByIdAndDelete(existingUser._id);
         res.status(200).json({ message : 'user deleted successfully ', success : true })
         next();
