@@ -23,7 +23,7 @@ module.exports.Signup = async (req, res, next) => {
         next();
     } catch (error) {
         console.error(error);
-    }
+    };
 };
 
 module.exports.Login = async (req, res, next) => {
@@ -32,17 +32,17 @@ module.exports.Login = async (req, res, next) => {
         const { email, password } = req.body;
         if (!email || !password) {
             return res.status(422).json({ message : 'All fields are requried!' });
-        }
+        };
 
         const user = await User.findOne({ email });
         if (!user) {
             return res.status(401).json({ message : "Incorrect email or password" });
-        }
+        };
 
         const auth = await bcrypt.compare(password, user.password);
         if (!auth) {
             return res.status(401).json({ message : 'Incorrect email or password' });
-        }
+        };
 
         const token = createSecretToken(user._id);
         res.cookie("token", token, {

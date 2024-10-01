@@ -10,7 +10,7 @@ const agent = request.agent(app);
 require("dotenv").config({ path: "./config.env" });
 
 const constants = {
-    user : {email : 'a@a', password : 'a'}, 
+    user : {email : 'c@c', password : 'c'}, 
     performedOn : '2024-09-18', 
     title : 'something crazy',
     sort: 'Under Load',
@@ -31,6 +31,19 @@ describe('Under load workouts endpoints', () => {
     });
     afterAll(async() => {
         await mongoose.connection.close();
+    });
+
+    describe('create a test user', () => {
+        test('POST /api/users/signup', async () => {
+            const res = await agent
+                .post('/api/users/signup')
+                .send({
+                    email: constants.user.email,
+                    password: constants.user.password,
+                });
+            expect(res.status).toBe(201);
+            expect(res.body).toHaveProperty("user");
+        });
     });
 
     describe('login with user credentials, create a new workout, and then delete it', () => {
@@ -75,8 +88,7 @@ describe('Under load workouts endpoints', () => {
                 })
             expect(res.status).toBe(200);
         });
-    });
-    
+    }); 
 
     describe('Update an under load workout', () => {
         test('put /api/underloadworkouts/:id', async () => {
@@ -91,6 +103,20 @@ describe('Under load workouts endpoints', () => {
                     reps: constants.reps,
                     sets: constants.sets,
                     load: constants.load,
+                })
+                .set({
+                    cookies : {token : constants.token},
+                });
+            expect(res.status).toBe(200);
+        });
+    });
+
+    describe('delete test user b@b', () => {
+        test('POST /api/users/delete', async () => {
+            const res = await agent
+                .post(`/api/users/delete`)
+                .send({
+                    email: constants.user.email,
                 })
                 .set({
                     cookies : {token : constants.token},
