@@ -17,7 +17,7 @@ router.get('/test', (req, res) => res.send('Workouts testing!'));
 // @access  Public
 router.post('/', (req, res) => {
     DistanceWorkout.create(req.body)
-      .then(workout => res.json(workout))
+      .then(workout => res.status(201).json(workout))
       .catch(err => res.status(400).json({ error: 'Unable to add this workout' }));
 });
   
@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
 // @access  Public
 router.put('/:id', (req, res) => {
     DistanceWorkout.findByIdAndUpdate(req.params.id, req.body)
-        .then(workout => res.json({ msg: 'Updated successfully' }))
+        .then(workout => res.status(200).json({ msg: 'Updated successfully' }))
         .catch(err =>
         res.status(400).json({ error: 'Unable to update the Database' })
     );

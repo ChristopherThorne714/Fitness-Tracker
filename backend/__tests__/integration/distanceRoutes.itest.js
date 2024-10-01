@@ -9,20 +9,19 @@ const agent = request.agent(app);
 require("dotenv").config({ path: "./config.env" });
 
 const constants = {
-    user : {email : 'c@c', password : 'c'}, 
+    user : {email : 'e@e', password : 'e'}, 
     performedOn : '2024-09-18', 
-    title : 'something crazy',
-    sort: 'Under Load',
-    musclegroup: 'Chest',
+    title : 'somethinh insane',
+    sort: 'Distance',
+    musclegroup: 'Cardio',
     performedOn: '2024-09-18',
-    reps: '77',
-    sets: '4',
-    load: '934',
-    id : '66eb1b89d5b7955eefc3787b', 
+    laps: '4',
+    distance: '100000',
+    id : '66ec7cdcfd38bb004ede406f', 
     token : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZWIxYWUyMTc2NjQ0MjFiYmIyNmM5NiIsImlhdCI6MTcyNjY4Njg2MiwiZXhwIjoxNzI2Njk3NjYyfQ.dRgh5eGHVO1UkYkgZttkuEzsLO_c62jjB95fzeXlGXg'};
 
 
-describe('Under load workouts endpoints', () => {
+describe('Distance workouts endpoints', () => {
     let _id;
 
     beforeAll(async () => {
@@ -57,18 +56,17 @@ describe('Under load workouts endpoints', () => {
             expect(res.body).toHaveProperty("user");
         });
 
-        test('POST /api/underloadworkouts/', async () => {
+        test('POST /api/distanceworkouts/', async () => {
             const res = await agent
-                .post(`/api/underloadworkouts/`)
+                .post(`/api/distanceworkouts`)
                 .send({
                     title: constants.title,
                     sort: constants.sort,
                     musclegroup: constants.musclegroup,
                     performedOn: constants.performedOn,
                     user: constants.user.email,
-                    reps: constants.reps,
-                    sets: constants.sets,
-                    load: constants.load,
+                    distance: constants.distance,
+                    laps: constants.laps,
             })
             .set({
                 cookies : {token : constants.token},
@@ -89,8 +87,8 @@ describe('Under load workouts endpoints', () => {
         });
     }); 
 
-    describe('Update an under load workout', () => {
-        test('put /api/underloadworkouts/:id', async () => {
+    describe('Update a distance workout', () => {
+        test('put /api/distanceworkouts/:id', async () => {
             const res = await agent
                 .put(`/api/underloadworkouts/${constants.id}`)
                 .send({
@@ -99,9 +97,8 @@ describe('Under load workouts endpoints', () => {
                     musclegroup: constants.musclegroup,
                     performedOn: constants.performedOn,
                     user: constants.user.email,
-                    reps: constants.reps,
-                    sets: constants.sets,
-                    load: constants.load,
+                    distance: constants.distance,
+                    laps: constants.laps,
                 })
                 .set({
                     cookies : {token : constants.token},
@@ -110,7 +107,7 @@ describe('Under load workouts endpoints', () => {
         });
     });
 
-    describe('delete test user c@c', () => {
+    describe('delete test user e@e', () => {
         test('POST /api/users/delete', async () => {
             const res = await agent
                 .post(`/api/users/delete`)
