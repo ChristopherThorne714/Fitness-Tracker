@@ -51,8 +51,8 @@ describe('Under load workouts endpoints', () => {
             const res = await agent
                 .post('/api/users/login')
                 .send({
-                    email: process.env.EMAIL,
-                    password: process.env.PASSWORD,
+                    email: constants.user.email,
+                    password: constants.user.password,
                 });
             expect(res.status).toBe(201);
             expect(res.body).toHaveProperty("user");
