@@ -15,7 +15,7 @@ jobs:
 
     runs-on: ${{ matrix.platform }}
     steps:
-      
+            
         - name: Checkout code
           uses: actions/checkout@v4
 
@@ -24,6 +24,11 @@ jobs:
           run: |
             npm install
             npm run test
+        
+        - name: Start MongoDB
+          uses: supercharge/mongodb-github-action@1.11.0
+          with:
+            mongodb-version: latest
 
         - name: Install and Test Server
           env:
@@ -33,7 +38,7 @@ jobs:
           working-directory: ./backend
           run: |
             npm install
-            npm run test:unit
-            npm run test:int
+            npm run test
+        
 
       

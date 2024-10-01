@@ -7,7 +7,7 @@
     "server": "nodemon server.js",
     "test:unit": "jest --verbose -c jest.config.js",
     "test:int": "jest --verbose -c jest.integration.config.js",
-    "test": "npm test:unit && npm test:int",
+    "test": "npm run test:unit && npm run test:int",
     "test-continuous": "jest --watch"
   },
   "author": "",

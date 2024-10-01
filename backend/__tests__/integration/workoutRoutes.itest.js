@@ -20,7 +20,8 @@ token : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZWIxYWUyMTc2NjQ0MjFiYm
 describe('Workouts endpoints', () => {
 
     beforeAll(async () => {
-        await mongoose.connect(process.env.ATLAS_URI);
+        // await mongoose.connect(process.env.ATLAS_URI);
+        await mongoose.connect('mongodb://localhost:27017');
     });
     afterAll(async() => {
         await mongoose.connection.close();
