@@ -2,10 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
-// import { LocalizationProvider } from '@mui/x-date-pickers';
 
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-// import { WorkoutsContextProvider } from "./context/WorkoutContext";
 
 import { Provider } from 'react-redux';
 import store from './redux/store';
@@ -13,12 +11,6 @@ import store from './redux/store';
 // Bootstrap CSS & JS imports
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-
-// Old/Unused Components
-// import CreateBook from "./components/CreateBook";
-// import ShowBookList from "./components/ShowBookList";
-// import ShowBookDetails from "./components/ShowBookDetails";
-// import UpdateBookInfo from "./components/UpdateBookInfo";
 
 // Components imports and pages imports
 import Navbar from "./components/Navbar"
@@ -32,10 +24,6 @@ axios.defaults.withCredentials = true;
 
 // Routes
 const router = createBrowserRouter([
-  // { path: "/", element: <ShowBookList /> },
-  // { path: "/create-book", element: <CreateBook /> },
-  // { path: "/show-book/:id", element: <ShowBookDetails /> },
-  // { path: "/edit-book/:id", element: <UpdateBookInfo /> },
   { path: "/", element: <NavbarWrapper />, children: [
     {
       path: "/",
@@ -58,8 +46,6 @@ const router = createBrowserRouter([
       element: <UpdateWorkout />
     },
   ]},
-  // { path: "/login", element: <Login /> },
-  // { path: "/signup", element: <Signup /> },
 ]);
 
 function NavbarWrapper(){
@@ -73,10 +59,8 @@ function NavbarWrapper(){
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {/* <WorkoutsContextProvider> */}
     <Provider store={store}>
       <RouterProvider router={router} />
     </Provider>
-    {/* </WorkoutsContextProvider> */}
   </React.StrictMode>,
 );

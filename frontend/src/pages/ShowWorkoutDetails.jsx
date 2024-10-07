@@ -29,7 +29,6 @@ function ShowWorkoutDetails() {
     var startDate = null;
 
     const fetchWorkouts = () => {
-        console.log(dateRange);
         axios
         .get(`http://localhost:5000/api/workouts/show-workout/${user}/${title}/`, { params: { dateRange : dateRange }})
         .then((res) => {
