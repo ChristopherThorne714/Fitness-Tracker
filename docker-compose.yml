@@ -1,0 +1,43 @@
+name: fitness-ally
+
+services:
+
+  backend:
+    image: fitnally-backend
+    build:
+      context: ./backend
+      dockerfile: ./dockerfile
+    env_file:
+      - ".env"
+    environment:
+      # ATLAS_URI: ${ATLAS_URI}$
+      # TOKEN_KEY: ${TOKEN_KEY}
+      # PORT: ${PORT:-5000}
+      NODE_ENV: production
+    ports: 
+      - "${PORT}:${PORT}"
+      # - "5000"
+    depends_on:
+      - db
+
+  db:
+    volumes:
+      - fit-db:/var/lib/backup/data
+    image: mongo:latest
+    ports: 
+      - 27017:27017
+  
+  frontend: 
+    image: fitnally-frontend
+    build:
+      context: ./frontend
+      dockerfile: ./dockerfile
+    environment:
+      NODE_ENV: production
+    ports: 
+      - 3000:3000
+    depends_on:
+      - db
+
+volumes:
+  fit-db:
