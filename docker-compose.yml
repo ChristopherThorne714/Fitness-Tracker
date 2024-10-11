@@ -3,7 +3,7 @@ name: fitness-ally
 services:
 
   backend:
-    image: fitnally-backend
+    image: christhorne714/fitnally-backend
     build:
       context: ./backend
       dockerfile: ./dockerfile
@@ -24,7 +24,7 @@ services:
       - 27018:27018
   
   frontend: 
-    image: fitnally-frontend
+    image: christhorne714/fitnally-frontend
     build:
       context: ./frontend
       dockerfile: ./dockerfile
