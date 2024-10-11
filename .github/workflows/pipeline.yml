@@ -41,7 +41,7 @@ jobs:
             npm run test
         
         - name: Build Container Stack
-          run: docker compose up -d --build
+          run: PORT=${{ secrets.PORT }} docker compose up -d --build
 
         - name: Test Container Stack
           run: docker run --network container:fitness-ally-frontend-1 appropriate/curl -s --retry 10 --retry-connrefused http://localhost:3000/
