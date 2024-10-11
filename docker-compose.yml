@@ -21,7 +21,7 @@ services:
       - fit-db:/var/lib/backup/data
     image: mongo:latest
     ports: 
-      - 27017:27017
+      - 69420:69420
   
   frontend: 
     image: fitnally-frontend
