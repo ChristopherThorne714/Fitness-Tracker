@@ -6,7 +6,7 @@ COPY . .
 
 RUN npm install && npm i -g serve
 
-RUN npm run build
+RUN npm run build --verbose
 
 EXPOSE 3000
 
