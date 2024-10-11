@@ -10,7 +10,7 @@ import { getVerification } from '../utils/getVerification';
 import { login, logout } from '../redux/slices/authSlice';
 
 import 'rsuite/dist/rsuite-no-reset.min.css';
-import '../App.css';
+import '../app.css';
 import axios from 'axios';
 
 import WorkoutCard from '../components/WorkoutCard';

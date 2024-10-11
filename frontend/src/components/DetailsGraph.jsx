@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Plot from 'react-plotly.js';
-import '../App.css';
+import '../app.css';
 
 function DetailsGraph() {
 

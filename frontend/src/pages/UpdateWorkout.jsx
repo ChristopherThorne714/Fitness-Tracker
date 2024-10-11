@@ -5,7 +5,7 @@ import { useCookies } from "react-cookie";
 import { getVerification } from '../utils/getVerification';
 import { login, logout } from '../redux/slices/authSlice';
 import axios from 'axios';
-import '../App.css';
+import '../app.css';
 
 function UpdateWorkout(props) {
   const { id } = useParams();
