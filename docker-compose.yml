@@ -10,13 +10,9 @@ services:
     env_file:
       - ".env"
     environment:
-      # ATLAS_URI: ${ATLAS_URI}$
-      # TOKEN_KEY: ${TOKEN_KEY}
-      # PORT: ${PORT:-5000}
       NODE_ENV: production
     ports: 
       - "${PORT}:${PORT}"
-      # - "5000"
     depends_on:
       - db
 
