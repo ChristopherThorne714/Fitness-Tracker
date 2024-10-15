@@ -105,6 +105,7 @@ nav {
 nav a {
   margin-left: 10px;
 }
+
 /* auth forms */
 form.signup, form.login {
   max-width: 400px;
@@ -113,6 +114,7 @@ form.signup, form.login {
   background: #fff;
   border-radius: 4px;
 }
+
 .workout-details {
   padding: 0 5vw 0 5vw;
 }

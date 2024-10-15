@@ -14,10 +14,10 @@ module.exports.Signup = async (req, res, next) => {
         const user = await User.create({ email, password });
         const token = createSecretToken(user._id);
 
-        res.cookie("token", token, {
-            withCredentials: true,
-            httpOnly: false,
-        });
+        // res.cookie("token", token, {
+        //     withCredentials: true,
+        //     httpOnly: false,
+        // });
         res.status(201)
             .json({ message: "User created succesfully", success: true, user });
         next();
@@ -48,13 +48,15 @@ module.exports.Login = async (req, res, next) => {
         res.cookie("token", token, {
             withCredentials: true,
             httpOnly: false,
+            sameSite: "none",
+            secure: true,
         });
 
         res.status(201).json({ message: "User logged in successfully", success: true, user, token });
         next();
     } catch (error)  {
         console.error(error);
-    }
+    };
 };
 
 module.exports.Delete = async (req, res, next) => {
@@ -66,7 +68,7 @@ module.exports.Delete = async (req, res, next) => {
             return res.status(400).json({ message: 'user does not exist'});
         };
         await User.findByIdAndDelete(existingUser._id);
-        res.status(200).json({ message : 'user deleted successfully ', success : true })
+        res.status(200).json({ message : 'user deleted successfully ', success : true });
         next();
     } catch (error) {
         console.error(error);
